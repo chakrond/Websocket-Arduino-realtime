@@ -1,7 +1,6 @@
 {
-  "name": "chat-app",
+  "name": "websocket-arduino",
   "version": "1.0.0",
-  "description": "",
   "main": "index.js",
   "scripts": {
     "start": "node src/app.js",
@@ -9,7 +8,7 @@
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "keywords": [],
-  "author": "",
+  "author": "Chakron",
   "license": "ISC",
   "dependencies": {
     "bad-words": "^3.0.4",
@@ -19,5 +18,14 @@
   },
   "devDependencies": {
     "nodemon": "^2.0.15"
-  }
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/chakrond/Websocket-Arduino-realtime.git"
+  },
+  "bugs": {
+    "url": "https://github.com/chakrond/Websocket-Arduino-realtime/issues"
+  },
+  "homepage": "https://github.com/chakrond/Websocket-Arduino-realtime#readme",
+  "description": ""
 }
