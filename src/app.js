@@ -1,128 +1,71 @@
-const path = require('path')
+// const path = require('path')
 const http = require('http')
 const express = require('express')
-const hbs = require('hbs')
-const socketio = require('socket.io')
-const Filter = require('bad-words')
-const { generateMsg, generateLocMsg } = require('./utils/msg')
-const { addUser, removeUser, getUser, getUsersInRoom } = require('./utils/users')
+// const hbs = require('hbs')
+// const socketio = require('socket.io')
+// const Filter = require('bad-words')
+// const { generateMsg, generateLocMsg } = require('./utils/msg')
+// const { addUser, removeUser, getUser, getUsersInRoom } = require('./utils/users')
 
-// Routers
-const statusRouter = require('./routers/status')
+// // Routers
+// const statusRouter = require('./routers/status')
 
 
 
 const app = express()
-// app.use(express.json())
+// // app.use(express.json())
 const server = http.createServer(app)
 const io = socketio(server)
 
 const port = process.env.PORT || 3000
 
-// Define paths for Express config
-const publicdir = path.join(__dirname, '../public')
-const viewsPath = path.join(__dirname, '../templates/views')
-const partialsPath = path.join(__dirname, '../templates/partials')
+// // Define paths for Express config
+// const publicdir = path.join(__dirname, '../public')
+// const viewsPath = path.join(__dirname, '../templates/views')
+// const partialsPath = path.join(__dirname, '../templates/partials')
 
-// Set partials
-hbs.registerPartials(partialsPath)
+// // Set partials
+// hbs.registerPartials(partialsPath)
 
-// Setup handlebars engine and views location
-app.set('view engine', 'hbs')
-app.set('views', viewsPath)
+// // Setup handlebars engine and views location
+// app.set('view engine', 'hbs')
+// app.set('views', viewsPath)
 
-// Setup static directory to serve
-app.use(express.static(publicdir))
+// // Setup static directory to serve
+// app.use(express.static(publicdir))
 
-// Routers
-app.use(statusRouter)
-
-
+// // Routers
+// app.use(statusRouter)
 
 
 io.on('connection', (socket) => {
 
-    // Message
-    console.log('New WebSocket connection')
+    console.log('Connected');
+    console.log(socket.id);
+    console.log("JWT token test: ",socket.handshake.headers)
+  
+    socket.on('event_name', (data) => {
+  
+      console.log("Message from Client : ", data);
+  
+      socket.broadcast.emit("Send Message socket.broadcast.emit : ", data);
+      io.emit("Send Message io.emit Broadcasted : ", data);
+      socket.emit("Send Message : ", data);
+  
+    })
+    
+    socket.on('disconnect', () => {
+  
+      console.log('Disconnected');
+  
+    })
+  
+  })
 
 
-    // Room
-    // socket.on('join', (opt, callback) => {
-
-        // Add user
-        // const { S_user, error } = addUser({ id: socket.id, ...opt })
-        // console.log("Debug: " + S_user.id)
-
-        // if (error) {
-        //     return callback(error)
-        // }
-
-        // socket.join(S_user.room)
-
-        socket.emit('msg', generateMsg('System', 'Welcome!'))
-        // socket.broadcast.to(S_user.room).emit('msg', generateMsg('System', `${S_user.username} has joined`))
-
-        // // Update list when client join
-        // io.to(S_user.room).emit('roomData', {
-        //     room: S_user.room,
-        //     users: getUsersInRoom(S_user.room)
-        // })
-
-        socket.emit('ConnectionOpened', generateMsg('System', 'ConnectionOpened!'))
-
-        socket.send(JSON.stringify({
-            type: "hello from server",
-            content: [1, "2"]
-        }))
-
-
-
-        // callback()
-    // })
-
-
-    // socket.on('sendMsg', (m, callback) => {
-    //     const filter = new Filter()
-
-    //     if (filter.isProfane(m)) {
-    //         return callback('Profanity is not allowed')
-    //     }
-
-    //     const { username, room } = getUser(socket.id)
-    //     io.to(room).emit('msg', generateMsg(username, m))
-    //     callback()
-    // })
-
-    // socket.on('sendLocation', (e, cb) => {
-    //     const { room, username } = getUser(socket.id)
-    //     io.to(room).emit('Locationmsg', generateLocMsg(username, `https://google.com/maps?q=${e.lat},${e.long}`))
-    //     cb() // acknowledge callback
-    // })
-
-
-
-
-    // Send msg when user left
-    // socket.on('disconnect', () => {
-    //     const user = removeUser(socket.id)
-
-    //     if (user) {
-    //         io.to(user.room).emit('msg', generateMsg('System', `${user.username} has left`))
-    //         // Update the users list
-    //         io.to(user.room).emit('roomData', {
-    //             room: user.room,
-    //             users: getUsersInRoom(user.room)
-    //         })
-    //     }
-    // })
-
-})
-
-
-
-
-server.listen(port, () => {
-    console.log(`Server is up on port ${port}`)
+server.listen(8080, () => {
+    // server.listen(port, () => {
+    console.log(`Server is up on port 8080`)
 
 })
 
