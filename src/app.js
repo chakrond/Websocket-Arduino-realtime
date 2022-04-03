@@ -1,15 +1,19 @@
-const path      = require('path')
-const http      = require('http')
-const express   = require('express')
-const hbs       = require('hbs')
-const socketio  = require('socket.io')
-const Filter    = require('bad-words')
+const path = require('path')
+const http = require('http')
+const express = require('express')
+const hbs = require('hbs')
+const socketio = require('socket.io')
+const Filter = require('bad-words')
 const { generateMsg, generateLocMsg } = require('./utils/msg')
 const { addUser, removeUser, getUser, getUsersInRoom } = require('./utils/users')
+
+// Routers
+const statusRouter = require('./routers/status')
 
 
 
 const app = express()
+// app.use(express.json())
 const server = http.createServer(app)
 const io = socketio(server)
 
@@ -30,8 +34,11 @@ app.set('views', viewsPath)
 // Setup static directory to serve
 app.use(express.static(publicdir))
 
+// Routers
+app.use(statusRouter)
 
-const msg = 'Welcome!'
+
+
 
 io.on('connection', (socket) => {
 
@@ -40,102 +47,82 @@ io.on('connection', (socket) => {
 
 
     // Room
-    socket.on('join', (opt, callback) => {
+    // socket.on('join', (opt, callback) => {
 
         // Add user
-        const { S_user, error } = addUser({ id: socket.id, ...opt })
+        // const { S_user, error } = addUser({ id: socket.id, ...opt })
         // console.log("Debug: " + S_user.id)
 
-        if (error) {
-            return callback(error)
-        }
+        // if (error) {
+        //     return callback(error)
+        // }
 
-        socket.join(S_user.room)
+        // socket.join(S_user.room)
 
-        socket.emit('msg', generateMsg('System', msg))
-        socket.broadcast.to(S_user.room).emit('msg', generateMsg('System', `${S_user.username} has joined`))
+        socket.emit('msg', generateMsg('System', 'Welcome!'))
+        // socket.broadcast.to(S_user.room).emit('msg', generateMsg('System', `${S_user.username} has joined`))
 
-        // Update list when client join
-        io.to(S_user.room).emit('roomData', {
-            room: S_user.room,
-            users: getUsersInRoom(S_user.room)
-        })
+        // // Update list when client join
+        // io.to(S_user.room).emit('roomData', {
+        //     room: S_user.room,
+        //     users: getUsersInRoom(S_user.room)
+        // })
 
-        callback()
-    })
+        socket.emit('ConnectionOpened', generateMsg('System', 'ConnectionOpened!'))
+
+        socket.send(JSON.stringify({
+            type: "hello from server",
+            content: [1, "2"]
+        }))
 
 
-    socket.on('sendMsg', (m, callback) => {
-        const filter = new Filter()
 
-        if (filter.isProfane(m)) {
-            return callback('Profanity is not allowed')
-        }
+        // callback()
+    // })
 
-        const {username, room} = getUser(socket.id)
-        io.to(room).emit('msg', generateMsg(username, m))
-        callback()
-    })
 
-    socket.on('sendLocation', (e, cb) => {
-        const { room, username } = getUser(socket.id)
-        io.to(room).emit('Locationmsg', generateLocMsg(username,`https://google.com/maps?q=${e.lat},${e.long}`))
-        cb() // acknowledge callback
-    })
+    // socket.on('sendMsg', (m, callback) => {
+    //     const filter = new Filter()
+
+    //     if (filter.isProfane(m)) {
+    //         return callback('Profanity is not allowed')
+    //     }
+
+    //     const { username, room } = getUser(socket.id)
+    //     io.to(room).emit('msg', generateMsg(username, m))
+    //     callback()
+    // })
+
+    // socket.on('sendLocation', (e, cb) => {
+    //     const { room, username } = getUser(socket.id)
+    //     io.to(room).emit('Locationmsg', generateLocMsg(username, `https://google.com/maps?q=${e.lat},${e.long}`))
+    //     cb() // acknowledge callback
+    // })
 
 
 
 
     // Send msg when user left
-    socket.on('disconnect', () => {
-        const user = removeUser(socket.id)
+    // socket.on('disconnect', () => {
+    //     const user = removeUser(socket.id)
 
-        if (user) {
-            io.to(user.room).emit('msg', generateMsg('System',`${user.username} has left`))
-            // Update the users list
-            io.to(user.room).emit('roomData', {
-                room: user.room,
-                users: getUsersInRoom(user.room)
-            })
-        }
-    })
-
-})
-
-
-
-
-// View render
-
-app.get('', (req, res) => {
-
-    res.render('index', { // Web Directory **index doesnot required
-        title: 'Chat App',
-        name: 'Chakron Dechkrut'
-    })
+    //     if (user) {
+    //         io.to(user.room).emit('msg', generateMsg('System', `${user.username} has left`))
+    //         // Update the users list
+    //         io.to(user.room).emit('roomData', {
+    //             room: user.room,
+    //             users: getUsersInRoom(user.room)
+    //         })
+    //     }
+    // })
 
 })
 
-app.get('/chat', (req, res) => {
 
-    res.render('chat', { // Web Directory **index doesnot required
-        title: 'Chat App',
-        name: 'Chakron Dechkrut'
-    })
 
-})
-
-app.get('*', (req, res) => {
-
-    res.render('404page', {
-        title: '404 Page',
-    })
-
-})
 
 server.listen(port, () => {
     console.log(`Server is up on port ${port}`)
 
 })
-
 
