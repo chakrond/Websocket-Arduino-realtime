@@ -2,7 +2,7 @@
 const http = require('http')
 const express = require('express')
 // const hbs = require('hbs')
-// const socketio = require('socket.io')
+const socketio = require('socket.io')
 // const Filter = require('bad-words')
 // const { generateMsg, generateLocMsg } = require('./utils/msg')
 // const { addUser, removeUser, getUser, getUsersInRoom } = require('./utils/users')
