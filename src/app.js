@@ -5,6 +5,7 @@ const socketio = require('socket.io')
 const app = express()
 const server = http.createServer(app)
 const io = socketio(server)
+const port = process.env.PORT || 3000
 
 
 io.on('connection', (socket) => {
@@ -31,8 +32,8 @@ io.on('connection', (socket) => {
 
 })
 
-server.listen(8080, () => {
+server.listen(port, () => {
+    console.log(`Server is up on port ${port}`)
 
-  console.log("Server launched on port 8080")
 })
 
