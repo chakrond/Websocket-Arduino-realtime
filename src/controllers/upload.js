@@ -26,7 +26,7 @@ const uploadFiles = async (req, res) => {
   } catch (error) {
     console.log(error)
     return res.send({
-      message: "Error when trying upload image: ${error}",
+      message: `Error when trying upload: ${error}`,
     })
   }
 }
@@ -38,7 +38,7 @@ const getListFiles = async (req, res) => {
 
     await mongoClient.connect()
     const database = mongoClient.db(dbConfig.database)
-    const images = database.collection(dbConfig.imgBucket + ".files")
+    const images = database.collection(dbConfig.sketchBucket + ".files")
     const cursor = images.find({})
 
     if ((await cursor.count()) === 0) {
@@ -69,15 +69,15 @@ const download = async (req, res) => {
 
   try {
 
-    await mongoClient.connect();
+    await mongoClient.connect()
     const database = mongoClient.db(dbConfig.database)
     const bucket = new GridFSBucket(database, {
-      bucketName: dbConfig.imgBucket,
+      bucketName: dbConfig.sketchBucket,
     })
 
     let downloadStream = bucket.openDownloadStreamByName(req.params.name)
     downloadStream.on("data", function (data) {
-      return res.status(200).write(data);
+      return res.status(200).write(data)
     })
 
     downloadStream.on("error", function (err) {
@@ -85,7 +85,7 @@ const download = async (req, res) => {
     })
 
     downloadStream.on("end", () => {
-      return res.end();
+      return res.end()
     })
 
   } catch (error) {
