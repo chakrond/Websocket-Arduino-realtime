@@ -10,11 +10,11 @@ var storage = new GridFsStorage({
 
     file: (req, file) => {
 
-      const match = ["image/png", "image/jpeg"]
-      if (match.indexOf(file.mimetype) === -1) {
-        const filename = `${Date.now()}-chakron-${file.originalname}`
-        return filename
-      }
+      // const match = ["image/png", "image/jpeg"]
+      // if (match.indexOf(file.mimetype) === -1) {
+      //   const filename = `${Date.now()}-chakron-${file.originalname}`
+      //   return filename
+      // }
 
       return {
         bucketName: dbConfig.sketchBucket,
