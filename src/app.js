@@ -8,6 +8,16 @@ const server = http.createServer(app)
 const io = socketio(server)
 const port = process.env.PORT || 3000
 
+// ********
+const cors = require("cors")
+const initRoutes = require("./routers")
+var corsOptions = {
+  origin: "http://localhost:8081"
+}
+app.use(cors(corsOptions))
+app.use(express.urlencoded({ extended: true }))
+initRoutes(app)
+
 
 io.on('connection', (socket) => {
 
@@ -35,14 +45,7 @@ io.on('connection', (socket) => {
 
 
 
-const cors = require("cors")
-const initRoutes = require("./routes")
-var corsOptions = {
-  origin: "http://localhost:8081"
-}
-app.use(cors(corsOptions))
-app.use(express.urlencoded({ extended: true }))
-initRoutes(app)
+
 
 
 
