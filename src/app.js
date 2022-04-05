@@ -1,6 +1,7 @@
 const express = require('express')
 const http = require('http')
 const socketio = require('socket.io')
+const multer = require('multer')
 
 const app = express()
 const server = http.createServer(app)
@@ -12,7 +13,7 @@ io.on('connection', (socket) => {
 
   console.log('Connected')
   console.log(socket.id)
-  console.log("JWT token test: ",socket.handshake.headers)
+  console.log("JWT token test: ", socket.handshake.headers)
 
   socket.on('event_name', (data) => {
 
@@ -23,7 +24,7 @@ io.on('connection', (socket) => {
     socket.emit("Send Message : ", data)
 
   })
-  
+
   socket.on('disconnect', () => {
 
     console.log('Disconnected')
@@ -32,8 +33,22 @@ io.on('connection', (socket) => {
 
 })
 
+
+
+const cors = require("cors")
+const initRoutes = require("./routes")
+var corsOptions = {
+  origin: "http://localhost:8081"
+}
+app.use(cors(corsOptions))
+app.use(express.urlencoded({ extended: true }))
+initRoutes(app)
+
+
+
+
 server.listen(port, () => {
-    console.log(`Server is up on port ${port}`)
+  console.log(`Server is up on port ${port}`)
 
 })
 
