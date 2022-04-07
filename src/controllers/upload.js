@@ -82,13 +82,13 @@ const download = async (req, res) => {
     const fileContLen = fileQuery.length
 
     let downloadStream = bucket.openDownloadStreamByName(req.params.name)
-    downloadStream.on("data", function (data) {
-      
-      res.set({
-        'Content-Type': 'application/octet-stream',
-        'Content-Length': fileContLen
-      })
 
+    res.set({
+      'Content-Type': 'application/octet-stream',
+      'Content-Length': fileContLen
+    })
+    
+    downloadStream.on("data", function (data) {
       return res.status(200).write(data)
     })
 
