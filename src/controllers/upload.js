@@ -48,7 +48,7 @@ const getListFiles = async (req, res) => {
       })
     }
 
-    let fileInfos = [];
+    let fileInfos = []
     await cursor.forEach((doc) => {
       fileInfos.push({
         name: doc.filename,
@@ -56,6 +56,11 @@ const getListFiles = async (req, res) => {
         length: doc.length
       })
     })
+
+    console.log(`fileInfos: ${fileInfos}`)
+
+    const fileContLen = fileInfos.length
+    console.log(`fileContLen: ${fileContLen}`)
 
     return res.status(200).send(fileInfos)
 
