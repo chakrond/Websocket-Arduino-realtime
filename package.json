@@ -11,7 +11,7 @@
     "gitCommit": "git commit -m 'auto'",
     "gitPush": "git push origin main",
     "gitHeroku": "git push heroku",
-    "build": "npm-run-all gitAdd gitCommit gitPush gitHeroku"
+    "mbuild": "npm-run-all gitAdd gitCommit gitPush gitHeroku"
   },
   "keywords": [],
   "author": "Chakron",
