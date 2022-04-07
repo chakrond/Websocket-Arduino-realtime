@@ -80,7 +80,7 @@ const download = async (req, res) => {
     
     const fileCollection = `${dbConfig.sketchBucket}.files`
     
-    const fileQuery = await bucket.findOne({ filename: req.params.name })
+    const fileQuery = await bucket.find({ filename: req.params.name })
     console.log(`fileQuery: ${fileQuery}`)
 
     const fileContLen = fileQuery.length
