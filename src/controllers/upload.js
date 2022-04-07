@@ -88,6 +88,8 @@ const download = async (req, res) => {
       })
     })
 
+    console.log(`fileInfos: ${fileInfos}`)
+
     const fileContLen = fileInfos.length
     console.log(`fileContLen: ${fileContLen}`)
 
