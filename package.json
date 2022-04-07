@@ -6,7 +6,12 @@
     "start": "node src/app.js",
     "dev": "nodemon src/app.js -e js,hbs",
     "local": "/Users/Chakron.D/mongodb/bin/mongod.exe --dbpath=/Users/Chakron.D/mongodb-data",
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "gitAdd": "git add .",
+    "gitCommit": "git commit -m 'auto'",
+    "gitPush": "git push origin main",
+    "gitHeroku": "git push heroku",
+    "build": "npm-run-all gitAdd gitCommit gitPush gitHeroku"
   },
   "keywords": [],
   "author": "Chakron",
