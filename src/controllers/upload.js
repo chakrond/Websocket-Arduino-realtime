@@ -79,16 +79,19 @@ const download = async (req, res) => {
 
     
     const fileCollection = `${dbConfig.sketchBucket}.files`
+    console.log(`fileCollection: ${fileCollection}`)
+
     const fileQuery = database.collection(fileCollection).find({ filename: req.params.name })
+    console.log(`req.params.name: ${req.params.name}`)
+
     const fileContLen = fileQuery.length
+    console.log(`fileContLen: ${fileContLen}`)
 
     // set header
     res.set({
       'Content-Type': 'application/octet-stream',
-      'Content-Length': fileContLen.toString()
+      'Content-Length': fileContLen
     })
-
-    console.log(`fileContLen: ${fileContLen}`)
 
     let downloadStream = bucket.openDownloadStreamByName(req.params.name)
 
