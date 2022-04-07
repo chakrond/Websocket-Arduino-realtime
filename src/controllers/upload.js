@@ -29,6 +29,7 @@ const uploadFiles = async (req, res) => {
       message: `Error when trying upload: ${error}`,
     })
   }
+
 }
 
 
@@ -38,8 +39,8 @@ const getListFiles = async (req, res) => {
 
     await mongoClient.connect()
     const database = mongoClient.db(dbConfig.database)
-    const images = database.collection(dbConfig.sketchBucket + ".files")
-    const cursor = images.find({})
+    const collection = database.collection(dbConfig.sketchBucket + ".files")
+    const cursor = collection.find({})
 
     if ((await cursor.count()) === 0) {
       return res.status(500).send({
@@ -62,6 +63,7 @@ const getListFiles = async (req, res) => {
       message: error.message,
     })
   }
+
 }
 
 
@@ -75,13 +77,23 @@ const download = async (req, res) => {
       bucketName: dbConfig.sketchBucket,
     })
 
+    const fileCollection = `${dbConfig.sketchBucket}.files`
+    const fileQuery = database.collection(fileCollection).find({ filename: req.params.name })
+    const fileContLen = fileQuery.length
+
     let downloadStream = bucket.openDownloadStreamByName(req.params.name)
     downloadStream.on("data", function (data) {
+      
+      res.set({
+        'Content-Type': 'application/octet-stream',
+        'Content-Length': fileContLen
+      })
+
       return res.status(200).write(data)
     })
 
     downloadStream.on("error", function (err) {
-      return res.status(404).send({ message: "Cannot download the Image!" })
+      return res.status(404).send({ message: "Cannot download the file" })
     })
 
     downloadStream.on("end", () => {
@@ -93,6 +105,7 @@ const download = async (req, res) => {
       message: error.message,
     })
   }
+
 }
 
 
