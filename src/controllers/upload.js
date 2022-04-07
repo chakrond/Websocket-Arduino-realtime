@@ -53,6 +53,7 @@ const getListFiles = async (req, res) => {
       fileInfos.push({
         name: doc.filename,
         url: baseUrl + doc.filename,
+        length: doc.length
       })
     })
 
