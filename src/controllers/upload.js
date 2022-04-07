@@ -74,14 +74,21 @@ const download = async (req, res) => {
 
     await mongoClient.connect()
     const database = mongoClient.db(dbConfig.database)
-    const bucket = new GridFSBucket(database, {
-      bucketName: dbConfig.sketchBucket,
-    })
 
+    // Find file
     const collection = database.collection(dbConfig.sketchBucket + ".files")
     const cursor = collection.find({ filename: req.params.name })
 
-    const fileContLen = cursor.length
+    let fileInfos = [];
+    await cursor.forEach((doc) => {
+      fileInfos.push({
+        name: doc.filename,
+        url: baseUrl + doc.filename,
+        length: doc.length
+      })
+    })
+
+    const fileContLen = fileInfos.length
     console.log(`fileContLen: ${fileContLen}`)
 
     // set header
@@ -90,6 +97,9 @@ const download = async (req, res) => {
       'Content-Length': fileContLen
     })
 
+    const bucket = new GridFSBucket(database, {
+      bucketName: dbConfig.sketchBucket,
+    })
     let downloadStream = bucket.openDownloadStreamByName(req.params.name)
 
     downloadStream.on("data", function (data) {
