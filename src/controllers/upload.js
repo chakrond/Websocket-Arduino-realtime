@@ -68,7 +68,7 @@ const download = async (req, res) => {
 
     // Find file
     const collection = database.collection(dbConfig.sketchBucket + ".files")
-    const cursor = collection.findOne({ filename: req.params.name })
+    const cursor = collection.find({ filename: req.params.name })
 
     // let fileInfos = []
     // await cursor.forEach((doc) => {
@@ -80,7 +80,7 @@ const download = async (req, res) => {
     // })
 
     // const fileContLen = fileInfos[0].length
-    const fileContLen = cursor.length
+    const fileContLen = cursor[0].length
     console.log(`fileContLen: ${fileContLen}`)
 
     // set header
