@@ -77,7 +77,7 @@ const getListSpcFiles = async (req, res) => {
     const collection = database.collection(dbConfig.sketchBucket + '.files')
     const regE = new RegExp(`^${req.params.name}`)
     // console.log(`regE: ${regE}`)
-    const cursor = collection.find({ filename: regE }).sort( { uploadDate: 1 } )
+    const cursor = collection.find({ filename: regE }).sort( { uploadDate: -1 } )
 
     if ((await cursor.count()) === 0) {
       return res.status(500).send({
@@ -126,10 +126,17 @@ const download = async (req, res) => {
       })
     })
 
-    let text = req.params.name
-    let position = text.search("ver")
-    let paramVer = text.substr(position+3, 3)
+    // client request
+    let reqText = req.params.name
+    let reqPosition = reqText.search("ver") // ver = 3
+    let reqVer = reqText.substr(reqPosition+3, 3) // plus 1.0 = 3
 
+    // server info
+    let ArrayLength = fileInfos.length
+    let latestVerName = fileInfos[ArrayLength].name
+    let servPosition = latestVerName.search("ver")
+    let servVer = latestVerName.substr(servPosition+3, 3)
+    
 
     const fileContLen = fileInfos[0].length
     console.log(`fileContLen: ${fileContLen}`)
