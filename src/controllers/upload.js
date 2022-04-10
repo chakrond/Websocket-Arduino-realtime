@@ -75,7 +75,7 @@ const getListSpcFiles = async (req, res) => {
     await mongoClient.connect()
     const database = mongoClient.db(dbConfig.database)
     const collection = database.collection(dbConfig.sketchBucket + '.files')
-    const regE = `/^${req.params.name}/`
+    const regE = new RegExp(`^${req.params.name}`)
     console.log(`regE: ${regE}`)
     const cursor = collection.find({ filename: regE })
 
