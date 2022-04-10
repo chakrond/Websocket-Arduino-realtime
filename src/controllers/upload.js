@@ -42,7 +42,7 @@ const getListFiles = async (req, res) => {
     const collection = database.collection(dbConfig.sketchBucket + '.files')
     const cursor = collection.find({ })
 
-    if ((await cursor.count()) === 0) {
+    if ((await cursor.countDocuments()) === 0) {
       return res.status(500).send({
         message: 'No files found!',
       })
@@ -75,11 +75,11 @@ const getListSpcFiles = async (req, res) => {
     await mongoClient.connect()
     const database = mongoClient.db(dbConfig.database)
     const collection = database.collection(dbConfig.sketchBucket + '.files')
-    const regE = new RegExp('/^' + req.params.name + '/')
+    const regE = `/^${req.params.name}/`
     console.log(`regE: ${regE}`)
     const cursor = collection.find({ filename: regE })
 
-    if ((await cursor.count()) === 0) {
+    if ((await cursor.countDocuments()) === 0) {
       return res.status(500).send({
         message: 'No files found!',
       })
