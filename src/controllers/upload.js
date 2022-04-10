@@ -48,6 +48,15 @@ const getListFiles = async (req, res) => {
       })
     }
 
+    let fileInfos = []
+    await cursor.forEach((doc) => {
+      fileInfos.push({
+        name: doc.filename,
+        url: baseUrl + doc.filename,
+        length: doc.length
+      })
+    })
+
     return res.status(200).send(fileInfos)
 
   } catch (error) {
@@ -73,6 +82,15 @@ const getListSpcFiles = async (req, res) => {
         message: 'No files found!',
       })
     }
+
+    let fileInfos = []
+    await cursor.forEach((doc) => {
+      fileInfos.push({
+        name: doc.filename,
+        url: baseUrl + doc.filename,
+        length: doc.length
+      })
+    })
 
     return res.status(200).send(fileInfos)
 
