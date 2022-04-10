@@ -18,7 +18,7 @@ var storage = new GridFsStorage({
 
       return {
         bucketName: dbConfig.sketchBucket,
-        filename: `${Date.now()}-chakron-${file.originalname}`
+        filename: file.originalname
       }
       
     }

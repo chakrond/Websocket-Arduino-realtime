@@ -91,6 +91,9 @@ const download = async (req, res) => {
     const bucket = new GridFSBucket(database, {
       bucketName: dbConfig.sketchBucket,
     })
+
+
+    
     let downloadStream = bucket.openDownloadStreamByName(req.params.name)
 
     downloadStream.on("data", function (data) {
