@@ -7,7 +7,8 @@ let routes = app => {
 
   router.get("/home", homeController.getHome)
   router.post("/upload", uploadController.uploadFiles)
-  router.get("/files", uploadController.getListFiles)
+  router.get("/Listfiles", uploadController.getListFiles)
+  router.get("/Listfiles/:name", uploadController.getListSpcFiles)
   router.get("/files/:name", uploadController.download)
   return app.use("/", router)
 }

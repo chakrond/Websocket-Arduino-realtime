@@ -40,7 +40,33 @@ const getListFiles = async (req, res) => {
     await mongoClient.connect()
     const database = mongoClient.db(dbConfig.database)
     const collection = database.collection(dbConfig.sketchBucket + '.files')
-    const cursor = collection.find({ filename: 'esp8266-OTA-Cloud-ver1.' })
+    const cursor = collection.find({ })
+
+    if ((await cursor.count()) === 0) {
+      return res.status(500).send({
+        message: 'No files found!',
+      })
+    }
+
+    return res.status(200).send(fileInfos)
+
+  } catch (error) {
+    return res.status(500).send({
+      message: error.message,
+    })
+  }
+
+}
+
+
+const getListSpcFiles = async (req, res) => {
+
+  try {
+
+    await mongoClient.connect()
+    const database = mongoClient.db(dbConfig.database)
+    const collection = database.collection(dbConfig.sketchBucket + '.files')
+    const cursor = collection.find({ filename: req.params.name })
 
     if ((await cursor.count()) === 0) {
       return res.status(500).send({
@@ -117,5 +143,6 @@ const download = async (req, res) => {
 module.exports = {
   uploadFiles,
   getListFiles,
+  getListSpcFiles,
   download,
 }
