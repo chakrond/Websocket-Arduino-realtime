@@ -42,7 +42,7 @@ const getListFiles = async (req, res) => {
     const collection = database.collection(dbConfig.sketchBucket + '.files')
     const cursor = collection.find({ })
 
-    if ((await cursor.countDocuments()) === 0) {
+    if ((await cursor.count()) === 0) {
       return res.status(500).send({
         message: 'No files found!',
       })
@@ -79,7 +79,7 @@ const getListSpcFiles = async (req, res) => {
     console.log(`regE: ${regE}`)
     const cursor = collection.find({ filename: regE })
 
-    if ((await cursor.countDocuments()) === 0) {
+    if ((await cursor.count()) === 0) {
       return res.status(500).send({
         message: 'No files found!',
       })
