@@ -1,9 +1,9 @@
-const upload = require("../middleware/upload")
-const dbConfig = require("../db/mongoose")
-const MongoClient = require("mongodb").MongoClient
-const GridFSBucket = require("mongodb").GridFSBucket
+const upload = require('../middleware/upload')
+const dbConfig = require('../db/mongoose')
+const MongoClient = require('mongodb').MongoClient
+const GridFSBucket = require('mongodb').GridFSBucket
 const url = dbConfig.url
-const baseUrl = "http://localhost:8080/files/"
+const baseUrl = 'http://localhost:8080/files/'
 const mongoClient = new MongoClient(url)
 
 
@@ -15,12 +15,12 @@ const uploadFiles = async (req, res) => {
     console.log(req.file)
     if (req.file == undefined) {
       return res.send({
-        message: "You must select a file.",
+        message: 'You must select a file.',
       })
     }
     
     return res.send({
-      message: "File has been uploaded.",
+      message: 'File has been uploaded.',
     })
 
   } catch (error) {
@@ -39,12 +39,12 @@ const getListFiles = async (req, res) => {
 
     await mongoClient.connect()
     const database = mongoClient.db(dbConfig.database)
-    const collection = database.collection(dbConfig.sketchBucket + ".files")
-    const cursor = collection.find({})
+    const collection = database.collection(dbConfig.sketchBucket + '.files')
+    const cursor = collection.find({ filename: 'esp8266-OTA-Cloud-ver1.' })
 
     if ((await cursor.count()) === 0) {
       return res.status(500).send({
-        message: "No files found!",
+        message: 'No files found!',
       })
     }
 
@@ -67,7 +67,7 @@ const download = async (req, res) => {
     const database = mongoClient.db(dbConfig.database)
 
     // Find file
-    const collection = database.collection(dbConfig.sketchBucket + ".files")
+    const collection = database.collection(dbConfig.sketchBucket + '.files')
     const cursor = collection.find({ filename: req.params.name })
 
     let fileInfos = []
@@ -91,20 +91,17 @@ const download = async (req, res) => {
     const bucket = new GridFSBucket(database, {
       bucketName: dbConfig.sketchBucket,
     })
-
-
-    
     let downloadStream = bucket.openDownloadStreamByName(req.params.name)
 
-    downloadStream.on("data", function (data) {
+    downloadStream.on('data', function (data) {
       return res.status(200).write(data)
     })
 
-    downloadStream.on("error", function (err) {
-      return res.status(404).send({ message: "Cannot download the file" })
+    downloadStream.on('error', function (err) {
+      return res.status(404).send({ message: 'Cannot download the file' })
     })
 
-    downloadStream.on("end", () => {
+    downloadStream.on('end', () => {
       return res.end()
     })
 
