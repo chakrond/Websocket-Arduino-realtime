@@ -76,8 +76,8 @@ const getListSpcFiles = async (req, res) => {
     const database = mongoClient.db(dbConfig.database)
     const collection = database.collection(dbConfig.sketchBucket + '.files')
     const regE = new RegExp(`^${req.params.name}`)
-    console.log(`regE: ${regE}`)
-    const cursor = collection.find({ filename: regE })
+    // console.log(`regE: ${regE}`)
+    const cursor = collection.find({ filename: regE }).sort({ uploadDate : true })
 
     if ((await cursor.count()) === 0) {
       return res.status(500).send({
@@ -111,10 +111,11 @@ const download = async (req, res) => {
 
     await mongoClient.connect()
     const database = mongoClient.db(dbConfig.database)
-
-    // Find file
     const collection = database.collection(dbConfig.sketchBucket + '.files')
-    const cursor = collection.find({ filename: req.params.name })
+
+    // Find files
+    const regE = new RegExp('^esp8266-OTA-Cloud-ver')
+    const cursor = collection.find({ filename: regE }).sort({ uploadDate : true })
 
     let fileInfos = []
     await cursor.forEach((doc) => {
@@ -124,6 +125,11 @@ const download = async (req, res) => {
         length: doc.length
       })
     })
+
+    let text = req.params.name
+    let position = text.search("ver")
+    let paramVer = text.substr(position+3, 3)
+
 
     const fileContLen = fileInfos[0].length
     console.log(`fileContLen: ${fileContLen}`)
