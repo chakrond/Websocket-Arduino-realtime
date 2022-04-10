@@ -77,7 +77,7 @@ const getListSpcFiles = async (req, res) => {
     const collection = database.collection(dbConfig.sketchBucket + '.files')
     const regE = new RegExp(`^${req.params.name}`)
     // console.log(`regE: ${regE}`)
-    const cursor = collection.find({ filename: regE }).sort({ uploadDate : true })
+    const cursor = collection.find({ filename: regE }).sort( { uploadDate: 1 } )
 
     if ((await cursor.count()) === 0) {
       return res.status(500).send({
