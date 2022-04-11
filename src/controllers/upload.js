@@ -149,8 +149,9 @@ const update = async (req, res) => {
       })
     }
 
-    // File Length
-    const fileContLen = fileInfos[0].length
+    // Serve the latest version of file
+    req.params.name = latestVerName
+    const fileContLen = fileInfos[0].length // File Length
     // console.log(`fileContLen: ${fileContLen}`)
 
     // set header
@@ -164,7 +165,7 @@ const update = async (req, res) => {
     })
     
     // open stream
-    let downloadStream = bucket.openDownloadStreamByName(latestVerName)
+    let downloadStream = bucket.openDownloadStreamByName(req.params.name)
 
     downloadStream.on('data', function (data) {
       return res.status(200).write(data)
