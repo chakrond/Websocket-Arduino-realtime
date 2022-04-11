@@ -128,8 +128,8 @@ const update = async (req, res) => {
     })
 
     // client request
-    let reqText = req.params.name
-    console.log(`req.params.name: ${req.params.name}`)
+    let reqText = req.params.ver
+    console.log(`req.params.ver: ${req.params.ver}`)
     let reqPosition = reqText.search("ver") // ver = 3
     let reqVer = parseFloat(reqText.substr(reqPosition + 3, 3)) // plus 1.0 = 3
     console.log(`reqVer: ${reqVer}`)

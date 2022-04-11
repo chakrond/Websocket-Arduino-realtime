@@ -9,7 +9,7 @@ let routes = app => {
   router.post("/upload", uploadController.uploadFiles)
   router.get("/Listfiles", uploadController.getListFiles)
   router.get("/Listfiles/:name", uploadController.getListSpcFiles)
-  router.get("/update/:board/:name", uploadController.update)
+  router.get("/update/:board/:ver", uploadController.update)
   router.get("/download/:board/:name", uploadController.download)
   return app.use("/", router)
 }
