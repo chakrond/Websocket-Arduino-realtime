@@ -128,10 +128,13 @@ const update = async (req, res) => {
     })
 
     // client request
-    let reqText = req.params.ver
-    console.log(`req.params.ver: ${req.params.ver}`)
-    let reqPosition = reqText.search("ver") // ver = 3
-    let reqVer = parseFloat(reqText.substr(reqPosition + 3, 3)) // plus 1.0 = 3
+    // let reqText = req.params.ver
+    // console.log(`req.params.ver: ${req.params.ver}`)
+    // let reqPosition = reqText.search("ver") // ver = 3
+    // let reqVer = parseFloat(reqText.substr(reqPosition + 3, 3)) // plus 1.0 = 3
+    // console.log(`reqVer: ${reqVer}`)
+    let reqHeader = req.header('x-esp8266-version')
+    let reqVer = parseFloat(reqHeader)
     console.log(`reqVer: ${reqVer}`)
 
     // server info
@@ -141,6 +144,7 @@ const update = async (req, res) => {
     let servVer = parseFloat(latestVerName.substr(servPosition + 3, 3))
     console.log(`servVer: ${servVer}`)
 
+    // Version check
     if (reqVer >= servVer) {
 
       console.log('already on recent version!!')
@@ -165,7 +169,7 @@ const update = async (req, res) => {
     })
     
     // open stream
-    let downloadStream = bucket.openDownloadStreamByName(req.params.name)
+    let downloadStream = bucket.openDownloadStreamByName(latestVerName)
 
     downloadStream.on('data', function (data) {
       return res.status(200).write(data)
