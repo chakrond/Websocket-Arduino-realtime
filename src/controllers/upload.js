@@ -18,7 +18,7 @@ const uploadFiles = async (req, res) => {
         message: 'You must select a file.',
       })
     }
-    
+
     return res.send({
       message: 'File has been uploaded.',
     })
@@ -40,7 +40,7 @@ const getListFiles = async (req, res) => {
     await mongoClient.connect()
     const database = mongoClient.db(dbConfig.database)
     const collection = database.collection(dbConfig.sketchBucket + '.files')
-    const cursor = collection.find({ })
+    const cursor = collection.find({})
 
     if ((await cursor.count()) === 0) {
       return res.status(500).send({
@@ -77,7 +77,7 @@ const getListSpcFiles = async (req, res) => {
     const collection = database.collection(dbConfig.sketchBucket + '.files')
     const regE = new RegExp(`^${req.params.name}`)
     // console.log(`regE: ${regE}`)
-    const cursor = collection.find({ filename: regE }).sort( { uploadDate: -1 } )
+    const cursor = collection.find({ filename: regE }).sort({ uploadDate: -1 })
 
     if ((await cursor.count()) === 0) {
       return res.status(500).send({
@@ -105,7 +105,7 @@ const getListSpcFiles = async (req, res) => {
 }
 
 
-const download = async (req, res) => {
+const update = async (req, res) => {
 
   try {
 
@@ -114,8 +114,8 @@ const download = async (req, res) => {
     const collection = database.collection(dbConfig.sketchBucket + '.files')
 
     // Find files
-    const regE = new RegExp('^esp8266-OTA-Cloud-ver')
-    const cursor = collection.find({ filename: regE }).sort({ uploadDate : true })
+    const regE = new RegExp(`^${req.params.board}-OTA-Cloud-ver`)
+    const cursor = collection.find({ filename: regE }).sort({ uploadDate: true })
 
     let fileInfos = []
     await cursor.forEach((doc) => {
@@ -129,17 +129,23 @@ const download = async (req, res) => {
     // client request
     let reqText = req.params.name
     let reqPosition = reqText.search("ver") // ver = 3
-    let reqVer = reqText.substr(reqPosition+3, 3) // plus 1.0 = 3
+    let reqVer = parseFloat(reqText.substr(reqPosition + 3, 3)) // plus 1.0 = 3
 
     // server info
-    let ArrayLength = fileInfos.length
-    let latestVerName = fileInfos[ArrayLength].name
+    let latestVerName = fileInfos[0].name
     let servPosition = latestVerName.search("ver")
-    let servVer = latestVerName.substr(servPosition+3, 3)
-    
+    let servVer = parseFloat(latestVerName.substr(servPosition + 3, 3))
 
+    if (reqVer >= servVer) {
+
+      return res.status(304).send({
+        message: 'already on recent version!!',
+      })
+    }
+
+    // File Length
     const fileContLen = fileInfos[0].length
-    console.log(`fileContLen: ${fileContLen}`)
+    // console.log(`fileContLen: ${fileContLen}`)
 
     // set header
     res.set({
@@ -150,7 +156,8 @@ const download = async (req, res) => {
     const bucket = new GridFSBucket(database, {
       bucketName: dbConfig.sketchBucket,
     })
-    let downloadStream = bucket.openDownloadStreamByName(req.params.name)
+    
+    let downloadStream = bucket.openDownloadStreamByName(latestVerName)
 
     downloadStream.on('data', function (data) {
       return res.status(200).write(data)
@@ -177,5 +184,5 @@ module.exports = {
   uploadFiles,
   getListFiles,
   getListSpcFiles,
-  download,
+  update,
 }
