@@ -115,7 +115,8 @@ const update = async (req, res) => {
 
     // Find files
     const regE = new RegExp(`^${req.params.board}-OTA-Cloud-ver`)
-    const cursor = collection.find({ filename: regE }).sort({ uploadDate: true })
+    console.log(`req.params.board: ${req.params.board}`)
+    const cursor = collection.find({ filename: regE }).sort({ uploadDate: -1 })
 
     let fileInfos = []
     await cursor.forEach((doc) => {
