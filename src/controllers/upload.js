@@ -129,16 +129,19 @@ const update = async (req, res) => {
 
     // client request
     let reqText = req.params.name
+    console.log(`req.params.name: ${req.params.name}`)
     let reqPosition = reqText.search("ver") // ver = 3
     let reqVer = parseFloat(reqText.substr(reqPosition + 3, 3)) // plus 1.0 = 3
 
     // server info
     let latestVerName = fileInfos[0].name
+    console.log(`latestVerName: ${latestVerName}`)
     let servPosition = latestVerName.search("ver")
     let servVer = parseFloat(latestVerName.substr(servPosition + 3, 3))
 
     if (reqVer >= servVer) {
 
+      console.log('already on recent version!!')
       return res.status(304).send({
         message: 'already on recent version!!',
       })
