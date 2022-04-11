@@ -132,12 +132,14 @@ const update = async (req, res) => {
     console.log(`req.params.name: ${req.params.name}`)
     let reqPosition = reqText.search("ver") // ver = 3
     let reqVer = parseFloat(reqText.substr(reqPosition + 3, 3)) // plus 1.0 = 3
+    console.log(`reqVer: ${reqVer}`)
 
     // server info
     let latestVerName = fileInfos[0].name
     console.log(`latestVerName: ${latestVerName}`)
     let servPosition = latestVerName.search("ver")
     let servVer = parseFloat(latestVerName.substr(servPosition + 3, 3))
+    console.log(`servVer: ${servVer}`)
 
     if (reqVer >= servVer) {
 
