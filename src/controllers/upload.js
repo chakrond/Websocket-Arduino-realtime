@@ -163,6 +163,7 @@ const update = async (req, res) => {
       bucketName: dbConfig.sketchBucket,
     })
     
+    // open stream
     let downloadStream = bucket.openDownloadStreamByName(latestVerName)
 
     downloadStream.on('data', function (data) {
