@@ -25,12 +25,25 @@ io.on('connection', (socket) => {
   console.log(socket.id)
   console.log("JWT token test: ", socket.handshake.headers)
 
+  // get header info
+  const userAgent = socket.handshake.headers["user-agent"]
+  console.log("user-agent: ", userAgent)
+
+  const address = socket.handshake.headers["address"]
+  console.log("address: ", address)
+
+
   socket.on('event_name', (data) => {
 
     console.log("Message from Client : ", data)
-
-    socket.broadcast.emit("Send Message socket.broadcast.emit : ", data)
+    socket.broadcast.emit("Send Message socket.broadcast.emit : ", data) // to all connected clients except who we send
     io.emit("Send Message io.emit Broadcasted : ", data)
+    socket.emit("Send Message : ", data)
+
+  })
+
+  socket.on('event_relay', (data) => {
+
     socket.emit("Send Message : ", data)
 
   })
