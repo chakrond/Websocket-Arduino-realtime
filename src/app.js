@@ -37,7 +37,7 @@ io.on('connection', (socket) => {
   console.log("address: ", userAddress)
 
   // store userInfo
-  const { userInfo } = addUser({ id: userID, username: userAgent, address: userAddress })
+  const userInfo = addUser({ id: userID, username: userAgent, address: userAddress })
   console.log("userInfo: ", userInfo)
 
   // send info back to client

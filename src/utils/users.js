@@ -13,11 +13,11 @@ const addUser = ({ id, username, address }) => {
         removeUser(id)
     }
 
-    
+
     // Store user
     const S_user = { id, username, address }
     users.push(S_user)
-    return { S_user }
+    return S_user
 
 }
 
