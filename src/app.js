@@ -33,7 +33,7 @@ io.on('connection', (socket) => {
   const userAgent = socket.handshake.headers["user-agent"]
   console.log("user-agent: ", userAgent)
 
-  const userAddress = socket.handshake.headers["address"]
+  const userAddress = socket.handshake.headers["x-forwarded-for"]
   console.log("address: ", userAddress)
 
   // store userInfo
