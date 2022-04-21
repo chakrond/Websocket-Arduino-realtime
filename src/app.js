@@ -23,7 +23,7 @@ initRoutes(app)
 io.on('connection', (socket) => {
 
   console.log('Connected')
-  console.log("JWT token test: ", socket.handshake.headers)
+  // console.log("JWT token test: ", socket.handshake.headers)
 
   // get socket ID
   const userID = socket.id
@@ -55,14 +55,25 @@ io.on('connection', (socket) => {
     // get user
     const { id, username, address } = getUser(device.username)
 
-    io.to(id).emit("control_relay", {
+    if (device.relay1) {
+
+      io.to(id).emit("control_relay_1", {
+
+        id: id,
+        username: username,
+        relay1: device.relay1
+      })
+    }
+
+    if (device.relay2) {
+
+    io.to(id).emit("control_relay_2", {
 
       id: id,
       username: username,
-      relay1: device.relay1,
       relay2: device.relay2
-
     })
+  }
 
   })
 
