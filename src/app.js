@@ -55,14 +55,10 @@ io.on('connection', (socket) => {
     username: userInfo.username,
     address: userInfo.address
 
-  }, (error) => {
-    if (error) {
-      return console.log(error)
-    }
   })
 
 
-  socket.on('event_relay', (device) => {
+  socket.on('event_relay', (device, callback) => {
 
     if (device.username) {
 
@@ -88,8 +84,13 @@ io.on('connection', (socket) => {
           relay2: device.relay2
         })
       }
-      
+
+      callback()
+
+    } else {
+      return callback('username not provided')
     }
+
   })
 
   // socket.on('event_name', (data) => {
