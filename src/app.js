@@ -49,12 +49,16 @@ io.on('connection', (socket) => {
   // console.log("userInfo: ", userInfo)
 
   // send info back to client
-  io.to(userInfo.id).emit('joined', userInfo, (error) => {
+  io.to(userInfo.id).emit('joined', {
 
+    id: userInfo.id,
+    username: userInfo.username,
+    address: userInfo.address
+
+  }, (error) => {
     if (error) {
       return console.log(error)
     }
-
   })
 
 
