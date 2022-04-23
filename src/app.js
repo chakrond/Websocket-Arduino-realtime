@@ -62,7 +62,7 @@ io.on('connection', (socket) => {
   })
 
 
-  socket.on('event_relay', (device, callback) => {
+  socket.on('event_relay', (device) => {
 
     if (device.username) {
 
@@ -88,9 +88,7 @@ io.on('connection', (socket) => {
           relay2: device.relay2
         })
       }
-
-      callback()
-
+      
     }
   })
 
