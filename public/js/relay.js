@@ -18,6 +18,11 @@ swtichRelay1.addEventListener('change', (e) => {
 
             username: "esp8266-5V2R-01",
             relay1: "true"
+
+        }, (error) => {
+            if (error) {
+                return console.log(error)
+            }
         })
 
     } else {
@@ -26,6 +31,11 @@ swtichRelay1.addEventListener('change', (e) => {
 
             username: "esp8266-5V2R-01",
             relay1: "false"
+
+        }, (error) => {
+            if (error) {
+                return console.log(error)
+            }
         })
     }
     
@@ -50,6 +60,11 @@ swtichRelay2.addEventListener('change', (e) => {
 
             username: "esp8266-5V2R-01",
             relay2: "true"
+
+        }, (error) => {
+            if (error) {
+                return console.log(error)
+            }
         })
 
     } else {
@@ -58,6 +73,11 @@ swtichRelay2.addEventListener('change', (e) => {
 
             username: "esp8266-5V2R-01",
             relay2: "false"
+
+        }, (error) => {
+            if (error) {
+                return console.log(error)
+            }
         })
     }
 
