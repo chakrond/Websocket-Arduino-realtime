@@ -6,12 +6,11 @@ const socket = io()
 
 // get form element
 const swtichRelay1 = document.getElementById('switchCheck-Relay-1')
+swtichRelay1.setAttribute('checked', 'checked')
 
 swtichRelay1.addEventListener('change', (e) => {
 
     e.preventDefault() // prevent page refresh
-
-    swtichRelay1.setAttribute('checked', 'checked')
 
     if (e.target.checked) {
         
