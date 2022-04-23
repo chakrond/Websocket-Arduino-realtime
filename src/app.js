@@ -3,6 +3,7 @@ const http = require('http')
 const socketio = require('socket.io')
 const multer = require('multer')
 const path = require('path')
+const hbs = require('hbs')
 
 const app = express()
 const server = http.createServer(app)
