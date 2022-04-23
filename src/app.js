@@ -72,12 +72,6 @@ io.on('connection', (socket) => {
           id: id,
           username: username,
           relay1: device.relay1
-
-        }, (error) => {
-          if (error) {
-            return console.log(error)
-          }
-
         })
       }
 
@@ -88,12 +82,6 @@ io.on('connection', (socket) => {
           id: id,
           username: username,
           relay2: device.relay2
-
-        }, (error) => {
-          if (error) {
-            return console.log(error)
-          }
-          
         })
       }
 
