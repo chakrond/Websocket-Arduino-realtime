@@ -23,5 +23,7 @@ swtichRelay1.addEventListener('change', (e) => {
             relay1: "false"
         })
     }
+    
+    console.log('Command was delivered')
 
 })
