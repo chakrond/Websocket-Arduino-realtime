@@ -49,39 +49,47 @@ io.on('connection', (socket) => {
   // console.log("userInfo: ", userInfo)
 
   // send info back to client
-  io.to(userInfo.id).emit('joined', {
+  io.to(userInfo.id).emit('joined', userInfo, (error) => {
 
-    id: userInfo.id,
-    username: userInfo.username,
-    address: userInfo.address
+    if (error) {
+      return console.log(error)
+    }
 
   })
 
 
-  socket.on('event_relay', (device) => {
+  socket.on('event_relay', (device, callback) => {
 
-    // get user
-    const { id, username, address } = getUser(device.username)
+    if (device.username) {
 
-    if (device.relay1) {
+      // get user
+      const { id, username, address } = getUser(device.username)
 
-      io.to(id).emit('control_relay_1', {
+      if (device.relay1) {
 
-        id: id,
-        username: username,
-        relay1: device.relay1
-      })
+        io.to(id).emit('control_relay_1', {
+
+          id: id,
+          username: username,
+          relay1: device.relay1
+        })
+      }
+
+      if (device.relay2) {
+
+        io.to(id).emit('control_relay_2', {
+
+          id: id,
+          username: username,
+          relay2: device.relay2
+        })
+      }
+
+      callback()
+
+    } else {
+      return callback('username not provided')
     }
-
-    if (device.relay2) {
-
-    io.to(id).emit('control_relay_2', {
-
-      id: id,
-      username: username,
-      relay2: device.relay2
-    })
-  }
 
   })
 
