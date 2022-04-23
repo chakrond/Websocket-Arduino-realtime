@@ -91,10 +91,7 @@ io.on('connection', (socket) => {
 
       callback()
 
-    } else {
-      return callback('username not provided')
     }
-
   })
 
   // socket.on('event_name', (data) => {
