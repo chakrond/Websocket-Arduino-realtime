@@ -2,22 +2,38 @@ const express = require('express')
 const http = require('http')
 const socketio = require('socket.io')
 const multer = require('multer')
+const path = require('path')
 
 const app = express()
 const server = http.createServer(app)
 const io = socketio(server)
 const port = process.env.PORT || 3000
 
-// ********
 const cors = require("cors")
 const initRoutes = require("./routers")
 const { addUser, getUser } = require('./utils/users')
 var corsOptions = {
   origin: "http://localhost:8081"
 }
+
 app.use(cors(corsOptions))
 app.use(express.urlencoded({ extended: true }))
 initRoutes(app)
+
+// Define paths for Express config
+const publicdir = path.join(__dirname, '../public')
+const viewsPath = path.join(__dirname, '../templates/views')
+const partialsPath = path.join(__dirname, '../templates/partials')
+
+// Set partials
+hbs.registerPartials(partialsPath)
+
+// Setup handlebars engine and views location
+app.set('view engine', 'hbs')
+app.set('views', viewsPath)
+
+// Setup static directory to serve
+app.use(express.static(publicdir))
 
 
 io.on('connection', (socket) => {
