@@ -38,7 +38,7 @@ io.on('connection', (socket) => {
 
   // store userInfo
   const userInfo = addUser({ id: userID, username: userAgent, address: userAddress })
-  console.log("userInfo: ", userInfo)
+  // console.log("userInfo: ", userInfo)
 
   // send info back to client
   io.to(userInfo.id).emit('joined', {
@@ -57,7 +57,7 @@ io.on('connection', (socket) => {
 
     if (device.relay1) {
 
-      io.to(id).emit("control_relay_1", {
+      io.to(id).emit('control_relay_1', {
 
         id: id,
         username: username,
@@ -67,7 +67,7 @@ io.on('connection', (socket) => {
 
     if (device.relay2) {
 
-    io.to(id).emit("control_relay_2", {
+    io.to(id).emit('control_relay_2', {
 
       id: id,
       username: username,

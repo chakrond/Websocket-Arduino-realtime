@@ -1,4 +1,4 @@
-const upload = require('../middleware/upload')
+const upload = require('../middleware/upload') // get GridFsStorage from Middleware
 const dbConfig = require('../db/mongoose')
 const MongoClient = require('mongodb').MongoClient
 const GridFSBucket = require('mongodb').GridFSBucket
