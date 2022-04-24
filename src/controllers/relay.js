@@ -3,28 +3,36 @@ const { getDeviceByName, addStat } = require('../utils/devices')
 
 const relay = async (req, res) => {
 
-    const device = getDeviceByName(req.params.device)
-    console.log('device: ', device)
+    try {
 
-    // Check stat and add stat in device
-    if (Object.keys(device.stat).length == 0 && device.stat.constructor == Object) {
+        const device = getDeviceByName(req.params.device)
+        console.log('device: ', device)
 
-        addStat({
-            id: device.id,
-            username: device.username,
-            stat: {
-                relay1: 'false',
-                relay2: 'false'
-            }
+        // Check stat and add stat in device
+        if (Object.keys(device.stat).length == 0 && device.stat.constructor == Object) {
+
+            addStat({
+                id: device.id,
+                username: device.username,
+                stat: {
+                    relay1: 'false',
+                    relay2: 'false'
+                }
+            })
+
+            console.log("Object is empty, Adding Stat in Device")
+
+        } else {
+            console.log("Object is not empty")
+        }
+
+        return res.sendFile(path.join(__dirname, '../../templates/views/relay.html'))
+
+    } catch (error) {
+        return res.status(500).send({
+            message: error.message,
         })
-
-        console.log("Object is empty, Adding Stat in Device")
-
-    } else {
-        console.log("Object is not empty")
     }
-
-    return res.sendFile(path.join(__dirname, '../../templates/views/relay.html'))
 }
 
 

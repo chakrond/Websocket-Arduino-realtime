@@ -97,7 +97,7 @@ io.on('connection', (socket) => {
 
   })
 
-  socket.on('reqDevice', (dev, callback) => {
+  socket.on('reqDevice', (dev) => {
 
     if (dev.id) {
 
@@ -105,12 +105,8 @@ io.on('connection', (socket) => {
 
       io.to(dev.id).emit('deviceStat', device)
 
-      callback()
-
-    } else {
-
-      return callback('username not provided')
     }
+    
   })
 
 
