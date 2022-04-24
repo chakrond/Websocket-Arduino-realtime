@@ -40,7 +40,7 @@ const getDeviceByName = (username) => {
 const addStat = ({ id, username, stat }) => {
 
     const device = getDevice(id)
-    device.push(stat)
+    device.stat = stat
 
     console.log('addStat: ', device)
 }
