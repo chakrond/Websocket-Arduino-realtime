@@ -6,10 +6,12 @@ const relay = async (req, res) => {
     try {
 
         const device = getDeviceByName(req.query.devname)
-        console.log('device: ', device)
+        // console.log('device: ', device)
 
         // Check stat and add stat in device
         if (Object.keys(device.stat).length == 0 && device.stat.constructor == Object) {
+
+            console.log("Object is empty, Adding Stat in Device")
 
             addStat({
                 id: device.id,
@@ -19,8 +21,6 @@ const relay = async (req, res) => {
                     relay2: 'false'
                 }
             })
-
-            console.log("Object is empty, Adding Stat in Device")
 
         } else {
             console.log("Object is not empty")

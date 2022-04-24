@@ -6,8 +6,11 @@ const socket = io()
 // Querey string
 const { devname } = Qs.parse(location.search, { ignoreQueryPrefix: true }) // get querey string
 
-// request device
-socket.emit('reqDevice', { username: devname })
+socket.on('joined', (dev) => {
+
+    // request device
+    socket.emit('reqDevice', { ClientId: dev.id , username: devname })
+})
 
 // get device stat
 socket.on('deviceStat', (dev) => {
@@ -64,7 +67,7 @@ swtichRelay1.addEventListener('change', (e) => {
         })
     }
 
-    console.log('Relay1 Command was delivered')
+    // console.log('Relay1 Command was delivered')
 
 })
 
@@ -83,7 +86,7 @@ swtichRelay2.addEventListener('change', (e) => {
 
         socket.emit('event_relay', {
 
-            username: "esp8266-5V2R-01",
+            username: devname,
             relay2: "true"
 
         }, (error) => {
@@ -96,7 +99,7 @@ swtichRelay2.addEventListener('change', (e) => {
 
         socket.emit('event_relay', {
 
-            username: "esp8266-5V2R-01",
+            username: devname,
             relay2: "false"
 
         }, (error) => {
@@ -106,6 +109,6 @@ swtichRelay2.addEventListener('change', (e) => {
         })
     }
 
-    console.log('Relay2 Command was delivered')
+    // console.log('Relay2 Command was delivered')
 
 })

@@ -101,9 +101,10 @@ io.on('connection', (socket) => {
 
     if (dev.username) {
 
+      // get device
       const device = getDeviceByName(dev.username)
 
-      io.to(device.id).emit('deviceStat', device)
+      io.to(device.ClientId).emit('deviceStat', device)
 
     }
 
