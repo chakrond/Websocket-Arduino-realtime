@@ -12,7 +12,7 @@ const port = process.env.PORT || 3000
 
 const cors = require('cors')
 const initRoutes = require('./routers')
-const { addUser, getUser } = require('./utils/users')
+const { addUser, getUser, getUserByName } = require('./utils/users')
 const { addDevice, getDevice } = require('./utils/devices')
 
 var corsOptions = {
