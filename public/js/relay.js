@@ -3,8 +3,8 @@ const socket = io()
 // ------------------------------------------------------------
 // Get device info
 // ------------------------------------------------------------
-// Quirey string
-const { devname } = Qs.parse(location.search, { ignoreQueryPrefix: true }) // get querey string
+// Querey string
+const { devname } = qs.parse(location.search, { ignoreQueryPrefix: true }) // get querey string
 
 // request device
 socket.emit('reqDevice', { username: devname })
