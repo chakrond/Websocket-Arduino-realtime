@@ -13,7 +13,7 @@ const port = process.env.PORT || 3000
 const cors = require('cors')
 const initRoutes = require('./routers')
 const { addUser, getUser, getUserByName } = require('./utils/users')
-const { addDevice, getDevice } = require('./utils/devices')
+const { addDevice, getDevice, getDeviceByName } = require('./utils/devices')
 
 var corsOptions = {
   origin: "http://localhost:8081"
@@ -99,14 +99,14 @@ io.on('connection', (socket) => {
 
   socket.on('reqDevice', (dev) => {
 
-    if (dev.id) {
+    if (dev.username) {
 
-      const device = getDevice(dev.id)
+      const device = getDeviceByName(dev.username)
 
-      io.to(dev.id).emit('deviceStat', device)
+      io.to(device.id).emit('deviceStat', device)
 
     }
-    
+
   })
 
 

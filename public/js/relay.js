@@ -3,13 +3,11 @@ const socket = io()
 // ------------------------------------------------------------
 // Get device info
 // ------------------------------------------------------------
-let device = {}
-socket.on('joined', (dev) => {
+// Quirey string
+const { devname } = qs.parse(location.search, { ignoreQueryPrefix: true }) // get querey string
 
-    device = dev
-    // request device
-    socket.emit('reqDevice', { id: dev.id } )
-})
+// request device
+socket.emit('reqDevice', { username: devname })
 
 // get device stat
 socket.on('deviceStat', (dev) => {

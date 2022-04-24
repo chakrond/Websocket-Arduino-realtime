@@ -5,7 +5,7 @@ const relay = async (req, res) => {
 
     try {
 
-        const device = getDeviceByName(req.params.device)
+        const device = getDeviceByName(req.query.devname)
         console.log('device: ', device)
 
         // Check stat and add stat in device

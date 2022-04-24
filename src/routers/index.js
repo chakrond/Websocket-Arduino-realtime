@@ -15,7 +15,7 @@ let routes = app => {
   router.get("/download/:board/:name", uploadController.download)
 
   // Rellay control
-  router.get("/relay/:device", relayController.getRelay)
+  router.get("/relay", relayController.getRelay)
 
   return app.use("/", router)
 }
