@@ -3,30 +3,18 @@ const socket = io()
 // ------------------------------------------------------------
 // Get device info
 // ------------------------------------------------------------
+let device = {}
+socket.on('joined', (dev) => {
 
-socket.on('joined', (dev, callback) => {
-
-    const { id, username, address } = dev
-
+    device = dev
     // request device
-    socket.emit('reqDevice', {
-
-        id: id,
-
-    }, (error) => {
-        if (error) {
-            return console.log(error)
-        }
-    })
-
-    callback()
+    socket.emit('reqDevice', { id: dev.id } )
 })
 
 // get device stat
-socket.on('deviceStat', (device, callback) => {
+socket.on('deviceStat', (dev) => {
 
-    console.log('deviceStat: ', device)
-
+    console.log('deviceStat: ', dev)
 })
 
 
@@ -55,7 +43,7 @@ swtichRelay1.addEventListener('change', (e) => {
 
         socket.emit('event_relay', {
 
-            username: deviceUsername,
+            username: device.username,
             relay1: 'true'
 
         }, (error) => {
@@ -68,7 +56,7 @@ swtichRelay1.addEventListener('change', (e) => {
 
         socket.emit('event_relay', {
 
-            username: deviceUsername,
+            username: device.username,
             relay1: 'false'
 
         }, (error) => {
