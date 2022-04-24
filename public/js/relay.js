@@ -1,32 +1,33 @@
+import { getDevice, addStat } from '../../src/utils/devices'
 const socket = io()
-const { getDevice, addStat } = require('../../src/utils/devices')
+
 
 // ------------------------------------------------------------
 // Relay 1
 // ------------------------------------------------------------
 const deviceUsername = 'esp8266-5V2R-01'
-// const device = getDevice(deviceUsername)
+const device = getDevice(deviceUsername)
 
-// // Check stat and add stat in device
-// if (Object.keys(device.stat).length == 0 && device.stat.constructor == Object) {
+// Check stat and add stat in device
+if (Object.keys(device.stat).length == 0 && device.stat.constructor == Object) {
     
-//     addStat({ deviceUsername, stat: { relay1: 'false', relay2: 'false' } })
-//     console.log("Object is empty, Adding Stat in Device")
-// } else {
-//     console.log("Object is not empty")
-// }
+    addStat({ deviceUsername, stat: { relay1: 'false', relay2: 'false' } })
+    console.log("Object is empty, Adding Stat in Device")
+} else {
+    console.log("Object is not empty")
+}
 
 // get form element
 const swtichRelay1 = document.getElementById('switchCheck-Relay-1')
 
-// // check the latest stat of relay
-// if (device.stat.relay1 == 'true') {
+// check the latest stat of relay
+if (device.stat.relay1 == 'true') {
 
-//     swtichRelay1.setAttribute('checked', 'checked')
-// } else {
+    swtichRelay1.setAttribute('checked', 'checked')
+} else {
 
-//     swtichRelay1.removeAttribute('checked')
-// }
+    swtichRelay1.removeAttribute('checked')
+}
 
 swtichRelay1.addEventListener('change', (e) => {
 
