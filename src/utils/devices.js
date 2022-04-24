@@ -42,7 +42,7 @@ const addStat = ({ username, stat }) => {
     device.push(stat)
 }
 
-module.exports = {
+export default {
     addDevice,
     removeDevice,
     getDevice,

@@ -13,7 +13,7 @@ const port = process.env.PORT || 3000
 const cors = require('cors')
 const initRoutes = require('./routers')
 const { addUser, getUser } = require('./utils/users')
-const { addDevice } = require('./utils/devices')
+const { addDevice } = require('./utils/devices').default
 
 var corsOptions = {
   origin: "http://localhost:8081"
