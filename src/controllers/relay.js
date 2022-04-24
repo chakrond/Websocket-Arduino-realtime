@@ -4,6 +4,7 @@ const { getDeviceByName, addStat } = require('../utils/devices')
 const relay = async (req, res) => {
 
     const device = getDeviceByName(req.params.device)
+    console.log('device: ', device)
 
     // Check stat and add stat in device
     if (Object.keys(device.stat).length == 0 && device.stat.constructor == Object) {
@@ -18,7 +19,7 @@ const relay = async (req, res) => {
         })
 
         console.log("Object is empty, Adding Stat in Device")
-        
+
     } else {
         console.log("Object is not empty")
     }
