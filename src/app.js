@@ -42,7 +42,7 @@ io.on('connection', (socket) => {
   // get header info
   const userAgent = socket.handshake.headers["user-agent"]
   console.log("user-agent: ", userAgent)
-  addDevice(userAgent)
+  // addDevice(userAgent)
 
 
   const userAddress = socket.handshake.headers["x-forwarded-for"]
@@ -92,7 +92,7 @@ io.on('connection', (socket) => {
       callback()
 
     } else {
-      
+
       return callback('username not provided')
     }
 
