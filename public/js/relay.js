@@ -1,23 +1,43 @@
 const socket = io()
+const { getDevice, addStat } = require('../../src/utils/devices')
 
 // ------------------------------------------------------------
 // Relay 1
 // ------------------------------------------------------------
+const deviceUsername = 'esp8266-5V2R-01'
+const device = getDevice(deviceUsername)
+
+// Check stat and add stat in device
+if (Object.keys(device.stat).length == 0 && device.stat.constructor == Object) {
+    
+    addStat({ deviceUsername, stat: { relay1: 'false', relay2: 'false' } })
+    console.log("Object is empty, Adding Stat in Device")
+} else {
+    console.log("Object is not empty")
+}
 
 // get form element
 const swtichRelay1 = document.getElementById('switchCheck-Relay-1')
-swtichRelay1.setAttribute('checked', 'checked')
+
+// check the latest stat of relay
+if (device.stat.relay1 == 'true') {
+
+    swtichRelay1.setAttribute('checked', 'checked')
+} else {
+
+    swtichRelay1.removeAttribute('checked')
+}
 
 swtichRelay1.addEventListener('change', (e) => {
 
     e.preventDefault() // prevent page refresh
 
     if (e.target.checked) {
-        
+
         socket.emit('event_relay', {
 
-            username: "esp8266-5V2R-01",
-            relay1: "true"
+            username: deviceUsername,
+            relay1: 'true'
 
         }, (error) => {
             if (error) {
@@ -29,8 +49,8 @@ swtichRelay1.addEventListener('change', (e) => {
 
         socket.emit('event_relay', {
 
-            username: "esp8266-5V2R-01",
-            relay1: "false"
+            username: deviceUsername,
+            relay1: 'false'
 
         }, (error) => {
             if (error) {
@@ -38,7 +58,7 @@ swtichRelay1.addEventListener('change', (e) => {
             }
         })
     }
-    
+
     console.log('Relay1 Command was delivered')
 
 })

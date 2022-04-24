@@ -13,6 +13,8 @@ const port = process.env.PORT || 3000
 const cors = require("cors")
 const initRoutes = require("./routers")
 const { addUser, getUser } = require('./utils/users')
+const { addDevice } = require('./utils/devices')
+
 var corsOptions = {
   origin: "http://localhost:8081"
 }
@@ -40,6 +42,8 @@ io.on('connection', (socket) => {
   // get header info
   const userAgent = socket.handshake.headers["user-agent"]
   console.log("user-agent: ", userAgent)
+  addDevice(userAgent)
+
 
   const userAddress = socket.handshake.headers["x-forwarded-for"]
   console.log("address: ", userAddress)
@@ -88,6 +92,7 @@ io.on('connection', (socket) => {
       callback()
 
     } else {
+      
       return callback('username not provided')
     }
 
