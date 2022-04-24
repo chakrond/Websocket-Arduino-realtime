@@ -4,7 +4,7 @@ const socket = io()
 // Get device info
 // ------------------------------------------------------------
 // Querey string
-const { devname } = qs.parse(location.search, { ignoreQueryPrefix: true }) // get querey string
+const { devname } = Qs.parse(location.search, { ignoreQueryPrefix: true }) // get querey string
 
 // request device
 socket.emit('reqDevice', { username: devname })
@@ -41,7 +41,7 @@ swtichRelay1.addEventListener('change', (e) => {
 
         socket.emit('event_relay', {
 
-            username: device.username,
+            username: devname,
             relay1: 'true'
 
         }, (error) => {
@@ -54,7 +54,7 @@ swtichRelay1.addEventListener('change', (e) => {
 
         socket.emit('event_relay', {
 
-            username: device.username,
+            username: devname,
             relay1: 'false'
 
         }, (error) => {
