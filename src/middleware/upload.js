@@ -28,4 +28,6 @@ var storage = new GridFsStorage({
   var uploadFilesMiddleware = util.promisify(uploadFiles)
 
 
-  module.exports = uploadFilesMiddleware
+  module.exports = {
+    uploadFilesMiddleware
+  }

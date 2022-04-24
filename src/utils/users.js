@@ -4,12 +4,11 @@ const addUser = ({ id, username, address }) => {
 
     // Check for exsiting user
     const existingUser = users.find((user) => {
-        return user.username == username
+        return user.username == username && user.id == id
     })
 
     // Validate username
     if (existingUser) {
-        const { id } = getUser(username)
         removeUser(id)
     }
 
@@ -31,8 +30,8 @@ const removeUser = (id) => {
 }
 
 
-const getUser = (username) => {
-    return users.find((user) => user.username == username)
+const getUser = (id) => {
+    return users.find((user) => user.id == id)
 }
 
 
