@@ -63,10 +63,10 @@ io.on('connection', (socket) => {
 
   socket.on('event_relay', (device, callback) => {
 
-    if (device.id) {
+    if (device.username) {
 
       // get user
-      const { id, username, address } = getUser(device.id)
+      const { id, username, address } = getUserByName(device.username)
 
       if (device.relay1) {
 

@@ -20,7 +20,6 @@ const addUser = ({ id, username, address }) => {
 
 }
 
-
 const removeUser = (id) => {
     const index = users.findIndex((user) => user.id == id)
 
@@ -29,14 +28,18 @@ const removeUser = (id) => {
     }
 }
 
-
 const getUser = (id) => {
     return users.find((user) => user.id == id)
+}
+
+const getUserByName = (username) => {
+    return users.find((user) => user.username == username)
 }
 
 
 module.exports = {
     addUser,
     removeUser,
-    getUser
+    getUser,
+    getUserByName
 }
