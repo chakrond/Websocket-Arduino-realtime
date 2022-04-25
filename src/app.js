@@ -78,7 +78,7 @@ io.on('connection', (socket) => {
         })
 
         // update device stats
-        const device = addStat({
+        addStat({
           id: id,
           username: username, 
           stat: {
@@ -98,7 +98,7 @@ io.on('connection', (socket) => {
         })
 
         // update device stats
-        const device = addStat({
+        addStat({
           id: id,
           username: username,
           stat: {
