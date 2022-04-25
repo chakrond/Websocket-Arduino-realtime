@@ -61,7 +61,7 @@ io.on('connection', (socket) => {
   })
 
 
-  socket.on('event_relay', (device, callback) => {
+  socket.on('event_relay', (device) => {
 
     if (device.username) {
 
@@ -107,14 +107,8 @@ io.on('connection', (socket) => {
         })
 
       }
-
-      callback()
-
-    } else {
-
-      return callback('username not provided')
     }
-
+    
   })
 
   socket.on('reqDevice', (dev) => {
