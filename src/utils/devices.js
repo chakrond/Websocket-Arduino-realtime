@@ -4,20 +4,23 @@ const addDevice = ({ id, username }) => {
 
     // Check for exsiting user
     const existingDevice = devices.find((dev) => {
-        return dev.id == id && dev.username == username
+        return dev.username == username
     })
 
     // Validate username
     if (existingDevice) {
-        removeDevice(id)
-        existingDevice == false
+        const S_device = getDeviceByName(username)
+        S_device.id = id
+        return S_device
     }
 
+    if (!existingDevice) {
     // Store device
     const stat = {}
     const S_device = { id, username, stat }
     devices.push(S_device)
     return S_device
+    }
 
 }
 

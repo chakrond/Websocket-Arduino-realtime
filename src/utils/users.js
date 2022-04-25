@@ -4,19 +4,23 @@ const addUser = ({ id, username, address }) => {
 
     // Check for exsiting user
     const existingUser = users.find((user) => {
-        return user.username == username && user.id == id
+        return user.username == username
     })
 
     // Validate username
     if (existingUser) {
-        removeUser(id)
+        const S_user = getUserByName(username)
+        S_user.id = id
+        S_user.address = address
+        return S_user
     }
 
-
+    if (!existingUser) {
     // Store user
     const S_user = { id, username, address }
     users.push(S_user)
     return S_user
+    }
 
 }
 
