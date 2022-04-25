@@ -67,6 +67,7 @@ io.on('connection', (socket) => {
 
       // get user info
       const { id, username, address } = getUserByName(device.username)
+      const getDevice = getDevice(id)
 
       if (device.relay1) {
 
@@ -78,13 +79,7 @@ io.on('connection', (socket) => {
         })
 
         // update device stats
-        addStat({
-          id: id,
-          username: username, 
-          stat: {
-            relay1: device.relay1
-          }
-        })
+        getDevice.stat['relay1'] = device.relay1
 
       }
 
@@ -98,13 +93,7 @@ io.on('connection', (socket) => {
         })
 
         // update device stats
-        addStat({
-          id: id,
-          username: username,
-          stat: {
-            relay2: device.relay2
-          }
-        })
+        getDevice.stat['relay2'] = device.relay2
 
       }
     }
