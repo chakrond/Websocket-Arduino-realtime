@@ -65,7 +65,7 @@ io.on('connection', (socket) => {
 
     if (device.username) {
 
-      // get user
+      // get user info
       const { id, username, address } = getUserByName(device.username)
 
       if (device.relay1) {
@@ -108,7 +108,7 @@ io.on('connection', (socket) => {
 
       }
     }
-    
+
   })
 
   socket.on('reqDevice', (dev) => {
