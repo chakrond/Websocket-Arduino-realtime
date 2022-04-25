@@ -61,13 +61,13 @@ io.on('connection', (socket) => {
   })
 
 
-  socket.on('event_relay', (device) => {
+  socket.on('event_relay', (device, cb) => {
 
-    if (device.username) {
+    // get user info
+    const { id, username, address } = getUserByName(device.username)
+    const sDevice = getDevice(id)
 
-      // get user info
-      const { id, username, address } = getUserByName(device.username)
-      const sDevice = getDevice(id)
+    if (sDevice) {
 
       if (device.relay1) {
 
@@ -96,6 +96,9 @@ io.on('connection', (socket) => {
         sDevice.stat['relay2'] = device.relay2
 
       }
+
+    } else {
+      return cb('id not found')
     }
 
   })
