@@ -9,32 +9,40 @@ const { devname } = Qs.parse(location.search, { ignoreQueryPrefix: true }) // ge
 socket.on('joined', (dev) => {
 
     // request device
-    socket.emit('reqDevice', { ClientId: dev.id , username: devname })
+    socket.emit('reqDevice', { ClientId: dev.id, username: devname })
 })
+
+// get form element
+const swtichRelay1 = document.getElementById('switchCheck-Relay-1')
+const swtichRelay2 = document.getElementById('switchCheck-Relay-2')
 
 // get device stat
 socket.on('deviceStat', (dev) => {
 
     console.log('deviceStat: ', dev)
-})
 
+    // Relay 1
+    // check the latest stat of relay
+    if (dev.stat['relay1'] == 'true') {
+        swtichRelay1.setAttribute('checked', 'checked')
+    } else {
+        swtichRelay1.removeAttribute('checked')
+    }
+
+    // Relay 2
+    // check the latest stat of relay
+    if (dev.stat['relay2'] == 'true') {
+        swtichRelay2.setAttribute('checked', 'checked')
+    } else {
+        swtichRelay2.removeAttribute('checked')
+    }
+
+})
 
 
 // ------------------------------------------------------------
 // Relay 1
 // ------------------------------------------------------------
-
-// get form element
-const swtichRelay1 = document.getElementById('switchCheck-Relay-1')
-
-// // check the latest stat of relay
-// if (device.stat.relay1 == 'true') {
-
-//     swtichRelay1.setAttribute('checked', 'checked')
-// } else {
-
-//     swtichRelay1.removeAttribute('checked')
-// }
 
 swtichRelay1.addEventListener('change', (e) => {
 
@@ -66,9 +74,6 @@ swtichRelay1.addEventListener('change', (e) => {
 // ------------------------------------------------------------
 // Relay 2
 // ------------------------------------------------------------
-
-// get form element
-const swtichRelay2 = document.getElementById('switchCheck-Relay-2')
 
 swtichRelay2.addEventListener('change', (e) => {
 
