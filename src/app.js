@@ -76,6 +76,16 @@ io.on('connection', (socket) => {
           username: username,
           relay1: device.relay1
         })
+
+        // update device stats
+        const device = addStat({
+          id: id,
+          username: username, 
+          stat: {
+            relay1: device.relay1
+          }
+        })
+
       }
 
       if (device.relay2) {
@@ -86,6 +96,16 @@ io.on('connection', (socket) => {
           username: username,
           relay2: device.relay2
         })
+
+        // update device stats
+        const device = addStat({
+          id: id,
+          username: username,
+          stat: {
+            relay2: device.relay2
+          }
+        })
+
       }
 
       callback()

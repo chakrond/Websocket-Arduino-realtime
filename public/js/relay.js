@@ -47,10 +47,6 @@ swtichRelay1.addEventListener('change', (e) => {
             username: devname,
             relay1: 'true'
 
-        }, (error) => {
-            if (error) {
-                return console.log(error)
-            }
         })
 
     } else {
@@ -60,10 +56,6 @@ swtichRelay1.addEventListener('change', (e) => {
             username: devname,
             relay1: 'false'
 
-        }, (error) => {
-            if (error) {
-                return console.log(error)
-            }
         })
     }
 
@@ -89,10 +81,6 @@ swtichRelay2.addEventListener('change', (e) => {
             username: devname,
             relay2: "true"
 
-        }, (error) => {
-            if (error) {
-                return console.log(error)
-            }
         })
 
     } else {
@@ -102,10 +90,6 @@ swtichRelay2.addEventListener('change', (e) => {
             username: devname,
             relay2: "false"
 
-        }, (error) => {
-            if (error) {
-                return console.log(error)
-            }
         })
     }
 
