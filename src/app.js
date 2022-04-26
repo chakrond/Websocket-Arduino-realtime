@@ -60,7 +60,7 @@ io.on('connection', (socket) => {
 
   })
 
-
+  // Listen to web cleint
   socket.on('event_relay', (device, cb) => {
 
     if (getUserByName(device.username)) {
@@ -102,6 +102,7 @@ io.on('connection', (socket) => {
     }
   })
 
+  // Listen to web cleint
   socket.on('reqDevice', (dev) => {
 
     if (dev.username) {
@@ -113,6 +114,13 @@ io.on('connection', (socket) => {
       io.to(dev.ClientId).emit('deviceStat', device)
 
     }
+
+  })
+
+  // Listen to temp sensor
+  socket.on('dsTemp', (data) => {
+
+    console.log('dsTemp: ', data)
 
   })
 
