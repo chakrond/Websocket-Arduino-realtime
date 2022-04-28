@@ -1,4 +1,4 @@
-const upload = require('../middleware/upload') // get GridFsStorage from Middleware
+const { uploadFilesMiddleware } = require('../middleware/upload') // get GridFsStorage from Middleware
 const dbConfig = require('../db/mongoose')
 const MongoClient = require('mongodb').MongoClient
 const GridFSBucket = require('mongodb').GridFSBucket
@@ -11,7 +11,7 @@ const uploadFiles = async (req, res) => {
 
   try {
 
-    await upload(req, res)
+    await uploadFilesMiddleware(req, res)
     console.log(req.file)
     if (req.file == undefined) {
       return res.send({
