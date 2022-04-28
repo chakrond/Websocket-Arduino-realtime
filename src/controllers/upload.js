@@ -114,7 +114,7 @@ const update = async (req, res) => {
     const collection = database.collection(dbConfig.sketchBucket + '.files')
 
     // Find files
-    const regE = new RegExp(`^${req.params.board}-OTA-Cloud-ver`)
+    const regE = new RegExp(`^${req.params.board}-OTA-Cloud-ver`) // Filename format board-OTA-Cloud-ver1.0
     console.log(`req.params.board: ${req.params.board}`)
     const cursor = collection.find({ filename: regE }).sort({ uploadDate: -1 })
 
@@ -133,8 +133,20 @@ const update = async (req, res) => {
     // let reqPosition = reqText.search("ver") // ver = 3
     // let reqVer = parseFloat(reqText.substr(reqPosition + 3, 3)) // plus 1.0 = 3
     // console.log(`reqVer: ${reqVer}`)
-    let reqHeader = req.header('x-esp8266-version')
-    let reqVer = parseFloat(reqHeader)
+
+    let reqHeader
+    let reqVer
+    if (req.params.board == 'esp8266') {
+
+      reqHeader = req.header('x-esp8266-version')
+      reqVer = parseFloat(reqHeader)
+
+    } else if (req.params.board == 'mkr1010') {
+
+      reqHeader = req.header('x-mkr1010-version')
+      reqVer = parseFloat(reqHeader)
+
+    }
     console.log(`reqVer: ${reqVer}`)
 
     // server info
@@ -154,7 +166,7 @@ const update = async (req, res) => {
     }
 
     // Serve the latest version of file
-    req.params.name = latestVerName
+    // req.params.name = latestVerName
     const fileContLen = fileInfos[0].length // File Length
     // console.log(`fileContLen: ${fileContLen}`)
 
@@ -167,7 +179,7 @@ const update = async (req, res) => {
     const bucket = new GridFSBucket(database, {
       bucketName: dbConfig.sketchBucket,
     })
-    
+
     // open stream
     let downloadStream = bucket.openDownloadStreamByName(latestVerName)
 
@@ -225,7 +237,7 @@ const download = async (req, res) => {
     const bucket = new GridFSBucket(database, {
       bucketName: dbConfig.sketchBucket,
     })
-    
+
     let downloadStream = bucket.openDownloadStreamByName(req.params.name)
 
     downloadStream.on('data', function (data) {
