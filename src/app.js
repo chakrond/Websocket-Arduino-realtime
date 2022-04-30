@@ -1,3 +1,4 @@
+require('./db/mongoose_connect')
 const express = require('express')
 const http = require('http')
 const socketio = require('socket.io')
@@ -11,9 +12,13 @@ const io = socketio(server)
 const port = process.env.PORT || 3000
 
 const cors = require('cors')
-const initRoutes = require('./routers')
+const initRoutes = require('./routers/index')
+const taskRouter = require('./routers/task')
+const userRouter = require('./routers/user')
+const dataRouter = require('./routers/data')
 const { addUser, getUser, getUserByName } = require('./utils/users')
 const { addDevice, getDevice, getDeviceByName, addStat } = require('./utils/devices')
+const { saveDataToCollection } = require('./utils/saveData')
 
 var corsOptions = {
   origin: "http://localhost:8081"
@@ -22,6 +27,9 @@ var corsOptions = {
 app.use(cors(corsOptions))
 app.use(express.urlencoded({ extended: true }))
 initRoutes(app)
+app.use(taskRouter)
+app.use(dataRouter)
+app.use(userRouter)
 
 // Define paths for Express config
 const publicdir = path.join(__dirname, '../public')
@@ -129,17 +137,13 @@ io.on('connection', (socket) => {
 
     console.log('sensors: ', data)
 
+    const { username } = getUser(data.id)
+    saveDataToCollection({ data, username: username  })
+
   })
 
 
-  // socket.on('event_name', (data) => {
 
-  //   console.log("Message from Client : ", data)
-  //   socket.broadcast.emit("Send Message socket.broadcast.emit : ", data) // to all connected clients except who we send
-  //   io.emit("Send Message io.emit Broadcasted : ", data)
-  //   socket.emit("Send Message : ", data)
-
-  // })
 
   socket.on('disconnect', () => {
 
