@@ -68,7 +68,7 @@ io.on('connection', (socket) => {
 
   })
 
-  // Listen to web cleint
+  // Listen to web cleints
   socket.on('event_relay', (device, cb) => {
 
     if (getUserByName(device.username)) {
