@@ -1,20 +1,20 @@
 const Data = require('../models/data')
 const converTime = require('./convertTime')
 
-const saveDataToCollection = ({ data, username }) => {
+const saveDataToCollection = async ({ data, username }) => {
 
     try {
 
-        const VData = Data.findOne({ recDate: converTime(7), owner: username })
+        const VData = await Data.findOne({ recDate: converTime(7), owner: username })
 
         if (VData) {
-            VData.dataArray = VData.dataArray.concat({
+            VData.dataArray = await VData.dataArray.concat({
                 recTime: new Date(Date.now() + (7 * 60 * 60 * 1000)), // use defalut in model record will create only once, no update
                 dsTemp_IN: data.dsTemp_IN,
                 DHT21_IN: data.DHT21_IN,
                 dsTemp_Tank: data.dsTemp_Tank
             })
-            VData.save()
+            await VData.save()
             return console.log('Save data to colleciton successfully!')
         }
 
@@ -28,7 +28,8 @@ const saveDataToCollection = ({ data, username }) => {
             owner: username
         })
 
-        NewData.save()
+        await NewData.save()
+        console.log('Save data to colleciton successfully!')
 
     } catch (e) {
         console.log(e)
