@@ -124,6 +124,13 @@ io.on('connection', (socket) => {
 
   })
 
+  // Listen to sensors
+  socket.on('sensors', (data) => {
+
+    console.log('sensors: ', data)
+
+  })
+
 
   // socket.on('event_name', (data) => {
 
