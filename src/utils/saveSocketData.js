@@ -1,11 +1,11 @@
-const Data = require('../models/data')
+const SocketData = require('../models/SocketData')
 const converTime = require('./convertTime')
 
 const saveDataToCollection = async ({ data, username }) => {
 
     try {
 
-        const VData = await Data.findOne({ recDate: converTime(7), owner: username })
+        const VData = await SocketData.findOne({ recDate: converTime(7), owner: username })
 
         if (VData) {
             VData.dataArray = await VData.dataArray.concat({
@@ -18,7 +18,7 @@ const saveDataToCollection = async ({ data, username }) => {
             return console.log('Save data to colleciton successfully!')
         }
 
-        const NewData = new Data({
+        const NewData = new SocketData({
             dataArray: [{
                 recTime: new Date(Date.now() + (7 * 60 * 60 * 1000)),
                 dsTemp_IN: data.dsTemp_IN,

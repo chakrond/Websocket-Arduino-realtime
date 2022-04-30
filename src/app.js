@@ -18,7 +18,7 @@ const userRouter = require('./routers/user')
 const dataRouter = require('./routers/data')
 const { addUser, getUser, getUserByName } = require('./utils/users')
 const { addDevice, getDevice, getDeviceByName, addStat } = require('./utils/devices')
-const { saveDataToCollection } = require('./utils/saveData')
+const { saveDataToCollection } = require('./utils/saveSocketData')
 
 var corsOptions = {
   origin: "http://localhost:8081"
@@ -26,9 +26,6 @@ var corsOptions = {
 
 app.use(cors(corsOptions))
 app.use(express.urlencoded({ extended: true }))
-
-app.use(express.json())
-
 initRoutes(app)
 app.use(taskRouter)
 app.use(dataRouter)
@@ -71,7 +68,7 @@ io.on('connection', (socket) => {
 
   })
 
-  // Listen to web cleints
+  // Listen to web cleint
   socket.on('event_relay', (device, cb) => {
 
     if (getUserByName(device.username)) {
