@@ -77,6 +77,20 @@ io.on('connection', (socket) => {
       const { id, username, address } = getUserByName(device.username)
       const sDevice = getDevice(id)
 
+      if (device.isManualMode) {
+
+        io.to(id).emit('manual_control', {
+
+          id: id,
+          username: username,
+          isManualMode: device.isManualMode
+        })
+
+        // update device stats
+        // sDevice.stat['relay1'] = device.relay1
+
+      }
+
       if (device.relay1) {
 
         io.to(id).emit('control_relay_1', {
