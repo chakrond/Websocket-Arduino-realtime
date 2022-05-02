@@ -69,13 +69,26 @@ io.on('connection', (socket) => {
   })
 
   // Listen to web cleint
-  socket.on('event_relay', (device, cb) => {
+  socket.on('event_control', (device, cb) => {
 
     if (getUserByName(device.username)) {
 
       // get user info
       const { id, username, address } = getUserByName(device.username)
       const sDevice = getDevice(id)
+
+      if (device.reqSettings) {
+
+        io.to(id).emit('req_settings', {
+
+          id: id,
+          username: username,
+        })
+
+        // update device stats
+        // sDevice.stat['relay1'] = device.relay1
+
+      }
 
       if (device.isManualMode) {
 
@@ -138,6 +151,15 @@ io.on('connection', (socket) => {
     }
 
   })
+
+  
+  // Listen to res_settings_triggers
+  socket.on('res_settings_triggers', (data) => {
+
+    console.log('res_settings_triggers: ', data)
+
+  })
+
 
   // Listen to temp sensor
   socket.on('dsTemp', (data) => {
