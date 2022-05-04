@@ -17,7 +17,8 @@ const addDevice = ({ id, username }) => {
     if (!existingDevice) {
     // Store device
     const stat = {}
-    const S_device = { id, username, stat }
+    const settings = {}
+    const S_device = { id, username, stat, settings }
     devices.push(S_device)
     return S_device
     }
@@ -58,10 +59,19 @@ const addStat = ({ id, username, stat }) => {
     console.log('addStat: ', device)
 }
 
+const addSettings = ({ id, username, settings }) => {
+
+    const device = getDevice(id)
+    device.settings = settings
+
+    console.log('addSettings: ', device)
+}
+
 module.exports = {
     addDevice,
     removeDevice,
     getDevice,
     getDeviceByName,
-    addStat
+    addStat,
+    addSettings
 }

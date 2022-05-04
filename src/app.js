@@ -110,7 +110,11 @@ io.on('connection', (socket) => {
         })
 
         // update device stats
-        // sDevice.stat['relay1'] = device.relay1
+        sDevice.stat['relay1'] = device.relay1
+        sDevice.stat['relay2'] = device.relay2
+        sDevice.stat['relay3'] = device.relay3
+        sDevice.stat['relay4'] = device.relay4
+        sDevice.stat['relay5'] = device.relay5
 
       }
 
@@ -254,7 +258,7 @@ io.on('connection', (socket) => {
       const device = getDeviceByName(dev.username)
 
       // send device stats back to who request
-      io.to(dev.ClientId).emit('deviceStat', device)
+      io.to(dev.ClientId).emit('deviceInfo', device)
 
     }
 

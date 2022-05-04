@@ -153,7 +153,7 @@ const update = async (req, res) => {
     let latestVerName = fileInfos[0].name
     console.log(`latestVerName: ${latestVerName}`)
     let servPosition = latestVerName.search("ver")
-    let servVer = parseFloat(latestVerName.substr(servPosition + 3, 3))
+    let servVer = parseFloat(latestVerName.substr(servPosition + 3, 4))
     console.log(`servVer: ${servVer}`)
 
     // Version check

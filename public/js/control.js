@@ -16,7 +16,7 @@ socket.on('joined', (dev) => {
 const swtichRelay1 = document.getElementById('switchCheck-Relay-1')
 const swtichRelay2 = document.getElementById('switchCheck-Relay-2')
 
-// get device stat
+// get device Info
 socket.on('deviceInfo', (dev) => {
 
     console.log('deviceInfo: ', dev)
