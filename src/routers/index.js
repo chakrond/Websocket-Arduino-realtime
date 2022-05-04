@@ -3,6 +3,7 @@ const router = express.Router()
 const homeController = require("../controllers/home")
 const uploadController = require("../controllers/upload")
 const relayController = require("../controllers/relay")
+const boardSettingsController = require("../controllers/control")
 
 let routes = app => {
 
@@ -18,7 +19,7 @@ let routes = app => {
   router.get("/relay", relayController.getRelay)
 
   // Board control page
-  
+  router.get("/control", boardSettingsController.getControl)
 
   return app.use("/", router)
 }

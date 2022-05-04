@@ -33,11 +33,21 @@ const removeDevice = (id) => {
 }
 
 const getDevice = (id) => {
-    return devices.find((dev) => dev.id == id)
+
+    const found = devices.find((dev) => dev.id == id)
+    if (!found) {
+        return console.log('getDevice, id not found')
+    }    
+    return found
 }
 
 const getDeviceByName = (username) => {
-    return devices.find((dev) => dev.username == username)
+
+    const found = devices.find((dev) => dev.username == username)
+    if (!found) {
+        return console.log('getDeviceByName, username not found')
+    }  
+    return found
 }
 
 const addStat = ({ id, username, stat }) => {

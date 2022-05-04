@@ -1,7 +1,7 @@
 const path = require("path")
 const { getDeviceByName, addStat } = require('../utils/devices')
 
-const relay = async (req, res) => {
+const control = async (req, res) => {
 
     try {
 
@@ -18,7 +18,9 @@ const relay = async (req, res) => {
                 username: device.username,
                 stat: {
                     relay1: 'false',
-                    relay2: 'false'
+                    relay2: 'false',
+                    relay3: 'false',
+                    relay4: 'false'
                 }
             })
 
@@ -36,7 +38,6 @@ const relay = async (req, res) => {
 }
 
 
-
 module.exports = {
-    getRelay: relay
+    getControl: control
 }

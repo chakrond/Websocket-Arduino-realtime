@@ -38,6 +38,9 @@ const publicdir = path.join(__dirname, '../public')
 app.use(express.static(publicdir))
 
 
+// ------------------------------------------------------------------------------------------------------------
+// SocketIO - Connection
+// ------------------------------------------------------------------------------------------------------------
 io.on('connection', (socket) => {
 
   console.log('Connected')
@@ -68,7 +71,9 @@ io.on('connection', (socket) => {
 
   })
 
+  // ------------------------------------------------------------------------------------------------------------
   // Listen to web cleint
+  // ------------------------------------------------------------------------------------------------------------
   socket.on('event_control', (device, cb) => {
 
     if (getUserByName(device.username)) {
@@ -77,6 +82,9 @@ io.on('connection', (socket) => {
       const { id, username, address } = getUserByName(device.username)
       const sDevice = getDevice(id)
 
+      // ------------------------------------------------------------------------------------------------------------
+      // Request Settings value
+      // ------------------------------------------------------------------------------------------------------------
       if (device.reqSettings) {
 
         io.to(id).emit('req_settings', {
@@ -90,6 +98,25 @@ io.on('connection', (socket) => {
 
       }
 
+      // ------------------------------------------------------------------------------------------------------------
+      // Request relay stats
+      // ------------------------------------------------------------------------------------------------------------
+      if (device.reqRelayStats) {
+
+        io.to(id).emit('req_relay_stats', {
+
+          id: id,
+          username: username,
+        })
+
+        // update device stats
+        // sDevice.stat['relay1'] = device.relay1
+
+      }
+
+      // ------------------------------------------------------------------------------------------------------------
+      // Manual mode
+      // ------------------------------------------------------------------------------------------------------------
       if (device.isManualMode) {
 
         io.to(id).emit('manual_control', {
@@ -104,6 +131,9 @@ io.on('connection', (socket) => {
 
       }
 
+      // ------------------------------------------------------------------------------------------------------------
+      // relay control
+      // ------------------------------------------------------------------------------------------------------------
       if (device.relay1) {
 
         io.to(id).emit('control_relay_1', {
@@ -132,12 +162,56 @@ io.on('connection', (socket) => {
 
       }
 
+      if (device.relay3) {
+
+        io.to(id).emit('control_relay_3', {
+
+          id: id,
+          username: username,
+          relay3: device.relay3
+        })
+
+        // update device stats
+        sDevice.stat['relay3'] = device.relay3
+
+      }
+
+      if (device.relay4) {
+
+        io.to(id).emit('control_relay_4', {
+
+          id: id,
+          username: username,
+          relay4: device.relay4
+        })
+
+        // update device stats
+        sDevice.stat['relay4'] = device.relay4
+
+      }
+
+      if (device.relay5) {
+
+        io.to(id).emit('control_relay_5', {
+
+          id: id,
+          username: username,
+          relay5: device.relay5
+        })
+
+        // update device stats
+        sDevice.stat['relay5'] = device.relay5
+
+      }
+
     } else {
       return cb('id not found, device not exist')
     }
   })
 
-  // Listen to web cleint
+  // ------------------------------------------------------------------------------------------------------------
+  // Listen to web cleint - Send back device stats
+  // ------------------------------------------------------------------------------------------------------------
   socket.on('reqDevice', (dev) => {
 
     if (dev.username) {
@@ -152,29 +226,33 @@ io.on('connection', (socket) => {
 
   })
 
-  
-  // Listen to res_settings_triggers
-  socket.on('res_settings_triggers', (data) => {
+  // ------------------------------------------------------------------------------------------------------------
+  // Listen to Settings values
+  // ------------------------------------------------------------------------------------------------------------
+  socket.on('res_settings', (data) => {
 
-    console.log('res_settings_triggers: ', data)
+    console.log('res_settings: ', data)
 
   })
 
-
+  // ------------------------------------------------------------------------------------------------------------
   // Listen to temp sensor
+  // ------------------------------------------------------------------------------------------------------------
   socket.on('dsTemp', (data) => {
 
     console.log('dsTemp: ', data)
 
   })
 
+  // ------------------------------------------------------------------------------------------------------------
   // Listen to sensors
+  // ------------------------------------------------------------------------------------------------------------
   socket.on('sensors', (data) => {
 
     console.log('sensors: ', data)
 
     const { username } = getUser(data.id)
-    saveDataToCollection({ data, username: username  })
+    saveDataToCollection({ data, username: username })
 
   })
 

@@ -33,11 +33,21 @@ const removeUser = (id) => {
 }
 
 const getUser = (id) => {
-    return users.find((user) => user.id == id)
+
+    const found = users.find((user) => user.id == id)
+    if (!found) {
+        return console.log('getUser, id not found')
+    }
+    return found
 }
 
 const getUserByName = (username) => {
-    return users.find((user) => user.username == username)
+
+    const found = users.find((user) => user.username == username)
+    if (!found) {
+        return console.log('getUserByName, username not found')
+    }
+    return found
 }
 
 
