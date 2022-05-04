@@ -84,7 +84,7 @@ swtichRelay2.addEventListener('change', (e) => {
         socket.emit('event_relay', {
 
             username: devname,
-            relay2: "true"
+            relay2: 'true'
 
         })
 
@@ -93,7 +93,7 @@ swtichRelay2.addEventListener('change', (e) => {
         socket.emit('event_relay', {
 
             username: devname,
-            relay2: "false"
+            relay2: 'false'
 
         })
     }

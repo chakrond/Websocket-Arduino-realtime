@@ -92,10 +92,6 @@ io.on('connection', (socket) => {
           id: id,
           username: username,
         })
-
-        // update device stats
-        // sDevice.stat['relay1'] = device.relay1
-
       }
 
       // ------------------------------------------------------------------------------------------------------------
@@ -108,14 +104,6 @@ io.on('connection', (socket) => {
           id: id,
           username: username,
         })
-
-        // update device stats
-        sDevice.stat['relay1'] = device.relay1
-        sDevice.stat['relay2'] = device.relay2
-        sDevice.stat['relay3'] = device.relay3
-        sDevice.stat['relay4'] = device.relay4
-        sDevice.stat['relay5'] = device.relay5
-
       }
 
       // ------------------------------------------------------------------------------------------------------------
@@ -129,10 +117,6 @@ io.on('connection', (socket) => {
           username: username,
           isManualMode: device.isManualMode
         })
-
-        // update device stats
-        // sDevice.stat['relay1'] = device.relay1
-
       }
 
       // ------------------------------------------------------------------------------------------------------------
@@ -271,6 +255,9 @@ io.on('connection', (socket) => {
 
     console.log('res_settings: ', data)
 
+    const sDevice = getDevice(data.id)
+    sDevice.settings = data.splice(0, 1) // remove 1 element(id)
+
   })
 
   // ------------------------------------------------------------------------------------------------------------
@@ -280,6 +267,8 @@ io.on('connection', (socket) => {
 
     console.log('res_relay_stats: ', data)
 
+    const sDevice = getDevice(data.id)
+    sDevice.stat = data.splice(0, 1) // remove 1 element(id)
   })
 
   // ------------------------------------------------------------------------------------------------------------

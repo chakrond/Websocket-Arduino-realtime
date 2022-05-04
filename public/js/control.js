@@ -8,6 +8,12 @@ const { devname } = Qs.parse(location.search, { ignoreQueryPrefix: true }) // ge
 
 socket.on('joined', (dev) => {
 
+    // update relay stat
+    socket.emit('event_control', { ClientId: dev.id, username: devname, reqRelayStats: 'true'  })
+
+    // update device settings
+    socket.emit('event_control', { ClientId: dev.id, username: devname, reqSettings: 'true' })
+
     // request device
     socket.emit('reqDevice', { ClientId: dev.id, username: devname })
 })
