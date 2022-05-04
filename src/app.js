@@ -204,6 +204,40 @@ io.on('connection', (socket) => {
 
       }
 
+      // ------------------------------------------------------------------------------------------------------------
+      // Update Sketch
+      // ------------------------------------------------------------------------------------------------------------
+      if (device.updateSketch) {
+
+        io.to(id).emit('update_sketch', {
+
+          id: id,
+          username: username,
+        })
+
+        // update device stats
+        // sDevice.stat['relay1'] = device.relay1
+
+      }
+
+      // ------------------------------------------------------------------------------------------------------------
+      // Restart Board
+      // ------------------------------------------------------------------------------------------------------------
+      if (device.restartBoard) {
+
+        io.to(id).emit('restart_board', {
+
+          id: id,
+          username: username,
+        })
+
+        // update device stats
+        // sDevice.stat['relay1'] = device.relay1
+
+      }
+
+
+
     } else {
       return cb('id not found, device not exist')
     }
