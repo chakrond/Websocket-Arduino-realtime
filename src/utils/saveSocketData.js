@@ -19,6 +19,7 @@ const saveDataToCollection = async ({ data, username }) => {
         }
 
         const NewData = new SocketData({
+            recDate: converTime(7),
             dataArray: [{
                 recTime: new Date(Date.now() + (7 * 60 * 60 * 1000)),
                 dsTemp_IN: data.dsTemp_IN,

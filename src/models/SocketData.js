@@ -6,8 +6,7 @@ const SocketDataSchema = new mongoose.Schema({
     // Option 1
     recDate: {
         type: Date,
-        trim: true,
-        default: converTime(7)
+        trim: true
     },
     dataArray: [{
         // Option 1

@@ -1,0 +1,254 @@
+<!DOCTYPE HTML>
+
+<head>
+    <link rel="icon">
+    <meta charset="utf-8">
+
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <style>
+        body {
+            font-family: "Lato", sans-serif;
+        }
+
+        /* Fixed sidenav, full height */
+        .sidenav {
+            height: 100%;
+            width: 200px;
+            position: fixed;
+            z-index: 1;
+            top: 0;
+            left: 0;
+            background-color: #f1f1f1;
+            overflow-x: hidden;
+            padding-top: 20px;
+        }
+
+        /* Style the sidenav links and the dropdown button */
+        .sidenav a,
+        .dropdown-btn {
+            padding: 6px 8px 6px 16px;
+            text-decoration: none;
+            font-size: 20px;
+            color: #111;
+            display: block;
+            border: none;
+            background: none;
+            width: 100%;
+            text-align: left;
+            cursor: pointer;
+            outline: none;
+        }
+
+        /* On mouse-over */
+        .sidenav a:hover,
+        .dropdown-btn:hover {
+            background-color: #499de6;
+            color: white;
+        }
+
+        /* Main content */
+        .main {
+            margin-left: 200px;
+            /* Same as the width of the sidenav */
+            font-size: 20px;
+            /* Increased text to enable scrolling */
+            padding: 0px 10px;
+        }
+
+        /* On active */
+        .sidenav a.active {
+            background-color: #499de6;
+            color: white;
+        }
+
+        /* Add an active class to the active dropdown button */
+        .active {
+            background-color: #499de6;
+            color: white;
+        }
+
+        /* Dropdown container (hidden by default). Optional: add a lighter background color and some left padding to change the design of the dropdown content */
+        .dropdown-container {
+            display: none;
+            background-color: #b8e0ff;
+            padding-left: 8px;
+        }
+
+        /* On dropdown-container active */
+        .dropdown-container a.active {
+            background-color: #757575;
+            color: white;
+        }
+
+        /* Optional: Style the caret down icon */
+        .fa-caret-down {
+            float: right;
+            padding-right: 8px;
+        }
+
+        /* Some media queries for responsiveness */
+        @media screen and (max-height: 450px) {
+            .sidenav {
+                padding-top: 15px;
+            }
+
+            .sidenav a {
+                font-size: 18px;
+            }
+        }
+
+
+        p1 {
+            color: red;
+            border: 3px solid powderblue;
+            padding: 5px;
+        }
+
+
+        p2 {
+            color: blue;
+            border: 3px solid powderblue;
+            padding: 5px;
+        }
+    </style>
+</head>
+
+<body>
+
+    <div class="sidenav">
+        <a class="active" href="/home">Home</a>
+        <button class="dropdown-btn">Settings
+            <i class="fa fa-caret-down"></i>
+        </button>
+        <div class="dropdown-container">
+            <a href="/settings/paramSettings">Parameters</a>
+            <a href="/settings/network">Network</a>
+        </div>
+        <a href="/about">About</a>
+    </div>
+
+    <!-- Main content -->
+    <div class="main">
+        <h2>Welcom to mkr-Controller Webpage</h2>
+        <p>This page is under development...</p>
+        <p>Please go to settings page for microcontroller settings</p>
+    </div>
+
+
+    <div class="sidenav">
+        <a href="/home">Home</a>
+        <button class="dropdown-btn">Settings
+            <i class="fa fa-caret-down"></i>
+        </button>
+        <div class="dropdown-container">
+            <a class="active" href="/settings/paramSettings">Parameters</a>
+            <a href="/settings/network">Network</a>
+        </div>
+        <a href="/about">About</a>
+    </div>
+
+    <!-- Main content -->
+    <div class="main">
+
+        <!-- Form -->
+        <form action="/settings/paramSettings" method="get" id="settingsForm" onsubmit="redirect()">
+
+            <h1>Parameters Settings</h1>
+            <hr>
+
+            <!-- // Sensors readings -->
+            <h3>Sensors Readings</h3>
+
+            <!-- // dsTemp Temperature -->
+            <label for="sensorsReading_dsTemp">Tank Temperature: </label>
+            <p2> &#8451;</p2><br><br>
+
+            <!-- // SHT20 Temperature -->
+            <label for="sensorsReading_SHT20_Temp">Inside Temperature: </label>
+            <p1> &#8451;</p1><br><br>
+
+            <!-- // SHT20 Humidity -->
+            <label for="sensorsReading_SHT20_Humid">Inside Humidity: </label>
+            <p1> %</p1><br><br>
+
+            <hr>
+
+
+            <!-- // Temperature Trigger Settings -->
+            <h3>Temperature Trigger</h3>
+            <label for="trigTemp_FAN">FAN: </label>
+            <input type="text" id="trigTemp_FAN" name="trigTemp_FAN" value=""> &#8451;<br>
+
+            <label for="trigTemp_COOLING">COOLING: </label>
+            <input type="text" id="trigTemp_COOLING" name="trigTemp_COOLING" value=""> &#8451;<br>
+
+            <label for="trigTemp_FOG">FOG: </label>
+            <input type="text" id="trigTemp_FOG" name="trigTemp_FOG" value=""> &#8451;<br>
+            <hr>
+
+            <!-- // Temperature Cut-off Settings -->
+            <h3>Temperature Cut-off</h3>
+            <label for="cutTemp_FAN">FAN: </label>
+            <input type="text" id="cutTemp_FAN" name="cutTemp_FAN" value=""> &#8451;<br>
+
+            <label for="cutTemp_COOLING">COOLING: </label>
+            <input type="text" id="cutTemp_COOLING" name="cutTemp_COOLING" value=""> &#8451;<br>
+
+            <label for="cutTemp_FOG">FOG: </label>
+            <input type="text" id="cutTemp_FOG" name="cutTemp_FOG" value=""> &#8451;<br>
+            <hr>
+
+            <!-- // Humidity Trigger Settings -->
+            <h3>Humidity Trigger</h3>
+            <label for="trigHumid_FOG">FOG: </label>
+            <input type="text" id="trigHumid_FOG" name="trigHumid_FOG" value=""> %<br>
+            <hr>
+
+            <!-- // Humidity Cut-off Settings -->
+            <h3>Humidity Cut-off</h3>
+            <label for="cutHumid_FOG">FOG: </label>
+            <input type="text" id="cutHumid_FOG" name="cutHumid_FOG" value=""> %<br>
+            <hr>
+
+            <!-- // Timer Settings -->
+            <h3>Timer</h3>
+            <label for="Timer_FAN">FAN: </label>
+            <input type="text" id="Timer_FAN" name="Timer_FAN" value=""> mins<br>
+            <hr>
+
+            <br><input type="submit" value="Save Change" />
+        </form>
+
+    </div>
+
+    <!-- Script -->
+
+    <script>
+        
+        // Loop through all dropdown buttons to toggle between hiding and showing its dropdown content - This allows the user to have multiple dropdowns without any conflict */
+        var dropdown = document.getElementsByClassName("dropdown-btn");
+        var i;
+
+        for (i = 0; i < dropdown.length; i++) {
+            dropdown[i].addEventListener("click", function () {
+                this.classList.toggle("active")
+                var dropdownContent = this.nextElementSibling;
+                if (dropdownContent.style.display === "block") {
+                    dropdownContent.style.display = "none";
+                } else {
+                    dropdownContent.style.display = "block";
+                }
+            });
+        }
+
+        function redirect() { setTimeout(function () { window.location.replace("/home"); }, 1500) }
+
+    </script>
+
+</body>
+
+
+</html>
+
+<link rel="shortcut icon" type="image/x-icon" href="http://arduino.cc/en/favicon.png" />

@@ -14,8 +14,11 @@ let routes = app => {
   router.get("/update/:board", uploadController.update)
   router.get("/download/:board/:name", uploadController.download)
 
-  // Rellay control
+  // Relay control
   router.get("/relay", relayController.getRelay)
+
+  // Board control page
+  
 
   return app.use("/", router)
 }
