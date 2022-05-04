@@ -28,7 +28,7 @@ const control = async (req, res) => {
             console.log("Object is not empty")
         }
 
-        return res.sendFile(path.join(__dirname, '../../templates/views/relay.html'))
+        return res.sendFile(path.join(__dirname, '../../templates/views/control.html'))
 
     } catch (error) {
         return res.status(500).send({
