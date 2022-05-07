@@ -187,7 +187,7 @@ io.on('connection', (socket) => {
           relay5: device.relay5
         })
 
-        // update device stats
+        // update device stats.
         sDevice.stat['relay5'] = device.relay5
 
       }
