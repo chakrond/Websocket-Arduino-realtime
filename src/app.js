@@ -226,6 +226,19 @@ io.on('connection', (socket) => {
 
         }
 
+        // ------------------------------------------------------------------------------------------------------------
+        // Request relay stats
+        // ------------------------------------------------------------------------------------------------------------
+        if (device.isFSsetTimerChange) {
+
+          io.to(id).emit('upd_settings', {
+
+            id: id,
+            username: username,
+            Timer_FAN: device.Timer_FAN
+          })
+        }
+
 
 
       }
