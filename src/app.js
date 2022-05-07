@@ -289,14 +289,14 @@ io.on('connection', (socket) => {
   // ------------------------------------------------------------------------------------------------------------
   socket.on('sensors', (data) => {
 
-    console.log('sensors: ', data)
+    // console.log('sensors: ', data)
 
     const { username } = getUser(data.id)
     saveDataToCollection({ data, username: username })
 
     const sensorsData = data
     delete sensorsData.id
-    addSensors({ username: username, sensors: sensorsData})
+    addSensors({ username: username, sensors: sensorsData })
 
   })
 
