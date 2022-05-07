@@ -73,7 +73,7 @@ const addSensors = ({ id, username, sensors }) => {
     const device = getDeviceByName(username)
     Object.assign(device.sensors, sensors)
 
-    console.log('addSensors: ', device)
+    // console.log('addSensors: ', device)
 }
 
 module.exports = {

@@ -289,7 +289,7 @@ io.on('connection', (socket) => {
   // ------------------------------------------------------------------------------------------------------------
   socket.on('sensors', (data) => {
 
-    // console.log('sensors: ', data)
+    console.log('sensors: ', data)
 
     const { username } = getUser(data.id)
     saveDataToCollection({ data, username: username })
@@ -308,7 +308,7 @@ io.on('connection', (socket) => {
     const { username } = getUser(socket.id)
 
     if (username) {
-      
+
       console.log(`${username} Disconnected`)
     }
   })
