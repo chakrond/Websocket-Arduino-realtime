@@ -256,7 +256,9 @@ io.on('connection', (socket) => {
     console.log('res_settings: ', data)
 
     const sDevice = getDevice(data.id)
-    sDevice.settings = delete data['id'] // remove 1 element(id)
+    const deviceSettings = data
+    delete deviceSettings.id
+    sDevice.settings = deviceSettings // remove 1 element(id)
 
   })
 
@@ -268,7 +270,9 @@ io.on('connection', (socket) => {
     console.log('res_relay_stats: ', data)
 
     const sDevice = getDevice(data.id)
-    sDevice.stat = delete data['id'] // remove 1 element(id)
+    const relayStats = data
+    delete relayStats.id
+    sDevice.stat = relayStats // remove 1 element(id)
   })
 
   // ------------------------------------------------------------------------------------------------------------
@@ -290,7 +294,8 @@ io.on('connection', (socket) => {
     const { username } = getUser(data.id)
     saveDataToCollection({ data, username: username })
 
-    const sensorsData = delete data['id']
+    const sensorsData = data
+    delete sensorsData.id
     addSensors({ id: data.id, sensors: sensorsData })
     // const sDevice = getDevice(data.id)
     // sDevice.sensors = data.splice(0, 1)
