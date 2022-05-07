@@ -237,6 +237,8 @@ io.on('connection', (socket) => {
             username: username,
             Timer_FAN: device.Timer_FAN
           })
+
+          console.log('Timer_FAN: ', device.Timer_FAN)
         }
 
 
