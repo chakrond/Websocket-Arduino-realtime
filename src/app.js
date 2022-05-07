@@ -76,158 +76,161 @@ io.on('connection', (socket) => {
   // ------------------------------------------------------------------------------------------------------------
   socket.on('event_control', (device, cb) => {
 
-    if (getUserByName(device.username)) {
+    try {
 
-      // get user info
-      const { id, username, address } = getUserByName(device.username)
-      const sDevice = getDevice(id)
+      if (getUserByName(device.username)) {
 
-      // ------------------------------------------------------------------------------------------------------------
-      // Request Settings value
-      // ------------------------------------------------------------------------------------------------------------
-      if (device.reqSettings) {
+        // get user info
+        const { id, username, address } = getUserByName(device.username)
+        const sDevice = getDevice(id)
 
-        io.to(id).emit('req_settings', {
+        // ------------------------------------------------------------------------------------------------------------
+        // Request Settings value
+        // ------------------------------------------------------------------------------------------------------------
+        if (device.reqSettings) {
 
-          id: id,
-          username: username,
-        })
+          io.to(id).emit('req_settings', {
+
+            id: id,
+            username: username,
+          })
+        }
+
+        // ------------------------------------------------------------------------------------------------------------
+        // Request relay stats
+        // ------------------------------------------------------------------------------------------------------------
+        if (device.reqRelayStats) {
+
+          io.to(id).emit('req_relay_stats', {
+
+            id: id,
+            username: username,
+          })
+        }
+
+        // ------------------------------------------------------------------------------------------------------------
+        // Manual mode
+        // ------------------------------------------------------------------------------------------------------------
+        if (device.isManualMode) {
+
+          io.to(id).emit('manual_control', {
+
+            id: id,
+            username: username,
+            isManualMode: device.isManualMode
+          })
+        }
+
+        // ------------------------------------------------------------------------------------------------------------
+        // relay control
+        // ------------------------------------------------------------------------------------------------------------
+        if (device.relay1) {
+
+          io.to(id).emit('control_relay_1', {
+
+            id: id,
+            username: username,
+            relay1: device.relay1
+          })
+
+          // update device stats
+          sDevice.stat['relay1'] = device.relay1
+
+        }
+
+        if (device.relay2) {
+
+          io.to(id).emit('control_relay_2', {
+
+            id: id,
+            username: username,
+            relay2: device.relay2
+          })
+
+          // update device stats
+          sDevice.stat['relay2'] = device.relay2
+
+        }
+
+        if (device.relay3) {
+
+          io.to(id).emit('control_relay_3', {
+
+            id: id,
+            username: username,
+            relay3: device.relay3
+          })
+
+          // update device stats
+          sDevice.stat['relay3'] = device.relay3
+
+        }
+
+        if (device.relay4) {
+
+          io.to(id).emit('control_relay_4', {
+
+            id: id,
+            username: username,
+            relay4: device.relay4
+          })
+
+          // update device stats
+          sDevice.stat['relay4'] = device.relay4
+
+        }
+
+        if (device.relay5) {
+
+          io.to(id).emit('control_relay_5', {
+
+            id: id,
+            username: username,
+            relay5: device.relay5
+          })
+
+          // update device stats
+          sDevice.stat['relay5'] = device.relay5
+
+        }
+
+        // ------------------------------------------------------------------------------------------------------------
+        // Update Sketch
+        // ------------------------------------------------------------------------------------------------------------
+        if (device.updateSketch) {
+
+          io.to(id).emit('update_sketch', {
+
+            id: id,
+            username: username,
+          })
+
+          // update device stats
+          // sDevice.stat['relay1'] = device.relay1
+
+        }
+
+        // ------------------------------------------------------------------------------------------------------------
+        // Restart Board
+        // ------------------------------------------------------------------------------------------------------------
+        if (device.restartBoard) {
+
+          io.to(id).emit('restart_board', {
+
+            id: id,
+            username: username,
+          })
+
+          // update device stats
+          // sDevice.stat['relay1'] = device.relay1
+
+        }
+
+
+
       }
-
-      // ------------------------------------------------------------------------------------------------------------
-      // Request relay stats
-      // ------------------------------------------------------------------------------------------------------------
-      if (device.reqRelayStats) {
-
-        io.to(id).emit('req_relay_stats', {
-
-          id: id,
-          username: username,
-        })
-      }
-
-      // ------------------------------------------------------------------------------------------------------------
-      // Manual mode
-      // ------------------------------------------------------------------------------------------------------------
-      if (device.isManualMode) {
-
-        io.to(id).emit('manual_control', {
-
-          id: id,
-          username: username,
-          isManualMode: device.isManualMode
-        })
-      }
-
-      // ------------------------------------------------------------------------------------------------------------
-      // relay control
-      // ------------------------------------------------------------------------------------------------------------
-      if (device.relay1) {
-
-        io.to(id).emit('control_relay_1', {
-
-          id: id,
-          username: username,
-          relay1: device.relay1
-        })
-
-        // update device stats
-        sDevice.stat['relay1'] = device.relay1
-
-      }
-
-      if (device.relay2) {
-
-        io.to(id).emit('control_relay_2', {
-
-          id: id,
-          username: username,
-          relay2: device.relay2
-        })
-
-        // update device stats
-        sDevice.stat['relay2'] = device.relay2
-
-      }
-
-      if (device.relay3) {
-
-        io.to(id).emit('control_relay_3', {
-
-          id: id,
-          username: username,
-          relay3: device.relay3
-        })
-
-        // update device stats
-        sDevice.stat['relay3'] = device.relay3
-
-      }
-
-      if (device.relay4) {
-
-        io.to(id).emit('control_relay_4', {
-
-          id: id,
-          username: username,
-          relay4: device.relay4
-        })
-
-        // update device stats
-        sDevice.stat['relay4'] = device.relay4
-
-      }
-
-      if (device.relay5) {
-
-        io.to(id).emit('control_relay_5', {
-
-          id: id,
-          username: username,
-          relay5: device.relay5
-        })
-
-        // update device stats.
-        sDevice.stat['relay5'] = device.relay5
-
-      }
-
-      // ------------------------------------------------------------------------------------------------------------
-      // Update Sketch
-      // ------------------------------------------------------------------------------------------------------------
-      if (device.updateSketch) {
-
-        io.to(id).emit('update_sketch', {
-
-          id: id,
-          username: username,
-        })
-
-        // update device stats
-        // sDevice.stat['relay1'] = device.relay1
-
-      }
-
-      // ------------------------------------------------------------------------------------------------------------
-      // Restart Board
-      // ------------------------------------------------------------------------------------------------------------
-      if (device.restartBoard) {
-
-        io.to(id).emit('restart_board', {
-
-          id: id,
-          username: username,
-        })
-
-        // update device stats
-        // sDevice.stat['relay1'] = device.relay1
-
-      }
-
-
-
-    } else {
-      return cb('id not found, device not exist')
+    } catch (e) {
+      console.log('id not found, device not exist')
     }
   })
 
