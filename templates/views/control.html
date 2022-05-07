@@ -41,15 +41,15 @@
 
         <!-- // dsTemp Temperature -->
         <label for="sensorsReading_dsTemp">Tank Temperature: </label>
-        <p2 id ="sensorsReading_dsTemp"> &#8451</p2><br><br>
+        <p2 id="sensorsReading_dsTemp"> &#8451</p2><br><br>
 
         <!-- // SHT20 Temperature -->
         <label for="sensorsReading_dsTemp_IN">Inside Temperature: </label>
-        <p1 id ="sensorsReading_dsTemp_IN"> &#8451</p1><br><br>
+        <p1 id="sensorsReading_dsTemp_IN"> &#8451</p1><br><br>
 
         <!-- // SHT20 Humidity -->
         <label for="sensorsReading_DHT21_Humid">Inside Humidity: </label>
-        <p1 id ="sensorsReading_DHT21_Humid"> %</p1><br><br>
+        <p1 id="sensorsReading_DHT21_Humid"> %</p1><br><br>
 
         <hr>
 
@@ -84,37 +84,37 @@
             <!-- // Temperature Trigger Settings -->
             <h3>Temperature Trigger</h3>
             <label for="trigTemp_FAN">FAN: </label>
-            <input type="text" id="trigTemp_FAN" name="trigTemp_FAN" > &#8451;<br>
+            <input type="text" id="trigTemp_FAN" name="trigTemp_FAN"> &#8451;<br>
 
             <label for="trigTemp_COOLING">COOLING: </label>
-            <input type="text" id="trigTemp_COOLING" name="trigTemp_COOLING" > &#8451;<br>
+            <input type="text" id="trigTemp_COOLING" name="trigTemp_COOLING"> &#8451;<br>
 
             <label for="trigTemp_FOG">FOG: </label>
-            <input type="text" id="trigTemp_FOG" name="trigTemp_FOG" > &#8451;<br>
+            <input type="text" id="trigTemp_FOG" name="trigTemp_FOG"> &#8451;<br>
             <hr>
 
             <!-- // Temperature Cut-off Settings -->
             <h3>Temperature Cut-off</h3>
             <label for="cutTemp_FAN">FAN: </label>
-            <input type="text" id="cutTemp_FAN" name="cutTemp_FAN" > &#8451;<br>
+            <input type="text" id="cutTemp_FAN" name="cutTemp_FAN"> &#8451;<br>
 
             <label for="cutTemp_COOLING">COOLING: </label>
-            <input type="text" id="cutTemp_COOLING" name="cutTemp_COOLING" > &#8451;<br>
+            <input type="text" id="cutTemp_COOLING" name="cutTemp_COOLING"> &#8451;<br>
 
             <label for="cutTemp_FOG">FOG: </label>
-            <input type="text" id="cutTemp_FOG" name="cutTemp_FOG" > &#8451;<br>
+            <input type="text" id="cutTemp_FOG" name="cutTemp_FOG"> &#8451;<br>
             <hr>
 
             <!-- // Humidity Trigger Settings -->
             <h3>Humidity Trigger</h3>
             <label for="trigHumid_FOG">FOG: </label>
-            <input type="text" id="trigHumid_FOG" name="trigHumid_FOG" > %<br>
+            <input type="text" id="trigHumid_FOG" name="trigHumid_FOG"> %<br>
             <hr>
 
             <!-- // Humidity Cut-off Settings -->
             <h3>Humidity Cut-off</h3>
             <label for="cutHumid_FOG">FOG: </label>
-            <input type="text" id="cutHumid_FOG" name="cutHumid_FOG" > %<br>
+            <input type="text" id="cutHumid_FOG" name="cutHumid_FOG"> %<br>
             <hr>
             <br><input type="submit" value="Save Change" />
         </form>
@@ -123,7 +123,7 @@
             <!-- // Timer Settings -->
             <h3>Timer</h3>
             <label for="Timer_FAN">FAN: </label>
-            <input type="text" id="Timer_FAN" name="Timer_FAN" > mins<br>
+            <input type="text" id="Timer_FAN" name="Timer_FAN"> mins<br>
             <hr>
 
             <br><input type="submit" value="Save Change" />
@@ -154,10 +154,11 @@
         function redirect() { setTimeout(function () { window.location.replace("/home"); }, 1500) }
 
     </script>
-    <script src="/socket.io/socket.io.js"></script>
-    <script src="/js/control.js"></script>
+
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/qs/6.6.0/qs.min.js"></script>
+    <script src="/socket.io/socket.io.js"></script>
+    <script src="/js/control.js"></script>
 
 </body>
 
