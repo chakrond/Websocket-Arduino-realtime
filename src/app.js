@@ -246,7 +246,7 @@ io.on('connection', (socket) => {
 
       }
     } catch (e) {
-      console.log('id not found, device not exist')
+      console.log('Error: id not found, device not exist')
     }
   })
 
@@ -324,11 +324,15 @@ io.on('connection', (socket) => {
 
   socket.on('disconnect', () => {
 
-    const { username } = getUser(socket.id)
+    try {
 
-    if (username) {
-
-      console.log(`${username} Disconnected`)
+      const { username } = getUser(socket.id)
+      if (username) {
+        console.log(`${username} Disconnected`)
+      }
+      
+    } catch (e) {
+      console.log('Error: ', e)
     }
   })
 
