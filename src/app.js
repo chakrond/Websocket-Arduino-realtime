@@ -297,8 +297,6 @@ io.on('connection', (socket) => {
     const sensorsData = data
     delete sensorsData.id
     addSensors({ id: data.id, sensors: sensorsData })
-    // const sDevice = getDevice(data.id)
-    // sDevice.sensors = data.splice(0, 1)
 
   })
 
