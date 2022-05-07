@@ -70,7 +70,7 @@ const addSettings = ({ id, username, settings }) => {
 
 const addSensors = ({ id, username, sensors }) => {
 
-    const device = getDevice(id)
+    const device = getDeviceByName(username)
     Object.assign(device.sensors, sensors)
 
     console.log('addSensors: ', device)
