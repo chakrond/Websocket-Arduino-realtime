@@ -21,6 +21,9 @@ let routes = app => {
   // Board control page
   router.get("/control", boardSettingsController.getControl)
 
+  // test
+  router.get("/update/:board?name=", homeController.getHome)
+
   return app.use("/", router)
 }
 
