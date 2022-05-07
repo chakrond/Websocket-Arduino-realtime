@@ -256,7 +256,7 @@ io.on('connection', (socket) => {
     console.log('res_settings: ', data)
 
     const sDevice = getDevice(data.id)
-    sDevice.settings = data.splice(0, 1) // remove 1 element(id)
+    sDevice.settings = delete data['id'] // remove 1 element(id)
 
   })
 
@@ -290,7 +290,8 @@ io.on('connection', (socket) => {
     const { username } = getUser(data.id)
     saveDataToCollection({ data, username: username })
 
-    addSensors({ id: data.id, sensors: delete data['id'] })
+    const sensorsData = delete data['id']
+    addSensors({ id: data.id, sensors: sensorsData })
     // const sDevice = getDevice(data.id)
     // sDevice.sensors = data.splice(0, 1)
 
