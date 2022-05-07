@@ -32,94 +32,98 @@
     <!-- Main content -->
     <div class="main">
 
+
+        <h1>Parameters Settings</h1>
+        <hr>
+
+        <!-- // Sensors readings -->
+        <h3>Sensors Readings</h3>
+
+        <!-- // dsTemp Temperature -->
+        <label for="sensorsReading_dsTemp">Tank Temperature: </label>
+        <p2 id ="sensorsReading_dsTemp"> &#8451</p2><br><br>
+
+        <!-- // SHT20 Temperature -->
+        <label for="sensorsReading_dsTemp_IN">Inside Temperature: </label>
+        <p1 id ="sensorsReading_dsTemp_IN"> &#8451</p1><br><br>
+
+        <!-- // SHT20 Humidity -->
+        <label for="sensorsReading_DHT21_Humid">Inside Humidity: </label>
+        <p1 id ="sensorsReading_DHT21_Humid"> %</p1><br><br>
+
+        <hr>
+
+        <!-- // Relay Controller -->
+        <h3>Switch Controller</h3>
+        <div class="form-check form-switch">
+            <input class="form-check-input" type="checkbox" id="switchCheck-Relay-1">
+            <label class="form-check-label" for="switchCheck-Relay-1">RELAY 1 - FAN 1</label>
+        </div>
+
+        <div class="form-check form-switch">
+            <input class="form-check-input" type="checkbox" id="switchCheck-Relay-2">
+            <label class="form-check-label" for="switchCheck-Relay-2">RELAY 2 - FAN 2</label>
+        </div>
+
+        <div class="form-check form-switch">
+            <input class="form-check-input" type="checkbox" id="switchCheck-Relay-3">
+            <label class="form-check-label" for="switchCheck-Relay-3">RELAY 3 - FAN 3</label>
+
+            <input class="form-check-input" type="checkbox" id="switchCheck-Relay-4">
+            <label class="form-check-label" for="switchCheck-Relay-4">RELAY 4 - COOLING</label>
+
+            <input class="form-check-input" type="checkbox" id="switchCheck-Relay-5">
+            <label class="form-check-label" for="switchCheck-Relay-5">RELAY 5 - FOG</label>
+        </div>
+
+        <hr>
+
         <!-- Form -->
+
         <form action="/settings/paramSettings" method="get" id="settingsForm" onsubmit="redirect()">
-
-            <h1>Parameters Settings</h1>
-            <hr>
-
-            <!-- // Sensors readings -->
-            <h3>Sensors Readings</h3>
-
-            <!-- // dsTemp Temperature -->
-            <label for="sensorsReading_dsTemp">Tank Temperature: </label>
-            <p2> &#8451;</p2><br><br>
-
-            <!-- // SHT20 Temperature -->
-            <label for="sensorsReading_SHT20_Temp">Inside Temperature: </label>
-            <p1> &#8451;</p1><br><br>
-
-            <!-- // SHT20 Humidity -->
-            <label for="sensorsReading_SHT20_Humid">Inside Humidity: </label>
-            <p1> %</p1><br><br>
-
-            <hr>
-
-            <!-- // Relay Controller -->
-            <h3>Switch Controller</h3>
-            <div class="form-check form-switch">
-                <input class="form-check-input" type="checkbox" id="switchCheck-Relay-1">
-                <label class="form-check-label" for="switchCheck-Relay-1">RELAY 1 - FAN 1</label>
-            </div>
-
-            <div class="form-check form-switch">
-                <input class="form-check-input" type="checkbox" id="switchCheck-Relay-2">
-                <label class="form-check-label" for="switchCheck-Relay-2">RELAY 2 - FAN 2</label>
-            </div>
-
-            <div class="form-check form-switch">
-                <input class="form-check-input" type="checkbox" id="switchCheck-Relay-3">
-                <label class="form-check-label" for="switchCheck-Relay-3">RELAY 3 - FAN 3</label>
-
-                <input class="form-check-input" type="checkbox" id="switchCheck-Relay-4">
-                <label class="form-check-label" for="switchCheck-Relay-4">RELAY 4 - COOLING</label>
-
-                <input class="form-check-input" type="checkbox" id="switchCheck-Relay-5">
-                <label class="form-check-label" for="switchCheck-Relay-5">RELAY 5 - FOG</label>
-            </div>
-
-            <hr>
-
             <!-- // Temperature Trigger Settings -->
             <h3>Temperature Trigger</h3>
             <label for="trigTemp_FAN">FAN: </label>
-            <input type="text" id="trigTemp_FAN" name="trigTemp_FAN" value=""> &#8451;<br>
+            <input type="text" id="trigTemp_FAN" name="trigTemp_FAN" > &#8451;<br>
 
             <label for="trigTemp_COOLING">COOLING: </label>
-            <input type="text" id="trigTemp_COOLING" name="trigTemp_COOLING" value=""> &#8451;<br>
+            <input type="text" id="trigTemp_COOLING" name="trigTemp_COOLING" > &#8451;<br>
 
             <label for="trigTemp_FOG">FOG: </label>
-            <input type="text" id="trigTemp_FOG" name="trigTemp_FOG" value=""> &#8451;<br>
+            <input type="text" id="trigTemp_FOG" name="trigTemp_FOG" > &#8451;<br>
             <hr>
 
             <!-- // Temperature Cut-off Settings -->
             <h3>Temperature Cut-off</h3>
             <label for="cutTemp_FAN">FAN: </label>
-            <input type="text" id="cutTemp_FAN" name="cutTemp_FAN" value=""> &#8451;<br>
+            <input type="text" id="cutTemp_FAN" name="cutTemp_FAN" > &#8451;<br>
 
             <label for="cutTemp_COOLING">COOLING: </label>
-            <input type="text" id="cutTemp_COOLING" name="cutTemp_COOLING" value=""> &#8451;<br>
+            <input type="text" id="cutTemp_COOLING" name="cutTemp_COOLING" > &#8451;<br>
 
             <label for="cutTemp_FOG">FOG: </label>
-            <input type="text" id="cutTemp_FOG" name="cutTemp_FOG" value=""> &#8451;<br>
+            <input type="text" id="cutTemp_FOG" name="cutTemp_FOG" > &#8451;<br>
             <hr>
 
             <!-- // Humidity Trigger Settings -->
             <h3>Humidity Trigger</h3>
             <label for="trigHumid_FOG">FOG: </label>
-            <input type="text" id="trigHumid_FOG" name="trigHumid_FOG" value=""> %<br>
+            <input type="text" id="trigHumid_FOG" name="trigHumid_FOG" > %<br>
             <hr>
 
             <!-- // Humidity Cut-off Settings -->
             <h3>Humidity Cut-off</h3>
             <label for="cutHumid_FOG">FOG: </label>
-            <input type="text" id="cutHumid_FOG" name="cutHumid_FOG" value=""> %<br>
+            <input type="text" id="cutHumid_FOG" name="cutHumid_FOG" > %<br>
             <hr>
+            <br><input type="submit" value="Save Change" />
+        </form>
 
+        <form action="/settings/paramSettings" method="get" id="timerForm" onsubmit="redirect()">
             <!-- // Timer Settings -->
             <h3>Timer</h3>
             <label for="Timer_FAN">FAN: </label>
-            <input type="text" id="Timer_FAN" name="Timer_FAN" value=""> mins<br>
+            <input type="text" id="Timer_FAN" name="Timer_FAN" > mins<br>
             <hr>
 
             <br><input type="submit" value="Save Change" />

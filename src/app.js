@@ -17,7 +17,7 @@ const taskRouter = require('./routers/task')
 const userRouter = require('./routers/user')
 const dataRouter = require('./routers/data')
 const { addUser, getUser, getUserByName } = require('./utils/users')
-const { addDevice, getDevice, getDeviceByName, addStat } = require('./utils/devices')
+const { addDevice, getDevice, getDeviceByName, addStat, addSensors } = require('./utils/devices')
 const { saveDataToCollection } = require('./utils/saveSocketData')
 
 var corsOptions = {
@@ -289,6 +289,10 @@ io.on('connection', (socket) => {
 
     const { username } = getUser(data.id)
     saveDataToCollection({ data, username: username })
+
+    addSensors({ id: data.id, sensors: data.splice(0, 1) })
+    // const sDevice = getDevice(data.id)
+    // sDevice.sensors = data.splice(0, 1)
 
   })
 

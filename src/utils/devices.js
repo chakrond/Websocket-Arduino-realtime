@@ -15,12 +15,13 @@ const addDevice = ({ id, username }) => {
     }
 
     if (!existingDevice) {
-    // Store device
-    const stat = {}
-    const settings = {}
-    const S_device = { id, username, stat, settings }
-    devices.push(S_device)
-    return S_device
+        // Store device
+        const stat = {}
+        const settings = {}
+        const sensors = {}
+        const S_device = { id, username, stat, settings, sensors }
+        devices.push(S_device)
+        return S_device
     }
 
 }
@@ -38,7 +39,7 @@ const getDevice = (id) => {
     const found = devices.find((dev) => dev.id == id)
     if (!found) {
         return console.log('getDevice, id not found')
-    }    
+    }
     return found
 }
 
@@ -47,7 +48,7 @@ const getDeviceByName = (username) => {
     const found = devices.find((dev) => dev.username == username)
     if (!found) {
         return console.log('getDeviceByName, username not found')
-    }  
+    }
     return found
 }
 
@@ -67,11 +68,20 @@ const addSettings = ({ id, username, settings }) => {
     console.log('addSettings: ', device)
 }
 
+const addSensors = ({ id, username, sensors }) => {
+
+    const device = getDevice(id)
+    device.sensors = sensors
+
+    console.log('addSensors: ', device)
+}
+
 module.exports = {
     addDevice,
     removeDevice,
     getDevice,
     getDeviceByName,
     addStat,
-    addSettings
+    addSettings,
+    addSensors
 }
