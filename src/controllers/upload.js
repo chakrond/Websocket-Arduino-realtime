@@ -114,6 +114,9 @@ const update = async (req, res) => {
     const collection = database.collection(dbConfig.sketchBucket + '.files')
 
     // Find files
+    if (!req.query.name) {
+      return res.status(200)
+    }
     const regE = new RegExp(`^${req.params.board}-${req.query.name}-OTA-Cloud-ver`) // Filename format board-name-OTA-Cloud-ver1.0
     // const regE = new RegExp(`^${req.params.board}-OTA-Cloud-ver`)
     console.log(`Request Filename: ${regE}`)
