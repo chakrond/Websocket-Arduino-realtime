@@ -305,9 +305,15 @@ io.on('connection', (socket) => {
 
   socket.on('disconnect', () => {
 
-    console.log('Disconnected')
+    const { username } = getUser(socket.id)
 
+    if (username) {
+      
+      console.log(`${username} Disconnected`)
+    }
   })
+
+
 })
 
 
