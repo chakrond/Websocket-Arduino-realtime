@@ -235,6 +235,7 @@ io.on('connection', (socket) => {
 
             id: id,
             username: username,
+            isFSsetTimerChange: "true",
             Timer_FAN: device.Timer_FAN
           })
 
