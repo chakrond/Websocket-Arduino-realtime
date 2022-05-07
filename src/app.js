@@ -296,7 +296,7 @@ io.on('connection', (socket) => {
 
     const sensorsData = data
     delete sensorsData.id
-    addSensors({ id: data.id, sensors: sensorsData })
+    addSensors(data.id, sensorsData)
 
   })
 

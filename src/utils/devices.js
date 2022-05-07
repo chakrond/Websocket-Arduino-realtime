@@ -55,7 +55,7 @@ const getDeviceByName = (username) => {
 const addStat = ({ id, username, stat }) => {
 
     const device = getDevice(id)
-    device.stat = stat
+    Object.assign(device.stat, stat)
 
     console.log('addStat: ', device)
 }
@@ -63,7 +63,7 @@ const addStat = ({ id, username, stat }) => {
 const addSettings = ({ id, username, settings }) => {
 
     const device = getDevice(id)
-    device.settings = settings
+    Object.assign(device.settings, settings)
 
     console.log('addSettings: ', device)
 }
@@ -71,7 +71,7 @@ const addSettings = ({ id, username, settings }) => {
 const addSensors = ({ id, username, sensors }) => {
 
     const device = getDevice(id)
-    device.sensors = sensors
+    Object.assign(device.sensors, sensors)
 
     console.log('addSensors: ', device)
 }
