@@ -268,7 +268,7 @@ io.on('connection', (socket) => {
     console.log('res_relay_stats: ', data)
 
     const sDevice = getDevice(data.id)
-    sDevice.stat = data.splice(0, 1) // remove 1 element(id)
+    sDevice.stat = delete data['id'] // remove 1 element(id)
   })
 
   // ------------------------------------------------------------------------------------------------------------
@@ -290,7 +290,7 @@ io.on('connection', (socket) => {
     const { username } = getUser(data.id)
     saveDataToCollection({ data, username: username })
 
-    addSensors({ id: data.id, sensors: data.splice(0, 1) })
+    addSensors({ id: data.id, sensors: delete data['id'] })
     // const sDevice = getDevice(data.id)
     // sDevice.sensors = data.splice(0, 1)
 
