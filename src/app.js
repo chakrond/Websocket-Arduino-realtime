@@ -290,7 +290,7 @@ io.on('connection', (socket) => {
             "Time_BKK_mm": timeNow.getMinutes
           })
 
-          console.log(`Send time: ${device.Time_BKK_hh}:${device.Time_BKK_mm}`)
+          console.log(`Send time: ${timeNow.getHours}:${timeNow.getMinutes}`)
         }
 
 
