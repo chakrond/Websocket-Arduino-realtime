@@ -282,6 +282,7 @@ io.on('connection', (socket) => {
         if (device.getTime) {
 
           const timeNow = new Date(Date.now() + (7 * 60 * 60 * 1000))
+          console.log('timeNow: ', timeNow)
           io.to(id).emit('get_time', {
 
             id: id,
