@@ -282,8 +282,8 @@ io.on('connection', (socket) => {
         if (device.getTime) {
 
           const timeNow = new Date(Date.now() + (7 * 60 * 60 * 1000))
-          console.log('Time UTC+7: ', timeNow)
-          
+          console.log('Time-UTC+7, BKK: ', timeNow)
+
           io.to(id).emit('get_time', {
 
             id: id,
@@ -292,7 +292,7 @@ io.on('connection', (socket) => {
             Time_BKK_mm: timeNow.getMinutes()
           })
 
-          console.log(`Send time: ${timeNow.getHours}:${timeNow.getMinutes}`)
+          console.log(`Send time: ${timeNow.getHours()}:${timeNow.getMinutes()}`)
         }
 
 
