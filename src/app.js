@@ -227,7 +227,7 @@ io.on('connection', (socket) => {
         }
 
         // ------------------------------------------------------------------------------------------------------------
-        // Request relay stats
+        // Set FAN Timer
         // ------------------------------------------------------------------------------------------------------------
         if (device.isFSsetTimerChange) {
 
@@ -239,8 +239,60 @@ io.on('connection', (socket) => {
             Timer_FAN: device.Timer_FAN
           })
 
-          console.log('Timer_FAN: ', device.Timer_FAN)
+          console.log('Set Timer_FAN: ', {
+            Timer_FAN: device.Timer_FAN
+          })
         }
+
+        // ------------------------------------------------------------------------------------------------------------
+        // Set Triggers & Cut Settings
+        // ------------------------------------------------------------------------------------------------------------
+        if (device.issetTempChange) {
+
+          io.to(id).emit('upd_settings', {
+
+            id: id,
+            username: username,
+            issetTempChange: "true",
+            trigTemp_FAN: device.trigTemp_FAN,
+            trigTemp_COOLING: device.trigTemp_COOLING,
+            trigTemp_FOG: device.trigTemp_FOG,
+            trigHumid_FOG: device.trigHumid_FOG,
+            cutTemp_FAN: device.cutTemp_FAN,
+            cutTemp_COOLING: device.cutTemp_COOLING,
+            cutTemp_FOG: device.cutTemp_FOG,
+            cutHumid_FOG: device.cutHumid_FOG
+          })
+
+          console.log('Set new Settings: ', {
+            trigTemp_FAN: device.trigTemp_FAN,
+            trigTemp_COOLING: device.trigTemp_COOLING,
+            trigTemp_FOG: device.trigTemp_FOG,
+            trigHumid_FOG: device.trigHumid_FOG,
+            cutTemp_FAN: device.cutTemp_FAN,
+            cutTemp_COOLING: device.cutTemp_COOLING,
+            cutTemp_FOG: device.cutTemp_FOG,
+            cutHumid_FOG: device.cutHumid_FOG
+          })
+        }
+
+        // ------------------------------------------------------------------------------------------------------------
+        // Send Time
+        // ------------------------------------------------------------------------------------------------------------
+        if (device.getTime) {
+
+          const timeNow = new Date(Date.now() + (7 * 60 * 60 * 1000))
+          io.to(id).emit('get_time', {
+
+            id: id,
+            username: username,
+            "Time_BKK_hh": timeNow.getHours,
+            "Time_BKK_mm": timeNow.getMinutes
+          })
+
+          console.log(`Send time: ${device.Time_BKK_hh}:${device.Time_BKK_mm}`)
+        }
+
 
 
 
@@ -330,7 +382,7 @@ io.on('connection', (socket) => {
       if (username) {
         console.log(`${username} Disconnected`)
       }
-      
+
     } catch (e) {
       console.log('Error: ', e)
     }
