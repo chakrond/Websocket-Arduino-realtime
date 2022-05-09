@@ -88,30 +88,45 @@
         <hr>
 
         <!-- Form -->
-        
+
         <!-- Trigger Settings -->
         <form action="/settings/paramSettings" method="get" id="settingsForm" onsubmit="redirect()">
             <!-- // Temperature Trigger Settings -->
             <h3>Temperature Trigger</h3>
 
             <div class="mb-3 row">
-                <label for="trigTemp_FAN" class="col-sm-2 col-form-label">FAN: </label>
+                <label for="trigTemp_FAN" class="col-sm-2 col-form-label">FAN:</label>
                 <div class="col-sm-10">
-                    <input type="text" id="trigTemp_FAN" name="trigTemp_FAN" class="form-control"> &#8451<br>
+                    <input type="text" id="trigTemp_FAN" name="trigTemp_FAN" class="form-control">
+                </div>
+                <div class="col-auto">
+                    <span class="form-text">
+                        &#8451
+                    </span>
                 </div>
             </div>
 
             <div class="mb-3 row">
-                <label for="trigTemp_COOLING" class="col-sm-2 col-form-label">COOLING: </label>
+                <label for="trigTemp_COOLING" class="col-sm-2 col-form-label">COOLING:</label>
                 <div class="col-sm-10">
-                    <input type="text" id="trigTemp_COOLING" name="trigTemp_COOLING" class="form-control"> &#8451<br>
+                    <input type="text" id="trigTemp_COOLING" name="trigTemp_COOLING" class="form-control">
+                </div>
+                <div class="col-auto">
+                    <span class="form-text">
+                        &#8451
+                    </span>
                 </div>
             </div>
 
             <div class="mb-3 row">
-                <label for="trigTemp_FOG" class="col-sm-2 col-form-label">FOG: </label>
+                <label for="trigTemp_FOG" class="col-sm-2 col-form-label">FOG:</label>
                 <div class="col-sm-10">
-                    <input type="text" id="trigTemp_FOG" name="trigTemp_FOG" class="form-control"> &#8451<br>
+                    <input type="text" id="trigTemp_FOG" name="trigTemp_FOG" class="form-control">
+                </div>
+                <div class="col-auto">
+                    <span class="form-text">
+                        &#8451
+                    </span>
                 </div>
             </div>
             <hr>
@@ -120,23 +135,38 @@
             <h3>Temperature Cut-off</h3>
 
             <div class="mb-3 row">
-                <label for="cutTemp_FAN" class="col-sm-2 col-form-label">FAN: </label>
+                <label for="cutTemp_FAN" class="col-sm-2 col-form-label">FAN:</label>
                 <div class="col-sm-10">
-                    <input type="text" id="cutTemp_FAN" name="cutTemp_FAN" class="form-control"> &#8451<br>
+                    <input type="text" id="cutTemp_FAN" name="cutTemp_FAN" class="form-control">
+                </div>
+                <div class="col-auto">
+                    <span class="form-text">
+                        &#8451
+                    </span>
                 </div>
             </div>
 
             <div class="mb-3 row">
-                <label for="cutTemp_COOLING" class="col-sm-2 col-form-label">COOLING: </label>
+                <label for="cutTemp_COOLING" class="col-sm-2 col-form-label">COOLING:</label>
                 <div class="col-sm-10">
-                    <input type="text" id="cutTemp_COOLING" name="cutTemp_COOLING" class="form-control"> &#8451<br>
+                    <input type="text" id="cutTemp_COOLING" name="cutTemp_COOLING" class="form-control">
+                </div>
+                <div class="col-auto">
+                    <span class="form-text">
+                        &#8451
+                    </span>
                 </div>
             </div>
 
             <div class="mb-3 row">
-                <label for="cutTemp_FOG" class="col-sm-2 col-form-label">FOG: </label>
+                <label for="cutTemp_FOG" class="col-sm-2 col-form-label">FOG:</label>
                 <div class="col-sm-10">
-                    <input type="text" id="cutTemp_FOG" name="cutTemp_FOG" class="form-control"> &#8451<br>
+                    <input type="text" id="cutTemp_FOG" name="cutTemp_FOG" class="form-control">
+                </div>
+                <div class="col-auto">
+                    <span class="form-text">
+                        &#8451
+                    </span>
                 </div>
             </div>
             <hr>
@@ -145,9 +175,14 @@
             <h3>Humidity Trigger</h3>
 
             <div class="mb-3 row">
-                <label for="trigHumid_FOG" class="col-sm-2 col-form-label">FOG: </label>
+                <label for="trigHumid_FOG" class="col-sm-2 col-form-label">FOG:</label>
                 <div class="col-sm-10">
-                    <input type="text" id="trigHumid_FOG" name="trigHumid_FOG" class="form-control"> %<br>
+                    <input type="text" id="trigHumid_FOG" name="trigHumid_FOG" class="form-control">
+                </div>
+                <div class="col-auto">
+                    <span class="form-text">
+                        %
+                    </span>
                 </div>
             </div>
             <hr>
@@ -156,9 +191,14 @@
             <h3>Humidity Cut-off</h3>
 
             <div class="mb-3 row">
-                <label for="cutHumid_FOG" class="col-sm-2 col-form-label">FOG: </label>
+                <label for="cutHumid_FOG" class="col-sm-2 col-form-label">FOG:</label>
                 <div class="col-sm-10">
-                    <input type="text" id="cutHumid_FOG" name="cutHumid_FOG" class="form-control"> %<br>
+                    <input type="text" id="cutHumid_FOG" name="cutHumid_FOG" class="form-control">
+                </div>
+                <div class="col-auto">
+                    <span class="form-text">
+                        %
+                    </span>
                 </div>
             </div>
 
@@ -173,9 +213,14 @@
             <h3>Timer</h3>
 
             <div class="mb-3 row">
-                <label for="Timer_FAN">FAN: </label>
+                <label for="Timer_FAN" class="col-sm-2 col-form-label">FAN:</label>
                 <div class="col-sm-10">
-                    <input type="text" id="Timer_FAN" name="Timer_FAN"> mins<br>
+                    <input type="text" id="Timer_FAN" name="Timer_FAN" class="form-control">
+                </div>
+                <div class="col-auto">
+                    <span class="form-text">
+                        mins
+                    </span>
                 </div>
             </div>
 
