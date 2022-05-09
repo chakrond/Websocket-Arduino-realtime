@@ -42,6 +42,13 @@ const sensorsReading_dsTemp = document.getElementById("sensorsReading_dsTemp")
 const sensorsReading_dsTemp_IN = document.getElementById("sensorsReading_dsTemp_IN")
 const sensorsReading_DHT21_Humid = document.getElementById("sensorsReading_DHT21_Humid")
 
+// svg relay status
+const svgElement_Relay1 = document.getElementById('svg-relay-1')
+const svgElement_Relay2 = document.getElementById('svg-relay-2')
+const svgElement_Relay3 = document.getElementById('svg-relay-3')
+const svgElement_Relay4 = document.getElementById('svg-relay-4')
+const svgElement_Relay5 = document.getElementById('svg-relay-5')
+
 
 // get device Info
 socket.on('deviceInfo', (dev) => {
@@ -172,6 +179,9 @@ swtichRelay1.addEventListener('change', (e) => {
 
     e.preventDefault() // prevent page refresh
 
+    // svg
+    svgElement_Relay1.style.fill = e.target.checked ? 'green' : 'red'
+
     if (e.target.checked) {
 
         socket.emit('event_control', {
@@ -201,6 +211,9 @@ swtichRelay1.addEventListener('change', (e) => {
 swtichRelay2.addEventListener('change', (e) => {
 
     e.preventDefault()
+
+    // svg
+    svgElement_Relay2.style.fill = e.target.checked ? 'green' : 'red'
 
     if (e.target.checked) {
 
@@ -232,6 +245,9 @@ swtichRelay3.addEventListener('change', (e) => {
 
     e.preventDefault()
 
+    // svg
+    svgElement_Relay3.style.fill = e.target.checked ? 'green' : 'red'
+
     if (e.target.checked) {
 
         socket.emit('event_control', {
@@ -262,6 +278,9 @@ swtichRelay4.addEventListener('change', (e) => {
 
     e.preventDefault()
 
+    // svg
+    svgElement_Relay4.style.fill = e.target.checked ? 'green' : 'red'
+
     if (e.target.checked) {
 
         socket.emit('event_control', {
@@ -291,6 +310,9 @@ swtichRelay4.addEventListener('change', (e) => {
 swtichRelay5.addEventListener('change', (e) => {
 
     e.preventDefault()
+
+    // svg
+    svgElement_Relay5.style.fill = e.target.checked ? 'green' : 'red'
 
     if (e.target.checked) {
 
