@@ -48,91 +48,64 @@ socket.on('deviceInfo', (dev) => {
 
     console.log('deviceInfo: ', dev)
 
-    if (swtichManual.checked != true) {
+    const isManualMode = swtichManual.checked
 
-        // Relay 1
-        // check the latest stat of relay
-        if (dev.stat['relay1'] == 'true') {
-            swtichRelay1.setAttribute('checked', 'checked disabled')
-        } else {
-            swtichRelay1.setAttribute('checked', 'disabled')
-        }
 
-        // Relay 2
-        // check the latest stat of relay
-        if (dev.stat['relay2'] == 'true') {
-            swtichRelay2.setAttribute('checked', 'checked disabled')
-        } else {
-            swtichRelay2.setAttribute('checked', 'disabled')
+    // Relay 1
+    // check the latest stat of relay
+    if (dev.stat['relay1'] == 'true') {
+        swtichRelay1.setAttribute('checked', 'checked')
+        if (!isManualMode) {
+            swtichRelay1.disabled = true
         }
-
-        // Relay 3
-        // check the latest stat of relay
-        if (dev.stat['relay3'] == 'true') {
-            swtichRelay3.setAttribute('checked', 'checked disabled')
-        } else {
-            swtichRelay3.setAttribute('checked', 'disabled')
-        }
-
-        // Relay 4
-        // check the latest stat of relay
-        if (dev.stat['relay4'] == 'true') {
-            swtichRelay4.setAttribute('checked', 'checked disabled')
-        } else {
-            swtichRelay4.setAttribute('checked', 'disabled')
-        }
-
-        // Relay 5
-        // check the latest stat of relay
-        if (dev.stat['relay5'] == 'true') {
-            swtichRelay5.setAttribute('checked', 'checked disabled')
-        } else {
-            swtichRelay5.setAttribute('checked', 'disabled')
-        }
+    } else {
+        swtichRelay1.removeAttribute('checked')
     }
 
-    if (swtichManual.checked == true) {
-
-        // Relay 1
-        // check the latest stat of relay
-        if (dev.stat['relay1'] == 'true') {
-            swtichRelay1.setAttribute('checked', 'checked')
-        } else {
-            swtichRelay1.removeAttribute('checked')
+    // Relay 2
+    // check the latest stat of relay
+    if (dev.stat['relay2'] == 'true') {
+        swtichRelay2.setAttribute('checked', 'checked')
+        if (!isManualMode) {
+            swtichRelay2.disabled = true
         }
-
-        // Relay 2
-        // check the latest stat of relay
-        if (dev.stat['relay2'] == 'true') {
-            swtichRelay2.setAttribute('checked', 'checked')
-        } else {
-            swtichRelay2.removeAttribute('checked')
-        }
-
-        // Relay 3
-        // check the latest stat of relay
-        if (dev.stat['relay3'] == 'true') {
-            swtichRelay3.setAttribute('checked', 'checked')
-        } else {
-            swtichRelay3.removeAttribute('checked')
-        }
-
-        // Relay 4
-        // check the latest stat of relay
-        if (dev.stat['relay4'] == 'true') {
-            swtichRelay4.setAttribute('checked', 'checked')
-        } else {
-            swtichRelay4.removeAttribute('checked')
-        }
-
-        // Relay 5
-        // check the latest stat of relay
-        if (dev.stat['relay5'] == 'true') {
-            swtichRelay5.setAttribute('checked', 'checked')
-        } else {
-            swtichRelay5.removeAttribute('checked')
-        }
+    } else {
+        swtichRelay2.removeAttribute('checked')
     }
+
+    // Relay 3
+    // check the latest stat of relay
+    if (dev.stat['relay3'] == 'true') {
+        swtichRelay3.setAttribute('checked', 'checked')
+        if (!isManualMode) {
+            swtichRelay2.disabled = true
+        }
+    } else {
+        swtichRelay3.removeAttribute('checked')
+    }
+
+    // Relay 4
+    // check the latest stat of relay
+    if (dev.stat['relay4'] == 'true') {
+        swtichRelay4.setAttribute('checked', 'checked')
+        if (!isManualMode) {
+            swtichRelay2.disabled = true
+        }
+    } else {
+        swtichRelay4.removeAttribute('checked')
+    }
+
+    // Relay 5
+    // check the latest stat of relay
+    if (dev.stat['relay5'] == 'true') {
+        swtichRelay5.setAttribute('checked', 'checked')
+        if (!isManualMode) {
+            swtichRelay2.disabled = true
+        }
+    } else {
+        swtichRelay5.removeAttribute('checked')
+    }
+
 
     // Update settings values inputs
     trigTemp_FAN.value = dev.settings['trigTemp_FAN']
