@@ -38,6 +38,7 @@
 
         <!-- // Sensors readings -->
         <h3>Sensors Readings</h3>
+        <br>
 
         <!-- // dsTemp Temperature -->
         <label for="sensorsReading_dsTemp">Tank Temperature: </label>
@@ -49,7 +50,7 @@
 
         <!-- // SHT20 Humidity -->
         <label for="sensorsReading_DHT21_Humid">Inside Humidity: </label>
-        <p1 id="sensorsReading_DHT21_Humid"> %</p1><br><br>
+        <p1 id="sensorsReading_DHT21_Humid"> %</p1><br>
 
         <hr>
 
@@ -119,8 +120,8 @@
             <h3>Humidity Cut-off</h3>
             <label for="cutHumid_FOG">FOG: </label>
             <input type="text" id="cutHumid_FOG" name="cutHumid_FOG"> %<br>
-            <hr>
             <br><input type="submit" value="Save Change" />
+            <hr>
         </form>
 
         <form action="/settings/paramSettings" method="get" id="timerForm" onsubmit="redirect()">
@@ -128,9 +129,8 @@
             <h3>Timer</h3>
             <label for="Timer_FAN">FAN: </label>
             <input type="text" id="Timer_FAN" name="Timer_FAN"> mins<br>
-            <hr>
-
             <br><input type="submit" value="Save Change" />
+            <hr>
         </form>
 
     </div>
