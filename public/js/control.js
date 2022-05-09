@@ -134,9 +134,9 @@ socket.on('deviceInfo', (dev) => {
     Timer_FAN.value = dev.settings['Timer_FAN']
 
     // Update sensors read
-    sensorsReading_dsTemp.innerHTML = dev.sensors['dsTemp_Tank']
-    sensorsReading_dsTemp_IN.innerHTML = dev.sensors['dsTemp_IN']
-    sensorsReading_DHT21_Humid.innerHTML = dev.sensors['DHT21_IN']
+    sensorsReading_dsTemp.innerHTML = parseFloat(dev.sensors['dsTemp_Tank']).toFixed(1)
+    sensorsReading_dsTemp_IN.innerHTML = parseFloat(dev.sensors['dsTemp_IN']).toFixed(1)
+    sensorsReading_DHT21_Humid.innerHTML = parseFloat(dev.sensors['DHT21_IN']).toFixed(1)
 
 })
 
