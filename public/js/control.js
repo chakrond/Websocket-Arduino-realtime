@@ -91,7 +91,7 @@ socket.on('deviceInfo', (dev) => {
         }
     }
 
-    if (trigTemp_FAN.checked == true) {
+    if (swtichManual.checked == true) {
 
         // Relay 1
         // check the latest stat of relay
