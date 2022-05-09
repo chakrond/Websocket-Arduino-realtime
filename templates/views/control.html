@@ -42,20 +42,24 @@
 
         <!-- // dsTemp Temperature -->
         <label for="sensorsReading_dsTemp">Tank Temperature: </label>
-        <p2 id="sensorsReading_dsTemp"></p2><p2> &#8451</p2><br><br>
+        <p2 id="sensorsReading_dsTemp"></p2>&#8451<br><br>
 
         <!-- // SHT20 Temperature -->
         <label for="sensorsReading_dsTemp_IN">Inside Temperature: </label>
-        <p1 id="sensorsReading_dsTemp_IN"></p1><p1> &#8451</p1><br><br>
+        <p1 id="sensorsReading_dsTemp_IN"></p1>&#8451<br><br>
 
         <!-- // SHT20 Humidity -->
         <label for="sensorsReading_DHT21_Humid">Inside Humidity: </label>
-        <p1 id="sensorsReading_DHT21_Humid"></p1><p1> %</p1><br>
+        <p1 id="sensorsReading_DHT21_Humid"></p1>%<br>
 
         <hr>
 
         <!-- // Relay Controller -->
         <h3>Switch Controller</h3>
+        <div class="form-check form-switch">
+            <input class="form-check-input" type="checkbox" id="switchCheck-Manual">
+            <label class="form-check-label" for="switchCheck-Manual">Manual Control Mode</label>
+        </div>
         <div class="form-check form-switch">
             <input class="form-check-input" type="checkbox" id="switchCheck-Relay-1">
             <label class="form-check-label" for="switchCheck-Relay-1">RELAY 1 - FAN 1</label>
@@ -89,25 +93,25 @@
             <!-- // Temperature Trigger Settings -->
             <h3>Temperature Trigger</h3>
             <label for="trigTemp_FAN">FAN: </label>
-            <input type="text" id="trigTemp_FAN" name="trigTemp_FAN"> &#8451;<br>
+            <input type="text" id="trigTemp_FAN" name="trigTemp_FAN"> &#8451<br>
 
             <label for="trigTemp_COOLING">COOLING: </label>
-            <input type="text" id="trigTemp_COOLING" name="trigTemp_COOLING"> &#8451;<br>
+            <input type="text" id="trigTemp_COOLING" name="trigTemp_COOLING"> &#8451<br>
 
             <label for="trigTemp_FOG">FOG: </label>
-            <input type="text" id="trigTemp_FOG" name="trigTemp_FOG"> &#8451;<br>
+            <input type="text" id="trigTemp_FOG" name="trigTemp_FOG"> &#8451<br>
             <hr>
 
             <!-- // Temperature Cut-off Settings -->
             <h3>Temperature Cut-off</h3>
             <label for="cutTemp_FAN">FAN: </label>
-            <input type="text" id="cutTemp_FAN" name="cutTemp_FAN"> &#8451;<br>
+            <input type="text" id="cutTemp_FAN" name="cutTemp_FAN"> &#8451<br>
 
             <label for="cutTemp_COOLING">COOLING: </label>
-            <input type="text" id="cutTemp_COOLING" name="cutTemp_COOLING"> &#8451;<br>
+            <input type="text" id="cutTemp_COOLING" name="cutTemp_COOLING"> &#8451<br>
 
             <label for="cutTemp_FOG">FOG: </label>
-            <input type="text" id="cutTemp_FOG" name="cutTemp_FOG"> &#8451;<br>
+            <input type="text" id="cutTemp_FOG" name="cutTemp_FOG"> &#8451<br>
             <hr>
 
             <!-- // Humidity Trigger Settings -->
@@ -120,7 +124,7 @@
             <h3>Humidity Cut-off</h3>
             <label for="cutHumid_FOG">FOG: </label>
             <input type="text" id="cutHumid_FOG" name="cutHumid_FOG"> %<br>
-            <br><input type="submit" value="Save Change" />
+            <br><button type="submit" class="btn btn-primary">Save</button>
             <hr>
         </form>
 
@@ -129,7 +133,7 @@
             <h3>Timer</h3>
             <label for="Timer_FAN">FAN: </label>
             <input type="text" id="Timer_FAN" name="Timer_FAN"> mins<br>
-            <br><input type="submit" value="Save Change" />
+            <br><button type="submit" class="btn btn-primary">Save</button>
             <hr>
         </form>
 
