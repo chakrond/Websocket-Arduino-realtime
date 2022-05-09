@@ -75,40 +75,50 @@ socket.on('deviceInfo', (dev) => {
     // check the latest stat of relay
     if (dev.stat['relay1'] == 'true') {
         swtichRelay1.setAttribute('checked', 'checked')
+        svgElement_Relay1.style.fill = 'green' // svg
     } else {
         swtichRelay1.removeAttribute('checked')
+        svgElement_Relay1.style.fill = 'red' // svg
     }
 
     // Relay 2
     // check the latest stat of relay
     if (dev.stat['relay2'] == 'true') {
         swtichRelay2.setAttribute('checked', 'checked')
+        svgElement_Relay2.style.fill = 'green' // svg
     } else {
         swtichRelay2.removeAttribute('checked')
+        svgElement_Relay2.style.fill = 'red' // svg
     }
 
     // Relay 3
     // check the latest stat of relay
     if (dev.stat['relay3'] == 'true') {
         swtichRelay3.setAttribute('checked', 'checked')
+        svgElement_Relay3.style.fill = 'green' // svg
     } else {
         swtichRelay3.removeAttribute('checked')
+        svgElement_Relay3.style.fill = 'red' // svg
     }
 
     // Relay 4
     // check the latest stat of relay
     if (dev.stat['relay4'] == 'true') {
         swtichRelay4.setAttribute('checked', 'checked')
+        svgElement_Relay4.style.fill = 'green' // svg
     } else {
         swtichRelay4.removeAttribute('checked')
+        svgElement_Relay4.style.fill = 'red' // svg
     }
 
     // Relay 5
     // check the latest stat of relay
     if (dev.stat['relay5'] == 'true') {
         swtichRelay5.setAttribute('checked', 'checked')
+        svgElement_Relay5.style.fill = 'green' // svg
     } else {
         swtichRelay5.removeAttribute('checked')
+        svgElement_Relay5.style.fill = 'red' // svg
     }
 
 
