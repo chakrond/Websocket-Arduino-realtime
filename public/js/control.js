@@ -50,14 +50,24 @@ socket.on('deviceInfo', (dev) => {
 
     const isManualMode = swtichManual.checked
 
+    if (!isManualMode) {
+        swtichRelay1.disabled = true
+        swtichRelay2.disabled = true
+        swtichRelay3.disabled = true
+        swtichRelay4.disabled = true
+        swtichRelay5.disabled = true
+    } else {
+        swtichRelay1.disabled = false
+        swtichRelay2.disabled = false
+        swtichRelay3.disabled = false
+        swtichRelay4.disabled = false
+        swtichRelay5.disabled = false
+    }
 
     // Relay 1
     // check the latest stat of relay
     if (dev.stat['relay1'] == 'true') {
         swtichRelay1.setAttribute('checked', 'checked')
-        if (!isManualMode) {
-            swtichRelay1.disabled = true
-        }
     } else {
         swtichRelay1.removeAttribute('checked')
     }
@@ -66,9 +76,6 @@ socket.on('deviceInfo', (dev) => {
     // check the latest stat of relay
     if (dev.stat['relay2'] == 'true') {
         swtichRelay2.setAttribute('checked', 'checked')
-        if (!isManualMode) {
-            swtichRelay2.disabled = true
-        }
     } else {
         swtichRelay2.removeAttribute('checked')
     }
@@ -77,9 +84,6 @@ socket.on('deviceInfo', (dev) => {
     // check the latest stat of relay
     if (dev.stat['relay3'] == 'true') {
         swtichRelay3.setAttribute('checked', 'checked')
-        if (!isManualMode) {
-            swtichRelay3.disabled = true
-        }
     } else {
         swtichRelay3.removeAttribute('checked')
     }
@@ -88,9 +92,6 @@ socket.on('deviceInfo', (dev) => {
     // check the latest stat of relay
     if (dev.stat['relay4'] == 'true') {
         swtichRelay4.setAttribute('checked', 'checked')
-        if (!isManualMode) {
-            swtichRelay4.disabled = true
-        }
     } else {
         swtichRelay4.removeAttribute('checked')
     }
@@ -99,9 +100,6 @@ socket.on('deviceInfo', (dev) => {
     // check the latest stat of relay
     if (dev.stat['relay5'] == 'true') {
         swtichRelay5.setAttribute('checked', 'checked')
-        if (!isManualMode) {
-            swtichRelay5.disabled = true
-        }
     } else {
         swtichRelay5.removeAttribute('checked')
     }
