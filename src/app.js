@@ -119,6 +119,9 @@ io.on('connection', (socket) => {
             username: username,
             isManualMode: device.isManualMode
           })
+
+          console.log('Manual Mode: ', device.isManualMode)
+
         }
 
         // ------------------------------------------------------------------------------------------------------------
@@ -132,6 +135,7 @@ io.on('connection', (socket) => {
             username: username,
             relay1: device.relay1
           })
+          console.log('Relay 1: ', device.relay1)
 
           // update device stats
           sDevice.stat['relay1'] = device.relay1
@@ -146,6 +150,7 @@ io.on('connection', (socket) => {
             username: username,
             relay2: device.relay2
           })
+          console.log('Relay 2: ', device.relay2)
 
           // update device stats
           sDevice.stat['relay2'] = device.relay2
@@ -160,6 +165,7 @@ io.on('connection', (socket) => {
             username: username,
             relay3: device.relay3
           })
+          console.log('Relay 3: ', device.relay3)
 
           // update device stats
           sDevice.stat['relay3'] = device.relay3
@@ -174,6 +180,7 @@ io.on('connection', (socket) => {
             username: username,
             relay4: device.relay4
           })
+          console.log('Relay 4: ', device.relay4)
 
           // update device stats
           sDevice.stat['relay4'] = device.relay4
@@ -188,6 +195,7 @@ io.on('connection', (socket) => {
             username: username,
             relay5: device.relay5
           })
+          console.log('Relay 5: ', device.relay5)
 
           // update device stats
           sDevice.stat['relay5'] = device.relay5
@@ -204,6 +212,7 @@ io.on('connection', (socket) => {
             id: id,
             username: username,
           })
+          console.log('Update version on', username)
 
           // update device stats
           // sDevice.stat['relay1'] = device.relay1
@@ -220,7 +229,8 @@ io.on('connection', (socket) => {
             id: id,
             username: username,
           })
-
+          console.log('Restart board on', username)
+          
           // update device stats
           // sDevice.stat['relay1'] = device.relay1
 
