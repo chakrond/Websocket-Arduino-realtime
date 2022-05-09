@@ -144,6 +144,7 @@ swtichManual.addEventListener('change', (e) => {
             username: devname,
             isManualMode: 'true',
         })
+        console.log('Command, Manual Mode: ON')
 
     } else {
 
@@ -158,8 +159,8 @@ swtichManual.addEventListener('change', (e) => {
             username: devname,
             isManualMode: 'false',
         })
+        console.log('Command, Manual Mode: OFF')
     }
-
 })
 
 
@@ -179,6 +180,7 @@ swtichRelay1.addEventListener('change', (e) => {
             relay1: 'true'
 
         })
+        console.log('Command, Relay 1 - FAN 1: ON')
 
     } else {
 
@@ -188,10 +190,8 @@ swtichRelay1.addEventListener('change', (e) => {
             relay1: 'false'
 
         })
+        console.log('Command, Relay 1 - FAN 1: OFF')
     }
-
-    // console.log('Relay1 Command was delivered')
-
 })
 
 // ------------------------------------------------------------
@@ -210,6 +210,7 @@ swtichRelay2.addEventListener('change', (e) => {
             relay2: "true"
 
         })
+        console.log('Command, Relay 2 - FAN 2: ON')
 
     } else {
 
@@ -219,10 +220,8 @@ swtichRelay2.addEventListener('change', (e) => {
             relay2: "false"
 
         })
+        console.log('Command, Relay 2 - FAN 2: OFF')
     }
-
-    // console.log('Relay2 Command was delivered')
-
 })
 
 // ------------------------------------------------------------
@@ -241,6 +240,7 @@ swtichRelay3.addEventListener('change', (e) => {
             relay3: "true"
 
         })
+        console.log('Command, Relay 3 - FAN 3: ON')
 
     } else {
 
@@ -250,10 +250,8 @@ swtichRelay3.addEventListener('change', (e) => {
             relay3: "false"
 
         })
+        console.log('Command, Relay 3 - FAN 3: OFF')
     }
-
-    // console.log('Relay2 Command was delivered')
-
 })
 
 // ------------------------------------------------------------
@@ -272,6 +270,7 @@ swtichRelay4.addEventListener('change', (e) => {
             relay4: "true"
 
         })
+        console.log('Command, Relay 4 - COOLING: ON')
 
     } else {
 
@@ -281,10 +280,8 @@ swtichRelay4.addEventListener('change', (e) => {
             relay4: "false"
 
         })
+        console.log('Command, Relay 4 - COOLING: OFF')
     }
-
-    // console.log('Relay2 Command was delivered')
-
 })
 
 // ------------------------------------------------------------
@@ -304,6 +301,8 @@ swtichRelay5.addEventListener('change', (e) => {
 
         })
 
+        console.log('Command, Relay 5 - FOG: ON')
+
     } else {
 
         socket.emit('event_control', {
@@ -312,6 +311,7 @@ swtichRelay5.addEventListener('change', (e) => {
             relay5: "false"
 
         })
+        console.log('Command, Relay 5 - FOG: OFF')
     }
 
     // console.log('Relay2 Command was delivered')
