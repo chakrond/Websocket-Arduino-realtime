@@ -125,6 +125,45 @@ socket.on('deviceInfo', (dev) => {
 
 
 // ------------------------------------------------------------
+// Manual Mode
+// ------------------------------------------------------------
+swtichManual.addEventListener('change', (e) => {
+
+    e.preventDefault() // prevent page refresh
+
+    if (e.target.checked) {
+
+        swtichRelay1.disabled = false
+        swtichRelay2.disabled = false
+        swtichRelay3.disabled = false
+        swtichRelay4.disabled = false
+        swtichRelay5.disabled = false
+
+        socket.emit('event_control', {
+
+            username: devname,
+            isManualMode: 'true',
+        })
+
+    } else {
+
+        swtichRelay1.disabled = true
+        swtichRelay2.disabled = true
+        swtichRelay3.disabled = true
+        swtichRelay4.disabled = true
+        swtichRelay5.disabled = true
+
+        socket.emit('event_control', {
+
+            username: devname,
+            isManualMode: 'false',
+        })
+    }
+
+})
+
+
+// ------------------------------------------------------------
 // Relay 1
 // ------------------------------------------------------------
 
@@ -134,7 +173,7 @@ swtichRelay1.addEventListener('change', (e) => {
 
     if (e.target.checked) {
 
-        socket.emit('event_relay', {
+        socket.emit('event_control', {
 
             username: devname,
             relay1: 'true'
@@ -143,7 +182,7 @@ swtichRelay1.addEventListener('change', (e) => {
 
     } else {
 
-        socket.emit('event_relay', {
+        socket.emit('event_control', {
 
             username: devname,
             relay1: 'false'
@@ -165,7 +204,7 @@ swtichRelay2.addEventListener('change', (e) => {
 
     if (e.target.checked) {
 
-        socket.emit('event_relay', {
+        socket.emit('event_control', {
 
             username: devname,
             relay2: "true"
@@ -174,7 +213,7 @@ swtichRelay2.addEventListener('change', (e) => {
 
     } else {
 
-        socket.emit('event_relay', {
+        socket.emit('event_control', {
 
             username: devname,
             relay2: "false"
@@ -196,7 +235,7 @@ swtichRelay3.addEventListener('change', (e) => {
 
     if (e.target.checked) {
 
-        socket.emit('event_relay', {
+        socket.emit('event_control', {
 
             username: devname,
             relay3: "true"
@@ -205,7 +244,7 @@ swtichRelay3.addEventListener('change', (e) => {
 
     } else {
 
-        socket.emit('event_relay', {
+        socket.emit('event_control', {
 
             username: devname,
             relay3: "false"
@@ -227,7 +266,7 @@ swtichRelay4.addEventListener('change', (e) => {
 
     if (e.target.checked) {
 
-        socket.emit('event_relay', {
+        socket.emit('event_control', {
 
             username: devname,
             relay4: "true"
@@ -236,7 +275,7 @@ swtichRelay4.addEventListener('change', (e) => {
 
     } else {
 
-        socket.emit('event_relay', {
+        socket.emit('event_control', {
 
             username: devname,
             relay4: "false"
@@ -258,7 +297,7 @@ swtichRelay5.addEventListener('change', (e) => {
 
     if (e.target.checked) {
 
-        socket.emit('event_relay', {
+        socket.emit('event_control', {
 
             username: devname,
             relay5: "true"
@@ -267,7 +306,7 @@ swtichRelay5.addEventListener('change', (e) => {
 
     } else {
 
-        socket.emit('event_relay', {
+        socket.emit('event_control', {
 
             username: devname,
             relay5: "false"
