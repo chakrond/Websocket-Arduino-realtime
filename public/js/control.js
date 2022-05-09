@@ -78,7 +78,7 @@ socket.on('deviceInfo', (dev) => {
     if (dev.stat['relay3'] == 'true') {
         swtichRelay3.setAttribute('checked', 'checked')
         if (!isManualMode) {
-            swtichRelay2.disabled = true
+            swtichRelay3.disabled = true
         }
     } else {
         swtichRelay3.removeAttribute('checked')
@@ -89,7 +89,7 @@ socket.on('deviceInfo', (dev) => {
     if (dev.stat['relay4'] == 'true') {
         swtichRelay4.setAttribute('checked', 'checked')
         if (!isManualMode) {
-            swtichRelay2.disabled = true
+            swtichRelay4.disabled = true
         }
     } else {
         swtichRelay4.removeAttribute('checked')
@@ -100,7 +100,7 @@ socket.on('deviceInfo', (dev) => {
     if (dev.stat['relay5'] == 'true') {
         swtichRelay5.setAttribute('checked', 'checked')
         if (!isManualMode) {
-            swtichRelay2.disabled = true
+            swtichRelay5.disabled = true
         }
     } else {
         swtichRelay5.removeAttribute('checked')
