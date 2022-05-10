@@ -58,7 +58,7 @@ socket.on('deviceInfo', (dev) => {
     const isManualMode = swtichManual.checked
 
     if (dev.stat.isManualMode && dev.stat['isManualMode'] == 'true') {
-        isManualMode = true
+        isManualMode = 'true'
         console.log('isManualMode: ', dev.stat['isManualMode'])
     }
 
