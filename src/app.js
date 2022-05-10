@@ -124,7 +124,6 @@ io.on('connection', (socket) => {
 
           // update device stats
           sDevice.stat['isManualMode'] = device.isManualMode
-          console.log('isManualMode: ', sDevice.stat['isManualMode'])
 
         }
 
