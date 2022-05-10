@@ -171,7 +171,7 @@ swtichManual.addEventListener('change', (e) => {
 
             username: devname,
             isManualMode: 'true',
-            closeTime: new Date(Date.now() + (8 * 60 * 60 * 1000))
+            closeTime: new Date(Date.now() + (1 * 60 * 60 * 1000))
         })
         console.log('Command, Manual Mode: ON')
 
