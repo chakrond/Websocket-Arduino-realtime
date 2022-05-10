@@ -49,6 +49,9 @@ const svgElement_Relay3 = document.getElementById('svg-relay-3')
 const svgElement_Relay4 = document.getElementById('svg-relay-4')
 const svgElement_Relay5 = document.getElementById('svg-relay-5')
 
+// Switch Timer
+const swtichTimer = document.getElementById('switchCheck-Manual-Timer')
+
 
 // get device Info
 socket.on('deviceInfo', (dev) => {
@@ -58,6 +61,7 @@ socket.on('deviceInfo', (dev) => {
     console.log('isManualMode: ', dev.mode['isManualMode'])
     if (dev.mode['isManualMode'] == 'true') {
         swtichManual.checked = true
+        swtichTimer.innerHTML = `AUTO CLOSE AT ${dev.mode['closeTime'].getHours()}:${dev.mode['closeTime'].getMinutes()}`
     }
 
     if (swtichManual.checked == false) {
@@ -163,6 +167,7 @@ swtichManual.addEventListener('change', (e) => {
 
             username: devname,
             isManualMode: 'true',
+            closeTime: new Date(Date.now() + (8 * 60 * 60 * 1000))
         })
         console.log('Command, Manual Mode: ON')
 

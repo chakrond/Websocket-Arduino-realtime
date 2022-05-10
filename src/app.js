@@ -124,6 +124,7 @@ io.on('connection', (socket) => {
 
           // update device mode
           sDevice.mode['isManualMode'] = device.isManualMode
+          sDevice.mode['closeTime'] = device.closeTime
 
         }
 
