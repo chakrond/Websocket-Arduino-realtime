@@ -57,6 +57,10 @@ socket.on('deviceInfo', (dev) => {
 
     const isManualMode = swtichManual.checked
 
+    if (dev.stat.isManualMode && dev.stat['isManualMode'] == 'true') {
+        isManualMode = true
+    }
+
     if (!isManualMode) {
         swtichRelay1.disabled = true
         swtichRelay2.disabled = true
