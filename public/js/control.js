@@ -59,6 +59,7 @@ socket.on('deviceInfo', (dev) => {
 
     if (dev.stat.isManualMode && dev.stat['isManualMode'] == 'true') {
         isManualMode = true
+        console.log('isManualMode: ', dev.stat['isManualMode'])
     }
 
     if (!isManualMode) {
