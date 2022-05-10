@@ -55,14 +55,12 @@ socket.on('deviceInfo', (dev) => {
 
     console.log('deviceInfo: ', dev)
 
-    var isManualMode = swtichManual.checked
-
-    console.log('isManualMode: ', dev.stat['isManualMode'])
-    if (dev.stat['isManualMode'] == 'true') {
-        isManualMode = true
+    console.log('isManualMode: ', dev.mode['isManualMode'])
+    if (dev.mode['isManualMode'] == 'true') {
+        swtichManual.checked = true
     }
 
-    if (!isManualMode) {
+    if (swtichManual.checked == false) {
         swtichRelay1.disabled = true
         swtichRelay2.disabled = true
         swtichRelay3.disabled = true

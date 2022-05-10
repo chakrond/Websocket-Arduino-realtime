@@ -19,7 +19,8 @@ const addDevice = ({ id, username }) => {
         const stat = {}
         const settings = {}
         const sensors = {}
-        const S_device = { id, username, stat, settings, sensors }
+        const mode = {}
+        const S_device = { id, username, stat, settings, sensors, mode }
         devices.push(S_device)
         return S_device
     }
