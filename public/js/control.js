@@ -61,7 +61,7 @@ socket.on('deviceInfo', (dev) => {
     console.log('isManualMode: ', dev.mode['isManualMode'])
     if (dev.mode['isManualMode'] == 'true') {
         swtichManual.checked = true
-        const dateTime = dev.mode['closeTime']
+        const dateTime = Date.parse(dev.mode['closeTime'])
         const dateString = `AUTO CLOSE AT ${dateTime.getHours()}:${dateTime.getMinutes()}`
         swtichTimer.innerHTML = dateString
     }
