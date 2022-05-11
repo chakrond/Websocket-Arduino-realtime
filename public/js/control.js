@@ -57,6 +57,8 @@ const settingsForm_1 = document.querySelector('#settingsForm-1')
 const btn_save_1 = settingsForm_1.querySelector('button')
 const settingsForm_2 = document.querySelector('#settingsForm-2')
 const btn_save_2 = settingsForm_2.querySelector('button')
+const timerForm = document.querySelector('#timerForm')
+const btn_save_3 = timerForm.querySelector('button')
 
 
 // get device Info
@@ -183,6 +185,7 @@ settingsForm_1.addEventListener('submit', (e) => {
     console.log('Send Settings: ', settings_values_1)
 })
 
+
 var settings_values_2 = {}
 settingsForm_2.addEventListener('submit', (e) => {
 
@@ -204,6 +207,30 @@ settingsForm_2.addEventListener('submit', (e) => {
     btn_save_2.removeAttribute('disabled')
 
     console.log('Send Settings: ', settings_values_2)
+})
+
+
+var settings_timerForm = {}
+timerForm.addEventListener('submit', (e) => {
+
+    e.preventDefault()
+
+    timerForm.querySelectorAll("input").forEach(ele => settings_timerForm[ele.name] = ele.value || "")
+    btn_save_3.setAttribute('disabled', 'disabled')
+
+    // Emit event sendMsg to server
+    socket.emit('event_control', {
+
+        username: devname,
+        reqSettings: 'true',
+        ...settings_timerForm
+
+    })
+
+    // enable button
+    btn_save_3.removeAttribute('disabled')
+
+    console.log('Send Settings: ', settings_timerForm)
 })
 
 
