@@ -198,7 +198,7 @@ settingsForm_2.addEventListener('submit', (e) => {
     socket.emit('event_control', {
 
         username: devname,
-        issetTempChange: 'true',
+        issetHumidChange: 'true',
         ...settings_values_2
 
     })

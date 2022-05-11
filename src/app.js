@@ -261,6 +261,7 @@ io.on('connection', (socket) => {
         // ------------------------------------------------------------------------------------------------------------
         // Set Triggers & Cut Settings
         // ------------------------------------------------------------------------------------------------------------
+        // Temperature
         if (device.issetTempChange) {
 
           io.to(id).emit('upd_settings', {
@@ -271,21 +272,35 @@ io.on('connection', (socket) => {
             trigTemp_FAN: device.trigTemp_FAN,
             trigTemp_COOLING: device.trigTemp_COOLING,
             trigTemp_FOG: device.trigTemp_FOG,
-            trigHumid_FOG: device.trigHumid_FOG,
             cutTemp_FAN: device.cutTemp_FAN,
             cutTemp_COOLING: device.cutTemp_COOLING,
             cutTemp_FOG: device.cutTemp_FOG,
-            cutHumid_FOG: device.cutHumid_FOG
           })
 
           console.log('Set new Settings: ', {
             trigTemp_FAN: device.trigTemp_FAN,
             trigTemp_COOLING: device.trigTemp_COOLING,
             trigTemp_FOG: device.trigTemp_FOG,
-            trigHumid_FOG: device.trigHumid_FOG,
             cutTemp_FAN: device.cutTemp_FAN,
             cutTemp_COOLING: device.cutTemp_COOLING,
             cutTemp_FOG: device.cutTemp_FOG,
+          })
+        }
+
+        // Humidity
+        if (device.issetHumidChange) {
+
+          io.to(id).emit('upd_settings', {
+
+            id: id,
+            username: username,
+            issetHumidChange: 'true',
+            trigHumid_FOG: device.trigHumid_FOG,
+            cutHumid_FOG: device.cutHumid_FOG
+          })
+
+          console.log('Set new Settings: ', {
+            trigHumid_FOG: device.trigHumid_FOG,
             cutHumid_FOG: device.cutHumid_FOG
           })
         }
