@@ -54,62 +54,79 @@
 
         <hr>
 
-        <!-- // Relay Controller -->
-        <h3>Switch Controller</h3>
-        <div class="form-check form-switch">
-            <input class="form-check-input" type="checkbox" id="switchCheck-Manual">
-            <label class="form-check-label" for="switchCheck-Manual">MANUAL CONTROL MODE</label>
-            <p id="switchCheck-Manual-Timer"></p>
-        </div>
-        <br>
+        <div class="row">
+
+            <div class="column">
+                <!-- // Relay Controller -->
+                <h3>Switch Controller</h3>
+                <div class="form-check form-switch">
+                    <input class="form-check-input" type="checkbox" id="switchCheck-Manual">
+                    <label class="form-check-label" for="switchCheck-Manual">MANUAL CONTROL MODE</label>
+                    <p id="switchCheck-Manual-Timer"></p>
+                </div>
+                <br>
 
 
-        <div class="form-check form-switch">
-            <input class="form-check-input" type="checkbox" id="switchCheck-Relay-1">
-            <label class="form-check-label" for="switchCheck-Relay-1">RELAY 1 - FAN 1</label>
-            &emsp;<svg id="svg-relay-1" xmlns="http://www.w3.org/2000/svg" width="16" height="16"
-                class="bi bi-circle-fill" viewBox="0 0 16 16">
-                <circle cx="8" cy="8" r="8" />
-            </svg>
+                <div class="form-check form-switch">
+                    <input class="form-check-input" type="checkbox" id="switchCheck-Relay-1">
+                    <label class="form-check-label" for="switchCheck-Relay-1">RELAY 1 - FAN 1</label>
+                    &emsp;<svg id="svg-relay-1" xmlns="http://www.w3.org/2000/svg" width="16" height="16"
+                        class="bi bi-circle-fill" viewBox="0 0 16 16">
+                        <circle cx="8" cy="8" r="8" />
+                    </svg>
+                </div>
+
+                <div class="form-check form-switch">
+                    <input class="form-check-input" type="checkbox" id="switchCheck-Relay-2">
+                    <label class="form-check-label" for="switchCheck-Relay-2">RELAY 2 - FAN 2</label>
+                    &emsp;<svg id="svg-relay-2" xmlns="http://www.w3.org/2000/svg" width="16" height="16"
+                        class="bi bi-circle-fill" viewBox="0 0 16 16">
+                        <circle cx="8" cy="8" r="8" />
+                    </svg>
+                </div>
+
+                <div class="form-check form-switch">
+                    <input class="form-check-input" type="checkbox" id="switchCheck-Relay-3">
+                    <label class="form-check-label" for="switchCheck-Relay-3">RELAY 3 - FAN 3</label>
+                    &emsp;<svg id="svg-relay-3" xmlns="http://www.w3.org/2000/svg" width="16" height="16"
+                        class="bi bi-circle-fill" viewBox="0 0 16 16">
+                        <circle cx="8" cy="8" r="8" />
+                    </svg>
+                </div>
+
+                <div class="form-check form-switch">
+                    <input class="form-check-input" type="checkbox" id="switchCheck-Relay-4">
+                    <label class="form-check-label" for="switchCheck-Relay-4">RELAY 4 - COOLING</label>
+                    &emsp;<svg id="svg-relay-4" xmlns="http://www.w3.org/2000/svg" width="16" height="16"
+                        class="bi bi-circle-fill" viewBox="0 0 16 16">
+                        <circle cx="8" cy="8" r="8" />
+                    </svg>
+                </div>
+
+                <div class="form-check form-switch">
+                    <input class="form-check-input" type="checkbox" id="switchCheck-Relay-5">
+                    <label class="form-check-label" for="switchCheck-Relay-5">RELAY 5 - FOG</label>
+                    &emsp;<svg id="svg-relay-5" xmlns="http://www.w3.org/2000/svg" width="16" height="16"
+                        class="bi bi-circle-fill" viewBox="0 0 16 16">
+                        <circle cx="8" cy="8" r="8" />
+                    </svg>
+                </div>
+            </div>
+
+
+            <div class="column">
+            <!-- // Command Buttons -->
+            <h3>Command Controller</h3>
+
+            <button id="btn_restart" class="btn btn-primary">Restart</button>
+            <br>
+            <button id="btn_update" class="btn btn-primary">Update</button>
+
+            </div>
+            
         </div>
 
-        <div class="form-check form-switch">
-            <input class="form-check-input" type="checkbox" id="switchCheck-Relay-2">
-            <label class="form-check-label" for="switchCheck-Relay-2">RELAY 2 - FAN 2</label>
-            &emsp;<svg id="svg-relay-2" xmlns="http://www.w3.org/2000/svg" width="16" height="16"
-                class="bi bi-circle-fill" viewBox="0 0 16 16">
-                <circle cx="8" cy="8" r="8" />
-            </svg>
-        </div>
-
-        <div class="form-check form-switch">
-            <input class="form-check-input" type="checkbox" id="switchCheck-Relay-3">
-            <label class="form-check-label" for="switchCheck-Relay-3">RELAY 3 - FAN 3</label>
-            &emsp;<svg id="svg-relay-3" xmlns="http://www.w3.org/2000/svg" width="16" height="16"
-                class="bi bi-circle-fill" viewBox="0 0 16 16">
-                <circle cx="8" cy="8" r="8" />
-            </svg>
-        </div>
-
-        <div class="form-check form-switch">
-            <input class="form-check-input" type="checkbox" id="switchCheck-Relay-4">
-            <label class="form-check-label" for="switchCheck-Relay-4">RELAY 4 - COOLING</label>
-            &emsp;<svg id="svg-relay-4" xmlns="http://www.w3.org/2000/svg" width="16" height="16"
-                class="bi bi-circle-fill" viewBox="0 0 16 16">
-                <circle cx="8" cy="8" r="8" />
-            </svg>
-        </div>
-
-        <div class="form-check form-switch">
-            <input class="form-check-input" type="checkbox" id="switchCheck-Relay-5">
-            <label class="form-check-label" for="switchCheck-Relay-5">RELAY 5 - FOG</label>
-            &emsp;<svg id="svg-relay-5" xmlns="http://www.w3.org/2000/svg" width="16" height="16"
-                class="bi bi-circle-fill" viewBox="0 0 16 16">
-                <circle cx="8" cy="8" r="8" />
-            </svg>
-        </div>
         <hr>
-
         <!-- Form -->
 
         <!-- Trigger Settings -->
