@@ -253,6 +253,9 @@ io.on('connection', (socket) => {
             Timer_FAN: device.Timer_FAN
           })
 
+          // update device settings
+          sDevice.settings['Timer_FAN'] = device.Timer_FAN
+
           console.log('Set Timer_FAN: ', {
             Timer_FAN: device.Timer_FAN
           })
@@ -277,6 +280,14 @@ io.on('connection', (socket) => {
             cutTemp_FOG: device.cutTemp_FOG,
           })
 
+          // update device settings
+          sDevice.settings['trigTemp_FAN'] = device.trigTemp_FAN
+          sDevice.settings['trigTemp_COOLING'] = device.trigTemp_COOLING
+          sDevice.settings['trigTemp_FOG'] = device.trigTemp_FOG
+          sDevice.settings['cutTemp_FAN'] = device.cutTemp_FAN
+          sDevice.settings['cutTemp_COOLING'] = device.cutTemp_COOLING
+          sDevice.settings['cutTemp_FOG'] = device.cutTemp_FOG
+
           console.log('Set new Settings: ', {
             trigTemp_FAN: device.trigTemp_FAN,
             trigTemp_COOLING: device.trigTemp_COOLING,
@@ -298,6 +309,10 @@ io.on('connection', (socket) => {
             trigHumid_FOG: device.trigHumid_FOG,
             cutHumid_FOG: device.cutHumid_FOG
           })
+
+          // update device settings
+          sDevice.settings['trigHumid_FOG'] = device.trigHumid_FOG
+          sDevice.settings['cutHumid_FOG'] = device.cutHumid_FOG
 
           console.log('Set new Settings: ', {
             trigHumid_FOG: device.trigHumid_FOG,

@@ -169,6 +169,8 @@ const update = async (req, res) => {
       })
     }
 
+    console.log('Begin update...')
+
     // Serve the latest version of file
     // req.params.name = latestVerName
     const fileContLen = fileInfos[0].length // File Length
