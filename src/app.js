@@ -21,7 +21,7 @@ const { addDevice, getDevice, getDeviceByName, addStat, addSensors } = require('
 const { saveDataToCollection } = require('./utils/saveSocketData')
 
 var corsOptions = {
-  origin: "http://localhost:8081"
+  origin: 'http://localhost:8081'
 }
 
 app.use(cors(corsOptions))
@@ -44,23 +44,23 @@ app.use(express.static(publicdir))
 io.on('connection', (socket) => {
 
   console.log('Connected')
-  // console.log("JWT token test: ", socket.handshake.headers)
+  // console.log('JWT token test: ', socket.handshake.headers)
 
   // get socket ID
   const userID = socket.id
-  console.log("SocketID: ", userID)
+  console.log('SocketID: ', userID)
 
   // get header info
-  const userAgent = socket.handshake.headers["user-agent"]
-  console.log("user-agent: ", userAgent)
+  const userAgent = socket.handshake.headers['user-agent']
+  console.log('user-agent: ', userAgent)
   addDevice({ id: userID, username: userAgent }) // add device
 
-  const userAddress = socket.handshake.headers["x-forwarded-for"]
-  console.log("address: ", userAddress)
+  const userAddress = socket.handshake.headers['x-forwarded-for']
+  console.log('address: ', userAddress)
 
   // store userInfo
   const userInfo = addUser({ id: userID, username: userAgent, address: userAddress })
-  // console.log("userInfo: ", userInfo)
+  // console.log('userInfo: ', userInfo)
 
   // send info back to client
   io.to(userInfo.id).emit('joined', {
@@ -249,7 +249,7 @@ io.on('connection', (socket) => {
 
             id: id,
             username: username,
-            isFSsetTimerChange: "true",
+            isFSsetTimerChange: 'true',
             Timer_FAN: device.Timer_FAN
           })
 
@@ -267,7 +267,7 @@ io.on('connection', (socket) => {
 
             id: id,
             username: username,
-            issetTempChange: "true",
+            issetTempChange: 'true',
             trigTemp_FAN: device.trigTemp_FAN,
             trigTemp_COOLING: device.trigTemp_COOLING,
             trigTemp_FOG: device.trigTemp_FOG,

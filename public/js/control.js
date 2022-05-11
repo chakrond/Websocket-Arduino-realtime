@@ -174,7 +174,7 @@ settingsForm_1.addEventListener('submit', (e) => {
     socket.emit('event_control', {
         
         username: devname,
-        reqSettings: 'true',
+        issetTempChange: 'true',
         ...settings_values_1
 
     })
@@ -198,7 +198,7 @@ settingsForm_2.addEventListener('submit', (e) => {
     socket.emit('event_control', {
 
         username: devname,
-        reqSettings: 'true',
+        issetTempChange: 'true',
         ...settings_values_2
 
     })
