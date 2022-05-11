@@ -52,6 +52,12 @@ const svgElement_Relay5 = document.getElementById('svg-relay-5')
 // Switch Timer
 const swtichTimer = document.getElementById('switchCheck-Manual-Timer')
 
+// Forms
+const settingsForm_1 = document.querySelector('#settingsForm-1')
+const btn_save_1 = settingsForm_1.querySelector('button')
+const settingsForm_2 = document.querySelector('#settingsForm-2')
+const btn_save_2 = settingsForm_2.querySelector('button')
+
 
 // get device Info
 socket.on('deviceInfo', (dev) => {
@@ -150,6 +156,56 @@ socket.on('deviceInfo', (dev) => {
     sensorsReading_DHT21_Humid.innerHTML = parseFloat(dev.sensors['DHT21_IN']).toFixed(1)
 
 })
+
+// ------------------------------------------------------------
+// Form Save
+// ------------------------------------------------------------
+var settings_values_1 = {}
+settingsForm_1.addEventListener('submit', (e) => {
+
+    e.preventDefault()
+
+    settingsForm_1.querySelectorAll("input").forEach(ele => settings_values_1[ele.name] = ele.value || "")
+    btn_save_1.setAttribute('disabled', 'disabled')
+
+    // Emit event sendMsg to server
+    socket.emit('event_control', {
+        
+        username: devname,
+        reqSettings: 'true',
+        ...settings_values_1
+
+    })
+
+    // enable button
+    btn_save_1.removeAttribute('disabled')
+
+    console.log('Send Settings: ', settings_values_1)
+})
+
+var settings_values_2 = {}
+settingsForm_2.addEventListener('submit', (e) => {
+
+    e.preventDefault()
+
+    settingsForm_2.querySelectorAll("input").forEach(ele => settings_values_2[ele.name] = ele.value || "")
+    btn_save_2.setAttribute('disabled', 'disabled')
+
+    // Emit event sendMsg to server
+    socket.emit('event_control', {
+
+        username: devname,
+        reqSettings: 'true',
+        ...settings_values_2
+
+    })
+
+    // enable button
+    btn_save_2.removeAttribute('disabled')
+
+    console.log('Send Settings: ', settings_values_2)
+})
+
 
 
 // ------------------------------------------------------------
