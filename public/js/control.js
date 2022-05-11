@@ -222,7 +222,7 @@ timerForm.addEventListener('submit', (e) => {
     socket.emit('event_control', {
 
         username: devname,
-        reqSettings: 'true',
+        isFSsetTimerChange: 'true',
         ...settings_timerForm
 
     })
