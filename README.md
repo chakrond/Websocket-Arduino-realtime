@@ -6,3 +6,6 @@ ESP board connect to websocket host server using SocketIO-Client
 
 Relay Controller Webpage (Deployed via heroku node.js)
 ![Capture](https://user-images.githubusercontent.com/94983485/165022874-250e6bfe-e53c-4478-9d12-6f952d864d1e.PNG)
+
+Controller Webpage
+![Control Page](https://user-images.githubusercontent.com/94983485/168050340-fa8fc56c-aa4c-4590-9328-dfaabbaa69e4.PNG)
