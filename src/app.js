@@ -233,7 +233,7 @@ io.on('connection', (socket) => {
             id: id,
             username: username,
           })
-          console.log('Restart board on', username)
+          console.log('Restart Board: ', username)
           
           // update device stats
           // sDevice.stat['relay1'] = device.relay1

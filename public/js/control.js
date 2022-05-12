@@ -60,6 +60,10 @@ const btn_save_2 = settingsForm_2.querySelector('button')
 const timerForm = document.querySelector('#timerForm')
 const btn_save_3 = timerForm.querySelector('button')
 
+// Command Buttons
+const btn_restart = document.getElementById('btn_restart')
+const btn_update = document.getElementById('btn_update')
+
 
 // get device Info
 socket.on('deviceInfo', (dev) => {
@@ -272,6 +276,37 @@ swtichManual.addEventListener('change', (e) => {
         })
         console.log('Command, Manual Mode: OFF')
     }
+})
+
+// ------------------------------------------------------------
+// Commands
+// ------------------------------------------------------------
+btn_restart.addEventListener('click', () => {
+
+    // disabled button
+    btn_restart.setAttribute('disabled', 'disabled')
+
+    socket.emit('event_control', {
+
+        username: devname,
+        restartBoard: 'true',
+    })
+
+    console.log('Command, Restart Board: ', devname)
+})
+
+btn_update.addEventListener('click', () => {
+
+    // disabled button
+    btn_update.setAttribute('disabled', 'disabled')
+
+    socket.emit('event_control', {
+
+        username: devname,
+        updateSketch: 'true',
+    })
+
+    console.log('Command, Restart Board: ', devname)
 })
 
 
