@@ -306,7 +306,7 @@ btn_update.addEventListener('click', () => {
         updateSketch: 'true',
     })
 
-    console.log('Command, Restart Board: ', devname)
+    console.log('Command, Update Board: ', devname)
 })
 
 

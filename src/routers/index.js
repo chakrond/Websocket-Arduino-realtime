@@ -4,6 +4,7 @@ const homeController = require('../controllers/home')
 const uploadController = require('../controllers/upload')
 const relayController = require('../controllers/relay')
 const boardSettingsController = require('../controllers/control')
+const chartController = require('../controllers/chart')
 
 let routes = app => {
 
@@ -20,6 +21,9 @@ let routes = app => {
 
   // Board control page
   router.get('/control', boardSettingsController.getControl)
+
+  // Chart 
+  router.get('/chart', chartController.getChart)
 
   return app.use('/', router)
 }
