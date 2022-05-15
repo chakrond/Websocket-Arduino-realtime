@@ -68,7 +68,6 @@ const getData = async (query) => {
                 Object.assign(obj, { [keyNames[i]]: combArray[i] })
             }
 
-            console.log('obj: ', obj)
             return obj
         }
 
