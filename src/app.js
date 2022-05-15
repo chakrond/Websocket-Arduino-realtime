@@ -427,16 +427,9 @@ io.on('connection', (socket) => {
     console.log('reqChartData: ', req)
 
     const chartData = getData(req.query)
-    console.log('chartData: ', chartData)
-    
-    try {
-      // send data back to who request
-      io.to(req.ClientId).emit('ChartData', chartData)
 
-    } catch (e) {
-      console.log('Error: ', e)
-    }
-
+    // send data back to who request
+    io.to(req.ClientId).emit('ChartData', chartData)
   })
 
 
