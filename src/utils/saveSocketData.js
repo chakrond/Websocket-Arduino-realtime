@@ -41,13 +41,15 @@ const saveDataToCollection = async ({ data, username }) => {
 
 const getData = async (query) => {
 
-    console.log('getData: ', query)
-
     try {
 
         if (query.by) {
 
+            console.log('query.by: ', query.by)
+
             const data = await SocketData.find({ recDate: new Date(query.by), owner: query.devname })
+
+            console.log('data: ', data)
 
             // Map data
             const example = data[0].dataArray[0]
