@@ -41,10 +41,10 @@ const saveDataToCollection = async ({ data, username }) => {
 
 const getData = async (query) => {
 
-    try {
+    if (query.by) {
 
-        if (query.by) {
-
+        try {
+            
             const data = await SocketData.find({ recDate: new Date(query.by), owner: query.devname })
 
             // Map data
@@ -69,13 +69,13 @@ const getData = async (query) => {
             }
 
             return obj
+
+        } catch (e) {
+            console.log(e)
         }
-
-
-
-    } catch (e) {
-        console.log(e)
     }
+
+
 
 }
 
