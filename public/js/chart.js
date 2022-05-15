@@ -4,12 +4,20 @@ const socket = io()
 // Get device info
 // ------------------------------------------------------------
 // Querey string
-const { devname } = Qs.parse(location.search, { ignoreQueryPrefix: true }) // get querey string
+const query = Qs.parse(location.search, { ignoreQueryPrefix: true }) // get querey string
 
 socket.on('joined', (dev) => {
 
-    // request device
-    socket.emit('reqDevice', { ClientId: dev.id, username: devname })
+    console.log('on joined: ', dev)
+
+    // send request info
+    socket.emit('reqChartData', { ClientId: dev.id, query })
+})
+
+socket.on('ChartData', (data) => {
+
+    console.log('ChartData: ', data)
+
 })
 
 const labels = [

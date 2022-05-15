@@ -18,7 +18,8 @@ const userRouter = require('./routers/user')
 const dataRouter = require('./routers/data')
 const { addUser, getUser, getUserByName } = require('./utils/users')
 const { addDevice, getDevice, getDeviceByName, addStat, addSensors } = require('./utils/devices')
-const { saveDataToCollection } = require('./utils/saveSocketData')
+const { saveDataToCollection, getData } = require('./utils/saveSocketData')
+
 
 var corsOptions = {
   origin: 'http://localhost:8081'
@@ -417,6 +418,26 @@ io.on('connection', (socket) => {
 
   })
 
+
+  // ------------------------------------------------------------------------------------------------------------
+  // Listen to reqest data
+  // ------------------------------------------------------------------------------------------------------------
+  socket.on('reqChartData', (req) => {
+
+    console.log('reqChartData: ', req)
+
+    try {
+
+    const chartData = getData(req.query)
+
+    // send data back to who request
+    io.to(req.ClientId).emit('ChartData', chartData)
+
+    } catch (e) {
+      console.log('Error: ', e)
+    }
+
+  })
 
 
 
