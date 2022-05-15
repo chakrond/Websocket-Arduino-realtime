@@ -14,35 +14,70 @@ socket.on('joined', (dev) => {
     socket.emit('reqChartData', { ClientId: dev.id, query })
 })
 
+let ChartData;
 socket.on('ChartData', (data) => {
 
     console.log('ChartData: ', data)
+    ChartData = data
 
 })
 
-const labels = [
-    'January',
-    'February',
-    'March',
-    'April',
-    'May',
-    'June',
-]
+const labels = ChartData.recTime
 
 const data = {
     labels: labels,
-    datasets: [{
-        label: 'My First dataset',
-        backgroundColor: 'rgb(255, 99, 132)',
-        borderColor: 'rgb(255, 99, 132)',
-        data: [0, 10, 5, 2, 20, 30, 45],
-    }]
+    datasets: [
+        {
+            label: 'DHT21_IN',
+            data: ChartData.DHT21_IN
+            borderColor: Utils.CHART_COLORS.red,
+            backgroundColor: Utils.transparentize(Utils.CHART_COLORS.red, 0.5),
+            yAxisID: 'y',
+        },
+        {
+            label: 'dsTemp_IN',
+            data: ChartData.dsTemp_IN
+            borderColor: Utils.CHART_COLORS.blue,
+            backgroundColor: Utils.transparentize(Utils.CHART_COLORS.blue, 0.5),
+            yAxisID: 'y1',
+        }
+    ]
 }
 
 const config = {
     type: 'line',
     data: data,
-    options: {}
+    options: {
+        responsive: true,
+        interaction: {
+            mode: 'index',
+            intersect: false,
+        },
+        stacked: false,
+        plugins: {
+            title: {
+                display: true,
+                text: 'Chart.js Line Chart - Multi Axis'
+            }
+        },
+        scales: {
+            y: {
+                type: 'linear',
+                display: true,
+                position: 'left',
+            },
+            y1: {
+                type: 'linear',
+                display: true,
+                position: 'right',
+
+                // grid line settings
+                grid: {
+                    drawOnChartArea: false, // only want the grid lines for one axis to show up
+                },
+            },
+        }
+    },
 }
 
 const myChart = new Chart(
