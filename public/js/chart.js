@@ -40,13 +40,10 @@ socket.on('ChartData', (data) => {
     }
 
     console.log('Linedata: ', Linedata)
-    Ldata = { ...Linedata }
+    Ldata = Linedata
     console.log('Ldata_INSIDE: ', Ldata)
 
 })
-
-
-console.log('Ldata: ', Ldata)
 
 const config = {
     type: 'line',
