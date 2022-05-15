@@ -14,7 +14,10 @@ socket.on('joined', (dev) => {
     socket.emit('reqChartData', { ClientId: dev.id, query })
 })
 
-var Ldata = {}
+
+var myChart
+// var Ldata = {}
+// var Lconfig = {}
 socket.on('ChartData', (data) => {
 
     console.log('ChartData: ', data)
@@ -39,18 +42,14 @@ socket.on('ChartData', (data) => {
         ]
     }
 
-    Ldata = Linedata
+    const config = {
+        type: 'line',
+        data: Linedata,
+        options: {}
+    }
+
+    myChart = new Chart(
+        document.getElementById('myChart'),
+        config
+    )
 })
-
-const config = {
-    type: 'line',
-    data: Ldata,
-    options: {}
-}
-
-const myChart = new Chart(
-    document.getElementById('myChart'),
-    config
-)
-
-console.log('myChart: ', myChart)
