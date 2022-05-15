@@ -30,16 +30,14 @@ const data = {
         {
             label: 'DHT21_IN',
             data: ChartData.DHT21_IN,
-            borderColor: Utils.CHART_COLORS.red,
-            backgroundColor: Utils.transparentize(Utils.CHART_COLORS.red, 0.5),
-            yAxisID: 'y',
+            borderColor: '#4dc9f6',
+            backgroundColor: '#4dc9f6',
         },
         {
             label: 'dsTemp_IN',
             data: ChartData.dsTemp_IN,
-            borderColor: Utils.CHART_COLORS.blue,
-            backgroundColor: Utils.transparentize(Utils.CHART_COLORS.blue, 0.5),
-            yAxisID: 'y1',
+            borderColor: '#58595b',
+            backgroundColor: '#58595b',
         }
     ]
 }
@@ -49,33 +47,14 @@ const config = {
     data: data,
     options: {
         responsive: true,
-        interaction: {
-            mode: 'index',
-            intersect: false,
-        },
-        stacked: false,
         plugins: {
+            legend: {
+                position: 'top',
+            },
             title: {
                 display: true,
-                text: 'Chart.js Line Chart - Multi Axis'
+                text: 'Line Chart'
             }
-        },
-        scales: {
-            y: {
-                type: 'linear',
-                display: true,
-                position: 'left',
-            },
-            y1: {
-                type: 'linear',
-                display: true,
-                position: 'right',
-
-                // grid line settings
-                grid: {
-                    drawOnChartArea: false, // only want the grid lines for one axis to show up
-                },
-            },
         }
     },
 }
