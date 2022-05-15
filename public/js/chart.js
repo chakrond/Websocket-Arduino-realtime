@@ -14,28 +14,30 @@ socket.on('joined', (dev) => {
     socket.emit('reqChartData', { ClientId: dev.id, query })
 })
 
-let ChartData;
+let getChartData;
 socket.on('ChartData', (data) => {
 
     console.log('ChartData: ', data)
-    ChartData = data
+    getChartData = data
+
 
 })
 
-const labels = ChartData.recTime
+console.log('getChartData: ', getChartData)
+const labels = getChartData.recTime
 
 const data = {
     labels: labels,
     datasets: [
         {
             label: 'DHT21_IN',
-            data: ChartData.DHT21_IN,
+            data: getChartData.DHT21_IN,
             borderColor: '#4dc9f6',
             backgroundColor: '#4dc9f6',
         },
         {
             label: 'dsTemp_IN',
-            data: ChartData.dsTemp_IN,
+            data: getChartData.dsTemp_IN,
             borderColor: '#58595b',
             backgroundColor: '#58595b',
         }
