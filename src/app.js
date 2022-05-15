@@ -428,7 +428,7 @@ io.on('connection', (socket) => {
 
     try {
 
-      const chartData = getData(req.query)
+      const chartData = await getData(req.query)
       console.log('chartData: ', chartData)
 
       // send data back to who request
