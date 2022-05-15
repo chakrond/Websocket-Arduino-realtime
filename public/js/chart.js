@@ -39,10 +39,7 @@ socket.on('ChartData', (data) => {
         ]
     }
 
-    console.log('Linedata: ', Linedata)
     Ldata = Linedata
-    console.log('Ldata_INSIDE: ', Ldata)
-
 })
 
 const config = {
@@ -55,3 +52,5 @@ const myChart = new Chart(
     document.getElementById('myChart'),
     config
 )
+
+console.log('myChart: ', myChart)

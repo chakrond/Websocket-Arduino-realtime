@@ -79,39 +79,7 @@ router.patch('/data/real', auth, async (req, res) => {
 })
 
 
-router.get('/data', auth, async (req, res) => {
-
-    const sort = {}
-
-    if (req.query.sortBy) {
-        const parts = req.query.sortBy.split(':')
-        sort[parts[0]] = parts[1] == 'desc' ? -1 : 1 // if (desc) true, then parts[0] == -1 (descending)
-    }
-
-    try {
-
-        // Virtual finding task by its owner
-        await req.userInfo.populate({
-
-            path: 'userData',
-            options: {
-
-                limit: parseInt(req.query.limit),
-                skip: parseInt(req.query.skip),
-                sort
-            }
-
-        })
-
-        res.status(200).send(req.userInfo.userData)
-
-    } catch (e) {
-        res.status(500).send()
-    }
-})
-
-
-router.get('/data/date', auth, async (req, res) => {
+router.get('/data/date', async (req, res) => {
 
     try {
 
