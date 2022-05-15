@@ -47,6 +47,112 @@ const getData = async (query) => {
 
             const data = await SocketData.find({ recDate: new Date(query.by), owner: query.devname })
 
+            if (!data) {
+                return
+            }
+
+            // Map data
+            const example = data[0].dataArray[0]
+            const datajson = JSON.parse(JSON.stringify(example))
+            delete datajson._id
+            const keyNames = Object.keys(datajson)
+
+            // Create nested array
+            const combArray = Array(keyNames.length).fill().map(() => Array()) // Optional: let arr = Array.from(Array(m), () => new Array(n));
+            const obj = {}
+
+            for (let i = 0; i < keyNames.length; i++) {
+
+                data.flatMap((a) => {
+                    return a.dataArray.map((b) => {
+                        return combArray[i].push(b[keyNames[i]])
+                    })
+                })
+
+                Object.assign(obj, { [keyNames[i]]: combArray[i] })
+            }
+
+            return obj
+        }
+
+        if (query.range) {
+
+            const parts = query.range.split(':')
+
+            const data = await SocketData.find({ recDate: { $gte: new Date(parts[0]), $lte: new Date(parts[1]) }, owner: query.devname })
+
+            if (!data) {
+                return
+            }
+
+            // Map data
+            const example = data[0].dataArray[0]
+            const datajson = JSON.parse(JSON.stringify(example))
+            delete datajson._id
+            const keyNames = Object.keys(datajson)
+
+            // Create nested array
+            const combArray = Array(keyNames.length).fill().map(() => Array()) // Optional: let arr = Array.from(Array(m), () => new Array(n));
+            const obj = {}
+
+            for (let i = 0; i < keyNames.length; i++) {
+
+                data.flatMap((a) => {
+                    return a.dataArray.map((b) => {
+                        return combArray[i].push(b[keyNames[i]])
+                    })
+                })
+
+                Object.assign(obj, { [keyNames[i]]: combArray[i] })
+            }
+
+            return obj
+        }
+
+        if (query.month) {
+
+            const parts = query.month
+
+            const data = await SocketData.find({ recDate: { $gte: new Date(parts + '-01'), $lte: new Date(parts + '-31') }, owner: query.devname })
+
+            if (!data) {
+                return
+            }
+
+            // Map data
+            const example = data[0].dataArray[0]
+            const datajson = JSON.parse(JSON.stringify(example))
+            delete datajson._id
+            const keyNames = Object.keys(datajson)
+
+            // Create nested array
+            const combArray = Array(keyNames.length).fill().map(() => Array()) // Optional: let arr = Array.from(Array(m), () => new Array(n));
+            const obj = {}
+
+            for (let i = 0; i < keyNames.length; i++) {
+
+                data.flatMap((a) => {
+                    return a.dataArray.map((b) => {
+                        return combArray[i].push(b[keyNames[i]])
+                    })
+                })
+
+                Object.assign(obj, { [keyNames[i]]: combArray[i] })
+            }
+
+            return obj
+        }
+
+        if (query.year) {
+
+            const parts = query.year
+
+            const data = await SocketData.find({ recDate: { $gte: new Date(parts + '-01-01'), $lte: new Date(parts + '-12-31') }, owner: query.devname })
+
+            if (!data) {
+                return
+            }
+
             // Map data
             const example = data[0].dataArray[0]
             const datajson = JSON.parse(JSON.stringify(example))
