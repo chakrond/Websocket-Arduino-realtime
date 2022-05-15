@@ -39,7 +39,9 @@ socket.on('ChartData', (data) => {
         ]
     }
 
-    Ldata = { ...Linedata}
+    console.log('Linedata: ', Linedata)
+    Ldata = { ...Linedata }
+    console.log('Ldata_INSIDE: ', Ldata)
 
 })
 
