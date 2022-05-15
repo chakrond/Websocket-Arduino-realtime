@@ -23,6 +23,9 @@ socket.on('ChartData', (data) => {
 })
 
 const labels = getChartData.recTime
+console.log('recTime: ', getChartData.recTime)
+console.log('DHT21_IN: ', getChartData.DHT21_IN)
+console.log('dsTemp_IN: ', getChartData.dsTemp_IN)
 
 const data = {
     labels: labels,
