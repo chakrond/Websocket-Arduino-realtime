@@ -43,21 +43,13 @@ socket.on('ChartData', (data) => {
 
 })
 
+
+console.log('Ldata: ', Ldata)
+
 const config = {
     type: 'line',
     data: Ldata,
-    options: {
-        responsive: true,
-        plugins: {
-            legend: {
-                position: 'top',
-            },
-            title: {
-                display: true,
-                text: 'Line Chart'
-            }
-        }
-    },
+    options: {}
 }
 
 const myChart = new Chart(
