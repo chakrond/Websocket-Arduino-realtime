@@ -45,11 +45,7 @@ const getData = async (query) => {
 
         if (query.by) {
 
-            console.log('query.by: ', query.by)
-
             const data = await SocketData.find({ recDate: new Date(query.by), owner: query.devname })
-
-            console.log('data: ', data)
 
             // Map data
             const example = data[0].dataArray[0]
@@ -72,6 +68,7 @@ const getData = async (query) => {
                 Object.assign(obj, { [keyNames[i]]: combArray[i] })
             }
 
+            console.log('obj: ', obj)
             return obj
         }
 
