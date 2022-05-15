@@ -431,7 +431,7 @@ io.on('connection', (socket) => {
       console.log('chartData: ', result)
 
       // send data back to who request
-      io.to(req.ClientId).emit('ChartData', chartData)
+      io.to(req.ClientId).emit('ChartData', result)
     })
   })
 
