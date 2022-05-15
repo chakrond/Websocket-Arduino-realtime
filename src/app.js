@@ -427,10 +427,12 @@ io.on('connection', (socket) => {
     console.log('reqChartData: ', req)
 
     const chartData = getData(req.query)
-    console.log('chartData: ', chartData)
+    chartData.then(function (result) {
+      console.log('chartData: ', result)
 
-    // send data back to who request
-    io.to(req.ClientId).emit('ChartData', chartData)
+      // send data back to who request
+      io.to(req.ClientId).emit('ChartData', chartData)
+    })
   })
 
 
