@@ -14,16 +14,14 @@ socket.on('joined', (dev) => {
     socket.emit('reqChartData', { ClientId: dev.id, query })
 })
 
-var getChartData
+var getChartData = {}
 socket.on('ChartData', (data) => {
 
     console.log('ChartData: ', data)
-    getChartData = data
-
+    Object.assign(getChartData, data)
 
 })
 
-console.log('getChartData: ', getChartData)
 const labels = getChartData.recTime
 
 const data = {
