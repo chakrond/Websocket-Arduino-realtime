@@ -16,8 +16,6 @@ socket.on('joined', (dev) => {
 
 
 var myChart
-// var Ldata = {}
-// var Lconfig = {}
 socket.on('ChartData', (data) => {
 
     console.log('ChartData: ', data)
@@ -28,16 +26,16 @@ socket.on('ChartData', (data) => {
         labels: labels,
         datasets: [
             {
-                label: 'DHT21_IN',
+                label: 'Humidity_IN',
                 data: data.DHT21_IN,
                 borderColor: '#4dc9f6',
                 backgroundColor: '#4dc9f6',
             },
             {
-                label: 'dsTemp_IN',
+                label: 'Temperature_IN',
                 data: data.dsTemp_IN,
-                borderColor: '#58595b',
-                backgroundColor: '#58595b',
+                borderColor: '#f67019',
+                backgroundColor: '#f67019',
             }
         ]
     }
