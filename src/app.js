@@ -235,7 +235,7 @@ io.on('connection', (socket) => {
             username: username,
           })
           console.log('Restart Board: ', username)
-          
+
           // update device stats
           // sDevice.stat['relay1'] = device.relay1
 
@@ -428,10 +428,11 @@ io.on('connection', (socket) => {
 
     try {
 
-    const chartData = getData(req.query)
+      const chartData = getData(req.query)
+      console.log('chartData: ', chartData)
 
-    // send data back to who request
-    io.to(req.ClientId).emit('ChartData', chartData)
+      // send data back to who request
+      io.to(req.ClientId).emit('ChartData', chartData)
 
     } catch (e) {
       console.log('Error: ', e)

@@ -41,6 +41,8 @@ const saveDataToCollection = async ({ data, username }) => {
 
 const getData = async (query) => {
 
+    console.log('getData: ', query)
+
     try {
 
         if (query.by) {
