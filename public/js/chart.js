@@ -14,7 +14,7 @@ socket.on('joined', (dev) => {
     socket.emit('reqChartData', { ClientId: dev.id, query })
 })
 
-let getChartData;
+var getChartData
 socket.on('ChartData', (data) => {
 
     console.log('ChartData: ', data)
