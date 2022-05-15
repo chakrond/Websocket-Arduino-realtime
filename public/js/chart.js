@@ -29,14 +29,14 @@ const data = {
     datasets: [
         {
             label: 'DHT21_IN',
-            data: ChartData.DHT21_IN
+            data: ChartData.DHT21_IN,
             borderColor: Utils.CHART_COLORS.red,
             backgroundColor: Utils.transparentize(Utils.CHART_COLORS.red, 0.5),
             yAxisID: 'y',
         },
         {
             label: 'dsTemp_IN',
-            data: ChartData.dsTemp_IN
+            data: ChartData.dsTemp_IN,
             borderColor: Utils.CHART_COLORS.blue,
             backgroundColor: Utils.transparentize(Utils.CHART_COLORS.blue, 0.5),
             yAxisID: 'y1',
