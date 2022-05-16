@@ -350,6 +350,8 @@ form_chart.addEventListener('submit', () => {
     // enable button
     btn_save_3.removeAttribute('disabled')
 
+    e.preventDefault()
+
     console.log('Command, Plot: ', `${stringURL}, ${inputValue}`)
 })
 
