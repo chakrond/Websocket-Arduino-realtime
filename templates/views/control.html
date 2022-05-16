@@ -62,7 +62,7 @@
 
                 <div class="col">
                     <!-- Chart -->
-                    <form id="chart_query_form">
+                    <form id="chart_query_form" action="/chart">
 
                         <h3>Chart</h3>
 
@@ -72,13 +72,34 @@
                             </div>
                             <div class="col-auto">
                                 <input type="text" id="chart_query" name="chart_query" class="form-control"
-                                    aria-describedby="unit" placeholder="yyyy-mm-dd">
+                                    aria-describedby="unit" placeholder="yyyy-mm-dd" target="_blank">
                             </div>
                             <div class="col-auto">
                                 <span id="unit" class="form-text">
                                     eg. 2022-05-16, 2022-05-15:2022-05-16, 2022-05, 2022
                                 </span>
                             </div>
+                        </div>
+
+                        <div class="form-check form-check-inline">
+                            <input class="form-check-input" type="radio" name="option_day" id="option_day"
+                                value="option_day">
+                            <label class="form-check-label" for="option_day">Day</label>
+                        </div>
+                        <div class="form-check form-check-inline">
+                            <input class="form-check-input" type="radio" name="option_range" id="option_range"
+                                value="option_range">
+                            <label class="form-check-label" for="option_range">Range</label>
+                        </div>
+                        <div class="form-check form-check-inline">
+                            <input class="form-check-input" type="radio" name="option_month" id="option_month"
+                                value="option_month">
+                            <label class="form-check-label" for="option_month">Month</label>
+                        </div>
+                        <div class="form-check form-check-inline">
+                            <input class="form-check-input" type="radio" name="option_year" id="option_year"
+                                value="option_year">
+                            <label class="form-check-label" for="option_year">Year</label>
                         </div>
 
                         <br><button class="btn btn-primary">Plot</button>
