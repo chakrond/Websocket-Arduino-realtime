@@ -36,21 +36,55 @@
         <h1>Parameters Settings</h1>
         <hr>
 
-        <!-- // Sensors readings -->
-        <h3>Sensors Readings</h3>
-        <br>
+        <div class="container">
 
-        <!-- // dsTemp Temperature -->
-        <label for="sensorsReading_dsTemp">Tank Temperature: </label>
-        <p2 id="sensorsReading_dsTemp"></p2>&#8451<br><br>
+            <div class="row">
 
-        <!-- // SHT20 Temperature -->
-        <label for="sensorsReading_dsTemp_IN">Inside Temperature: </label>
-        <p1 id="sensorsReading_dsTemp_IN"></p1>&#8451<br><br>
+                <div class="col">
 
-        <!-- // SHT20 Humidity -->
-        <label for="sensorsReading_DHT21_Humid">Inside Humidity: </label>
-        <p1 id="sensorsReading_DHT21_Humid"></p1>%<br>
+                    <!-- // Sensors readings -->
+                    <h3>Sensors Readings</h3>
+                    <br>
+
+                    <!-- // dsTemp Temperature -->
+                    <label for="sensorsReading_dsTemp">Tank Temperature: </label>
+                    <p2 id="sensorsReading_dsTemp"></p2>&#8451<br><br>
+
+                    <!-- // SHT20 Temperature -->
+                    <label for="sensorsReading_dsTemp_IN">Inside Temperature: </label>
+                    <p1 id="sensorsReading_dsTemp_IN"></p1>&#8451<br><br>
+
+                    <!-- // SHT20 Humidity -->
+                    <label for="sensorsReading_DHT21_Humid">Inside Humidity: </label>
+                    <p1 id="sensorsReading_DHT21_Humid"></p1>%<br>
+
+                </div>
+
+                <!-- Chart -->
+                <form id="chart_query_form">
+
+                    <h3>Chart</h3>
+
+                    <div class="row g-3 align-items-center">
+                        <div class="col-auto">
+                            <label for="chart_query" class="col-form-label">Date:</label>
+                        </div>
+                        <div class="col-auto">
+                            <input type="text" id="chart_query" name="chart_query" class="form-control"
+                                aria-describedby="unit" placeholder="yyyy-mm-dd">
+                        </div>
+                        <div class="col-auto">
+                            <span id="unit" class="form-text">
+                                eg. 2022-05-16, 2022-05-15:2022-05-16, 2022-05, 2022
+                            </span>
+                        </div>
+                    </div>
+
+                    <br><button class="btn btn-primary">Save</button>
+                </form>
+
+            </div>
+        </div>
 
         <hr>
 
