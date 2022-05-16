@@ -323,7 +323,7 @@ btn_update.addEventListener('click', () => {
 // ------------------------------------------------------------
 // Plot
 // ------------------------------------------------------------
-form_chart.addEventListener('submit', () => {
+form_chart.addEventListener('submit', (e) => {
 
     // disabled button
     btn_plot.setAttribute('disabled', 'disabled')
