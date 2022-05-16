@@ -348,7 +348,7 @@ form_chart.addEventListener('submit', (e) => {
     window.open(`/chart?devname=${devname}&${stringURL}=${inputValue}`)
 
     // enable button
-    btn_save_3.removeAttribute('disabled')
+    btn_plot.removeAttribute('disabled')
 
     e.preventDefault()
 
