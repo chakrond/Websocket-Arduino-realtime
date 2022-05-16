@@ -48,7 +48,7 @@ const getData = async (query) => {
             const data = await SocketData.find({ recDate: new Date(query.by), owner: query.devname })
 
             if (!data) {
-                return 'ChartData not found'
+                return console.log('ChartData, date not found')
             }
 
             // Map data
@@ -82,7 +82,7 @@ const getData = async (query) => {
             const data = await SocketData.find({ recDate: { $gte: new Date(parts[0]), $lte: new Date(parts[1]) }, owner: query.devname })
 
             if (!data) {
-                return 'ChartData not found'
+                return console.log('ChartData, date range not found')
             }
 
             // Map data
@@ -116,7 +116,7 @@ const getData = async (query) => {
             const data = await SocketData.find({ recDate: { $gte: new Date(parts + '-01'), $lte: new Date(parts + '-31') }, owner: query.devname })
 
             if (!data) {
-                return 'ChartData not found'
+                return console.log('ChartData, month not found')
             }
 
             // Map data
@@ -150,7 +150,7 @@ const getData = async (query) => {
             const data = await SocketData.find({ recDate: { $gte: new Date(parts + '-01-01'), $lte: new Date(parts + '-12-31') }, owner: query.devname })
 
             if (!data) {
-                return 'ChartData not found'
+                return console.log('ChartData, year not found')
             }
 
             // Map data
