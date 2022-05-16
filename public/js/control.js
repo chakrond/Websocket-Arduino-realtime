@@ -325,6 +325,8 @@ btn_update.addEventListener('click', () => {
 // ------------------------------------------------------------
 form_chart.addEventListener('submit', () => {
 
+    e.preventDefault() // prevent page refresh
+
     // disabled button
     btn_plot.setAttribute('disabled', 'disabled')
 
