@@ -54,7 +54,11 @@ socket.on('ChartData', async (data) => {
     )
 
     console.log('myChart: ', myChart)
+    appenCheckBox()
+})
 
+
+const appenCheckBox = async () => {
 
     // Map data
     // Create nested array
@@ -82,6 +86,7 @@ socket.on('ChartData', async (data) => {
         checkbox.name = dataLabel.label[i]
         // checkbox.value = 'value'
         checkbox.id = dataLabel.label[i]
+        checkbox.checked = true
 
         // creating label for checkbox
         var label = document.createElement('label')
@@ -99,7 +104,4 @@ socket.on('ChartData', async (data) => {
         inlineCB.appendChild(checkbox)
         inlineCB.appendChild(label)
     }
-})
-
-
-
+}
