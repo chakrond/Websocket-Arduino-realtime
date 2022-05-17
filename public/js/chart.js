@@ -57,10 +57,6 @@ socket.on('ChartData', (data) => {
 
 
 // Map data
-const example = Linedata.datasets[0]
-const datajson = JSON.parse(JSON.stringify(example))
-const keyNames = Object.keys(datajson)
-
 // Create nested array
 const combArray = []
 const dataLabel = {}
