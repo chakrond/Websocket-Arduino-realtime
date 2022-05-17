@@ -16,13 +16,14 @@ socket.on('joined', (dev) => {
 
 
 var myChart
+var Linedata
 socket.on('ChartData', (data) => {
 
     console.log('ChartData: ', data)
 
     const labels = data.recTime
 
-    const Linedata = {
+    Linedata = {
         labels: labels,
         datasets: [
             {
@@ -55,30 +56,50 @@ socket.on('ChartData', (data) => {
 })
 
 
+// Map data
+const example = Linedata.datasets[0]
+const datajson = JSON.parse(JSON.stringify(example))
+const keyNames = Object.keys(datajson)
+
+// Create nested array
+const combArray = []
+const dataLabel = {}
+
+Linedata.datasets.flatMap((a) => {
+    return combArray.push(a['label'])
+})
+
+Object.assign(dataLabel, { ['label']: combArray })
+
+
+// get <div> id
 var inlineCB = document.getElementById('inlineCB')
 
-// creating checkbox element
-var checkbox = document.createElement('input')
+for (let i = 0; i < dataLabel.length; i++) {
 
-// Assigning the attributes
-// to created checkbox
-checkbox.type = 'checkbox'
-checkbox.name = 'name'
-checkbox.value = 'value'
-checkbox.id = 'id'
+    // creating checkbox element
+    var checkbox = document.createElement('input')
 
-// creating label for checkbox
-var label = document.createElement('label');
+    // Assigning the attributes
+    // to created checkbox
+    checkbox.type = 'checkbox'
+    checkbox.name = dataLabel[i]
+    // checkbox.value = 'value'
+    checkbox.id = dataLabel[i]
 
-// assigning attributes for 
-// the created label tag 
-label.htmlFor = 'id'
+    // creating label for checkbox
+    var label = document.createElement('label');
 
-// appending the created text to 
-// the created label tag 
-label.appendChild(document.createTextNode('This is the label for checkbox.'))
+    // assigning attributes for 
+    // the created label tag 
+    label.htmlFor = dataLabel[i]
 
-// appending the checkbox
-// and label to div
-inlineCB.appendChild(checkbox)
-inlineCB.appendChild(label)
+    // appending the created text to 
+    // the created label tag 
+    label.appendChild(document.createTextNode(dataLabel[i]))
+
+    // appending the checkbox
+    // and label to div
+    inlineCB.appendChild(checkbox)
+    inlineCB.appendChild(label)
+}
