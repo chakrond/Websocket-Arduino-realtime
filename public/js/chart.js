@@ -16,6 +16,7 @@ socket.on('joined', (dev) => {
 
 
 var myChart
+var inlineCB
 socket.on('ChartData', (data) => {
 
     console.log('ChartData: ', data)
@@ -66,7 +67,7 @@ socket.on('ChartData', (data) => {
 
 
     // get <div> id
-    var inlineCB = document.getElementById('inlineCB')
+    inlineCB = document.getElementById('inlineCB')
 
     for (let i = 0; i < dataLabel.length; i++) {
 
