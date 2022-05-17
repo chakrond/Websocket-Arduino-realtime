@@ -17,7 +17,7 @@ socket.on('joined', (dev) => {
 
 var myChart
 var Linedata
-
+var elemID = {}
 socket.on('ChartData', async (data) => {
 
     console.log('ChartData: ', data)
@@ -79,6 +79,9 @@ const appenCheckBox = async () => {
 
         // creating checkbox element
         var checkbox = document.createElement('input')
+
+        const getId = getElementById(dataLabel.label[i])
+        Object.assign(elemID, { [dataLabel.label[i]]: getId })
 
         // Assigning the attributes
         // to created checkbox
