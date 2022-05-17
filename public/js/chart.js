@@ -76,20 +76,20 @@ socket.on('ChartData', async (data) => {
         // Assigning the attributes
         // to created checkbox
         checkbox.type = 'checkbox'
-        checkbox.name = dataLabel[i].toString()
+        checkbox.name = dataLabel.label[i]
         // checkbox.value = 'value'
-        checkbox.id = dataLabel[i].toString()
+        checkbox.id = dataLabel.label[i]
 
         // creating label for checkbox
         var label = document.createElement('label')
 
         // assigning attributes for 
         // the created label tag 
-        label.htmlFor = dataLabel[i].toString()
+        label.htmlFor = dataLabel.label[i]
 
         // appending the created text to 
         // the created label tag 
-        label.appendChild(document.createTextNode(dataLabel[i]))
+        label.appendChild(document.createTextNode(dataLabel.label[i]))
 
         // appending the checkbox
         // and label to div
