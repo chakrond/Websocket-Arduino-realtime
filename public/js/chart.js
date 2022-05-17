@@ -80,10 +80,6 @@ const appenCheckBox = async () => {
         // creating checkbox element
         var checkbox = document.createElement('input')
 
-        const getId = getElementById(dataLabel.label[i])
-        Object.assign(elemID, { [dataLabel.label[i]]: getId })
-        console.log('elemID: ', elemID)
-
         // Assigning the attributes
         // to created checkbox
         checkbox.type = 'checkbox'
@@ -108,6 +104,10 @@ const appenCheckBox = async () => {
         inlineCB.appendChild(checkbox)
         inlineCB.appendChild(label)
     }
+
+    const getId = getElementById(dataLabel.label[i])
+    Object.assign(elemID, { [dataLabel.label[i]]: getId })
+    console.log('elemID: ', elemID)
 }
 
 
