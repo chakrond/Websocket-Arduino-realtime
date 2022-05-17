@@ -17,7 +17,7 @@ socket.on('joined', (dev) => {
 
 var myChart
 var Linedata
-const inlineCB = document.getElementById('inlineCB')
+
 socket.on('ChartData', async (data) => {
 
     console.log('ChartData: ', data)
@@ -68,7 +68,10 @@ socket.on('ChartData', async (data) => {
     Object.assign(dataLabel, { ['label']: combArray })
     console.log('dataLabel: ', dataLabel)
 
-    for (let i = 0; i < dataLabel.length; i++) {
+    // get <div>
+    const inlineCB = document.getElementById('inlineCB')
+
+    for (let i = 0; i < dataLabel.label.length; i++) {
 
         // creating checkbox element
         var checkbox = document.createElement('input')
