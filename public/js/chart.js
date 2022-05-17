@@ -106,4 +106,4 @@ const appenCheckBox = async () => {
     }
 }
 
-appenCheckBox()
+await appenCheckBox()
