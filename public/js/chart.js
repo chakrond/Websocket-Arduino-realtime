@@ -82,6 +82,7 @@ const appenCheckBox = async () => {
 
         const getId = getElementById(dataLabel.label[i])
         Object.assign(elemID, { [dataLabel.label[i]]: getId })
+        console.log('elemID: ', elemID)
 
         // Assigning the attributes
         // to created checkbox
