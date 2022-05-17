@@ -16,14 +16,13 @@ socket.on('joined', (dev) => {
 
 
 var myChart
-var Linedata
 socket.on('ChartData', (data) => {
 
     console.log('ChartData: ', data)
 
     const labels = data.recTime
 
-    Linedata = {
+    const Linedata = {
         labels: labels,
         datasets: [
             {
@@ -53,49 +52,53 @@ socket.on('ChartData', (data) => {
     )
 
     console.log('myChart: ', myChart)
+
+    // Map data
+    // Create nested array
+    const combArray = []
+    const dataLabel = {}
+
+    Linedata.datasets.flatMap((a) => {
+        return combArray.push(a['label'])
+    })
+
+    Object.assign(dataLabel, { ['label']: combArray })
+
+
+    // get <div> id
+    var inlineCB = document.getElementById('inlineCB')
+
+    for (let i = 0; i < dataLabel.length; i++) {
+
+        // creating checkbox element
+        var checkbox = document.createElement('input')
+
+        // Assigning the attributes
+        // to created checkbox
+        checkbox.type = 'checkbox'
+        checkbox.name = dataLabel[i]
+        // checkbox.value = 'value'
+        checkbox.id = dataLabel[i]
+
+        // creating label for checkbox
+        var label = document.createElement('label');
+
+        // assigning attributes for 
+        // the created label tag 
+        label.htmlFor = dataLabel[i]
+
+        // appending the created text to 
+        // the created label tag 
+        label.appendChild(document.createTextNode(dataLabel[i]))
+
+        // appending the checkbox
+        // and label to div
+        inlineCB.appendChild(checkbox)
+        inlineCB.appendChild(label)
+    }
+
+
 })
 
 
-// Map data
-// Create nested array
-const combArray = []
-const dataLabel = {}
 
-Linedata.datasets.flatMap((a) => {
-    return combArray.push(a['label'])
-})
-
-Object.assign(dataLabel, { ['label']: combArray })
-
-
-// get <div> id
-var inlineCB = document.getElementById('inlineCB')
-
-for (let i = 0; i < dataLabel.length; i++) {
-
-    // creating checkbox element
-    var checkbox = document.createElement('input')
-
-    // Assigning the attributes
-    // to created checkbox
-    checkbox.type = 'checkbox'
-    checkbox.name = dataLabel[i]
-    // checkbox.value = 'value'
-    checkbox.id = dataLabel[i]
-
-    // creating label for checkbox
-    var label = document.createElement('label');
-
-    // assigning attributes for 
-    // the created label tag 
-    label.htmlFor = dataLabel[i]
-
-    // appending the created text to 
-    // the created label tag 
-    label.appendChild(document.createTextNode(dataLabel[i]))
-
-    // appending the checkbox
-    // and label to div
-    inlineCB.appendChild(checkbox)
-    inlineCB.appendChild(label)
-}
