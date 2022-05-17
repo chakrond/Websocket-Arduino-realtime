@@ -66,6 +66,7 @@ socket.on('ChartData', async (data) => {
     })
 
     Object.assign(dataLabel, { ['label']: combArray })
+    console.log('dataLabel: ', dataLabel)
 
     for (let i = 0; i < dataLabel.length; i++) {
 
@@ -75,16 +76,16 @@ socket.on('ChartData', async (data) => {
         // Assigning the attributes
         // to created checkbox
         checkbox.type = 'checkbox'
-        checkbox.name = dataLabel[i]
+        checkbox.name = dataLabel[i].toString()
         // checkbox.value = 'value'
-        checkbox.id = dataLabel[i]
+        checkbox.id = dataLabel[i].toString()
 
         // creating label for checkbox
         var label = document.createElement('label')
 
         // assigning attributes for 
         // the created label tag 
-        label.htmlFor = dataLabel[i]
+        label.htmlFor = dataLabel[i].toString()
 
         // appending the created text to 
         // the created label tag 
