@@ -16,14 +16,14 @@ socket.on('joined', (dev) => {
 
 
 var myChart
-var inlineCB
-socket.on('ChartData', (data) => {
+var Linedata
+socket.on('ChartData', async (data) => {
 
     console.log('ChartData: ', data)
 
     const labels = data.recTime
 
-    const Linedata = {
+    Linedata = {
         labels: labels,
         datasets: [
             {
@@ -54,12 +54,17 @@ socket.on('ChartData', (data) => {
 
     console.log('myChart: ', myChart)
 
+    return Linedata
+})
+
+Linedata.then((result) => {
+
     // Map data
     // Create nested array
     const combArray = []
     const dataLabel = {}
 
-    Linedata.datasets.flatMap((a) => {
+    result.datasets.flatMap((a) => {
         return combArray.push(a['label'])
     })
 
@@ -67,7 +72,7 @@ socket.on('ChartData', (data) => {
 
 
     // get <div> id
-    inlineCB = document.getElementById('inlineCB')
+    var inlineCB = document.getElementById('inlineCB')
 
     for (let i = 0; i < dataLabel.length; i++) {
 
@@ -97,9 +102,4 @@ socket.on('ChartData', (data) => {
         inlineCB.appendChild(checkbox)
         inlineCB.appendChild(label)
     }
-
-
 })
-
-
-
