@@ -103,11 +103,11 @@ const appenCheckBox = async () => {
         // and label to div
         inlineCB.appendChild(checkbox)
         inlineCB.appendChild(label)
-    }
 
-    const getId = getElementById(dataLabel.label[i])
-    Object.assign(elemID, { [dataLabel.label[i]]: getId })
-    console.log('elemID: ', elemID)
+        const getId = getElementById(dataLabel.label[i])
+        Object.assign(elemID, { [dataLabel.label[i]]: getId })
+        console.log('elemID: ', elemID)
+    }
 }
 
 
