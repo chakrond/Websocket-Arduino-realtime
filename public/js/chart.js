@@ -54,7 +54,7 @@ socket.on('ChartData', async (data) => {
     )
 
     console.log('myChart: ', myChart)
-    // appenCheckBox()
+    await appenCheckBox()
 })
 
 
@@ -106,4 +106,4 @@ const appenCheckBox = async () => {
     }
 }
 
-await appenCheckBox()
+
