@@ -106,8 +106,23 @@ const appenCheckBox = async () => {
 
         var getId = document.getElementById(dataLabel.label[i])
         Object.assign(elemID, { [dataLabel.label[i]]: getId })
-        console.log('elemID: ', elemID)
+
+        // Add Event Listener
+        elemID[i].addEventListener('change', (e) => {
+
+            if (e.target.checked) {
+
+                myChart.setDatasetVisibility(i, true)
+                myChart.update()
+                
+            } else {
+
+                myChart.setDatasetVisibility(i, false)
+                myChart.update()
+            }
+        })
     }
+    console.log('elemID: ', elemID)
 }
 
 
