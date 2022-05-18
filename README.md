@@ -11,5 +11,6 @@ Controller Webpage (bootstrap 5)
 ![Control Page](https://user-images.githubusercontent.com/94983485/168050340-fa8fc56c-aa4c-4590-9328-dfaabbaa69e4.PNG)
 
 Data Line Chart (chart.js)
-![Chart](https://user-images.githubusercontent.com/94983485/168476472-15254232-320e-4e88-96de-6d0ecdee9a88.PNG)
+![Chart](https://user-images.githubusercontent.com/94983485/168942392-2304c5ae-62aa-4d1f-8c82-1f2daf1891c6.PNG)
+
 
