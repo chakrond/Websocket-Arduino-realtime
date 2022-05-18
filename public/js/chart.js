@@ -38,6 +38,12 @@ socket.on('ChartData', async (data) => {
                 data: data.dsTemp_IN,
                 borderColor: '#f67019',
                 backgroundColor: '#f67019',
+            },
+            {
+                label: 'Temperature_TANK',
+                data: data.dsTemp_Tank,
+                borderColor: '#8549ba',
+                backgroundColor: '#8549ba',
             }
         ]
     }
