@@ -25,6 +25,7 @@ const swtichRelay2 = document.getElementById('switchCheck-Relay-2')
 const swtichRelay3 = document.getElementById('switchCheck-Relay-3')
 const swtichRelay4 = document.getElementById('switchCheck-Relay-4')
 const swtichRelay5 = document.getElementById('switchCheck-Relay-5')
+const swtichRelay6 = document.getElementById('switchCheck-Relay-6')
 
 // get input values
 const trigTemp_FAN = document.getElementById('trigTemp_FAN')
@@ -48,6 +49,7 @@ const svgElement_Relay2 = document.getElementById('svg-relay-2')
 const svgElement_Relay3 = document.getElementById('svg-relay-3')
 const svgElement_Relay4 = document.getElementById('svg-relay-4')
 const svgElement_Relay5 = document.getElementById('svg-relay-5')
+const svgElement_Relay6 = document.getElementById('svg-relay-6')
 
 // Switch Timer
 const swtichTimer = document.getElementById('switchCheck-Manual-Timer')
@@ -96,12 +98,14 @@ socket.on('deviceInfo', (dev) => {
         swtichRelay3.disabled = true
         swtichRelay4.disabled = true
         swtichRelay5.disabled = true
+        swtichRelay6.disabled = true
     } else {
         swtichRelay1.disabled = false
         swtichRelay2.disabled = false
         swtichRelay3.disabled = false
         swtichRelay4.disabled = false
         swtichRelay5.disabled = false
+        swtichRelay6.disabled = false
     }
 
     // Relay 1
@@ -152,6 +156,16 @@ socket.on('deviceInfo', (dev) => {
     } else {
         swtichRelay5.removeAttribute('checked')
         svgElement_Relay5.style.fill = 'red' // svg
+    }
+
+    // Relay 6
+    // check the latest stat of relay
+    if (dev.stat['relay6'] == 'true') {
+        swtichRelay6.setAttribute('checked', 'checked')
+        svgElement_Relay6.style.fill = 'green' // svg
+    } else {
+        swtichRelay6.removeAttribute('checked')
+        svgElement_Relay6.style.fill = 'red' // svg
     }
 
 
@@ -262,6 +276,7 @@ swtichManual.addEventListener('change', (e) => {
         swtichRelay3.disabled = false
         swtichRelay4.disabled = false
         swtichRelay5.disabled = false
+        swtichRelay6.disabled = false
 
         socket.emit('event_control', {
 
@@ -278,6 +293,7 @@ swtichManual.addEventListener('change', (e) => {
         swtichRelay3.disabled = true
         swtichRelay4.disabled = true
         swtichRelay5.disabled = true
+        swtichRelay6.disabled = true
 
         socket.emit('event_control', {
 
@@ -521,9 +537,40 @@ swtichRelay5.addEventListener('change', (e) => {
         })
         console.log('Command, Relay 5 - FOG: OFF')
     }
+})
 
-    // console.log('Relay2 Command was delivered')
+// ------------------------------------------------------------
+// Relay 6
+// ------------------------------------------------------------
 
+swtichRelay6.addEventListener('change', (e) => {
+
+    e.preventDefault()
+
+    // svg
+    svgElement_Relay6.style.fill = e.target.checked ? 'green' : 'red'
+
+    if (e.target.checked) {
+
+        socket.emit('event_control', {
+
+            username: devname,
+            relay6: "true"
+
+        })
+
+        console.log('Command, Relay 6 - PAD: ON')
+
+    } else {
+
+        socket.emit('event_control', {
+
+            username: devname,
+            relay6: "false"
+
+        })
+        console.log('Command, Relay 6 - PAD: OFF')
+    }
 })
 
 

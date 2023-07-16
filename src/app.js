@@ -207,6 +207,21 @@ io.on('connection', (socket) => {
 
         }
 
+        if (device.relay6) {
+
+          io.to(id).emit('control_relay_6', {
+
+            id: id,
+            username: username,
+            relay6: device.relay6
+          })
+          console.log('Relay 6: ', device.relay6)
+
+          // update device stats
+          sDevice.stat['relay6'] = device.relay6
+
+        }
+
         // ------------------------------------------------------------------------------------------------------------
         // Update Sketch
         // ------------------------------------------------------------------------------------------------------------
