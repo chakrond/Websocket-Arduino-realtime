@@ -357,23 +357,6 @@ io.on('connection', (socket) => {
           console.log(`Send time: ${timeNow.getHours()}:${timeNow.getMinutes()}`)
         }
 
-        // Time UTC
-        if (device.getTimeUTC) {
-
-          const timeNow = new Date(Date.now())
-          console.log('Time-UTC+0: ', timeNow)
-
-          io.to(id).emit('get_timeUTC', {
-
-            id: id,
-            username: username,
-            Time_UTC_hh: timeNow.getHours(),
-            Time_UTC_mm: timeNow.getMinutes()
-          })
-
-          console.log(`Send time: ${timeNow.getHours()}:${timeNow.getMinutes()}`)
-        }
-
 
       }
     } catch (e) {
@@ -466,6 +449,28 @@ io.on('connection', (socket) => {
     })
   })
 
+
+  // ------------------------------------------------------------------------------------------------------------
+  // Listen to getTimeUTC
+  // ------------------------------------------------------------------------------------------------------------
+  socket.on('getTimeUTC', (data) => {
+
+    // console.log('getTimeUTC: ', data)
+
+    const { username } = getUser(socket.id)
+    const timeNow = new Date(Date.now())
+    console.log('Time-UTC+0: ', timeNow)
+
+    io.to(id).emit('get_timeUTC', {
+
+      id: socket.id,
+      username: username,
+      Time_UTC_hh: timeNow.getHours(),
+      Time_UTC_mm: timeNow.getMinutes()
+    })
+
+    console.log(`Send time: ${timeNow.getHours()}:${timeNow.getMinutes()}`)
+  })
 
 
   socket.on('disconnect', () => {
