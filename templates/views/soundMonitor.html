@@ -1,0 +1,121 @@
+<!DOCTYPE HTML>
+
+<head>
+    <link rel="icon">
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <title>Controller Settings</title>
+
+    <link rel="icon" href="/img/gear.png">
+
+    <link rel="stylesheet" href="/css/control.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css">
+
+</head>
+
+<body>
+
+    <!-- Main content -->
+    <div class="main">
+
+        <hr>
+
+        <div class="container">
+
+            <div class="row">
+
+                <div class="col">
+                    <!-- // Command Buttons -->
+                    <h3>Command Controller</h3>
+
+                    <button id="btn_restart" class="btn btn-primary">Restart</button>
+                    <br>
+                    <br>
+                    <button id="btn_update" class="btn btn-primary">Update</button>
+
+                </div>
+
+                <div class="col">
+                    <!-- Chart -->
+                    <form id="chart_query_form">
+
+                        <h3>Chart</h3>
+
+                        <div class="row g-3 align-items-center">
+                            <div class="col-auto">
+                                <label for="chart_query" class="col-form-label">Date:</label>
+                            </div>
+                            <div class="col-auto">
+                                <input type="text" id="chart_query" name="chart_query" class="form-control"
+                                    aria-describedby="unit" placeholder="yyyy-mm-dd" target="_blank">
+                            </div>
+                            <div class="col-auto">
+                                <span id="unit" class="form-text">
+                                    eg. 2022-05-16, 2022-05-15:2022-05-16, 2022-05, 2022
+                                </span>
+                            </div>
+                        </div>
+
+                        <div class="form-check form-check-inline">
+                            <input class="form-check-input" type="radio" name="inlineRadioOptions" id="option_day">
+                            <label class="form-check-label" for="option_day">Day</label>
+                        </div>
+                        <div class="form-check form-check-inline">
+                            <input class="form-check-input" type="radio" name="inlineRadioOptions" id="option_range">
+                            <label class="form-check-label" for="option_range">Range</label>
+                        </div>
+                        <div class="form-check form-check-inline">
+                            <input class="form-check-input" type="radio" name="inlineRadioOptions" id="option_month">
+                            <label class="form-check-label" for="option_month">Month</label>
+                        </div>
+                        <div class="form-check form-check-inline">
+                            <input class="form-check-input" type="radio" name="inlineRadioOptions" id="option_year">
+                            <label class="form-check-label" for="option_year">Year</label>
+                        </div>
+
+                        <br>
+                        <br>
+                        <button id="btn_plot" class="btn btn-primary">Plot</button>
+                    </form>
+                </div>
+
+            </div>
+
+        </div>
+
+    </div>
+
+    <!-- Script -->
+
+    <script>
+
+        // Loop through all dropdown buttons to toggle between hiding and showing its dropdown content - This allows the user to have multiple dropdowns without any conflict */
+        var dropdown = document.getElementsByClassName("dropdown-btn");
+        var i;
+
+        for (i = 0; i < dropdown.length; i++) {
+            dropdown[i].addEventListener("click", function () {
+                this.classList.toggle("active")
+                var dropdownContent = this.nextElementSibling;
+                if (dropdownContent.style.display === "block") {
+                    dropdownContent.style.display = "none";
+                } else {
+                    dropdownContent.style.display = "block";
+                }
+            });
+        }
+
+        function redirect() { setTimeout(function () { window.location.replace("/home"); }, 1500) }
+
+    </script>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/qs/6.6.0/qs.min.js"></script>
+    <script src="/socket.io/socket.io.js"></script>
+    <script src="/js/soundMonitor.js"></script>
+
+</body>
+
+</html>
