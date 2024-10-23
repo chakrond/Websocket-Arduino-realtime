@@ -5,6 +5,7 @@ const uploadController = require('../controllers/upload')
 const relayController = require('../controllers/relay')
 const boardSettingsController = require('../controllers/control')
 const chartController = require('../controllers/chart')
+const soundMonitorController = require('../controllers/soundMonitor')
 
 let routes = app => {
 
@@ -21,6 +22,9 @@ let routes = app => {
 
   // Board control page
   router.get('/control', boardSettingsController.getControl)
+
+  // Board control page
+  router.get('/soundMonitor', soundMonitorController.getSoundMonitor)
 
   // Chart 
   router.get('/chart', chartController.getChart)
