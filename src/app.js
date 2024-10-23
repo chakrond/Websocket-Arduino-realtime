@@ -453,15 +453,13 @@ io.on('connection', (socket) => {
   // ------------------------------------------------------------------------------------------------------------
   // Listen to getTimeUTC
   // ------------------------------------------------------------------------------------------------------------
-  socket.on('getTimeUTC', (data) => {
-
-    // console.log('getTimeUTC: ', data)
+  socket.on('getTimeUTC', () => {
 
     const { username } = getUser(socket.id)
     const timeNow = new Date(Date.now())
     console.log('Time-UTC+0: ', timeNow)
 
-    io.to(id).emit('get_timeUTC', {
+    io.to(socket.id).emit('get_timeUTC', {
 
       id: socket.id,
       username: username,
