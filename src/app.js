@@ -453,11 +453,11 @@ io.on('connection', (socket) => {
   // ------------------------------------------------------------------------------------------------------------
   // Listen to getTimeUTC
   // ------------------------------------------------------------------------------------------------------------
-  socket.on('getTimeUTC', () => {
+  socket.on('getTimeUTC', (data) => {
 
     const { username } = getUser(socket.id)
-    const timeNow = new Date(Date.now())
-    console.log('Time-UTC+0: ', timeNow)
+    const timeNow = new Date.now()
+    console.log('Sensor-analogRead: ', data.val)
 
     io.to(socket.id).emit('get_timeUTC', {
 
