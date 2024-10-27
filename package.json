@@ -2,6 +2,10 @@
   "name": "websocket-arduino",
   "version": "1.0.0",
   "main": "app.js",
+  "engines": {
+    "node": "14.17.0",
+    "npm": "6.14.13"
+  },
   "scripts": {
     "start": "node src/app.js",
     "dev": "nodemon src/app.js -e js,hbs",
@@ -23,13 +27,13 @@
     "cors": "^2.8.5",
     "express": "^4.17.2",
     "hbs": "^4.2.0",
-    "jsonwebtoken": "^9.0.2",
+    "jsonwebtoken": "^8.5.1",
     "mongo": "^0.1.0",
     "mongoose": "^6.1.1",
     "multer": "^1.4.4",
     "multer-gridfs-storage": "^5.0.2",
-    "sharp": "^0.33.5",
-    "socket.io": "^4.8.1",
+    "sharp": "^0.30.4",
+    "socket.io": "^4.4.0",
     "validator": "^13.7.0"
   },
   "devDependencies": {
