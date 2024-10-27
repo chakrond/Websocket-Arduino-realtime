@@ -24,8 +24,9 @@ const { saveDataToCollection, getData } = require('./utils/saveSocketData')
 
 
 var corsOptions = {
-  origin: "http://localhost:8080",
-  methods: ["GET", "POST"]
+  // origin: "http://localhost:8080",
+  origin: "*",
+  // methods: ["GET", "POST"]
 }
 
 app.use(cors(corsOptions))
