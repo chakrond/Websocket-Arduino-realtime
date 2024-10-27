@@ -515,6 +515,8 @@ io.on("connection", (socket) => {
   console.log('SocketID: ', userID)
 })
 
+const port = process.env.PORT || 8080 // set port
+
 httpServer.listen(port, () => {
 
   console.log(`Server is up on port ${port}`)
