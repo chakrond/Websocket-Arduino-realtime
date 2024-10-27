@@ -6,16 +6,12 @@ const multer = require('multer')
 const path = require('path')
 const hbs = require('hbs')
 
-const port = process.env.PORT || 3000 // set port
 const app = express()
-  .use((req, res) => res.sendFile(INDEX, { root: __dirname }))
-  .listen(port, () => console.log(`Listening on ${port}`));
-
-// const server = http.createServer(app)
-const io = socketio(app)
+const server = http.createServer(app)
+const io = socketio(server)
 // const { Server } = require("socket.io")
 // const io = new Server(server)
-
+const port = process.env.PORT || 3000 // set port
 
 const cors = require('cors')
 const initRoutes = require('./routers/index')
@@ -499,9 +495,9 @@ io.on('connection', (socket) => {
 })
 
 
-// server.listen(port, () => {
+server.listen(port, () => {
 
-//   console.log(`Server is up on port ${port}`)
+  console.log(`Server is up on port ${port}`)
 
-// })
+})
 
