@@ -8,7 +8,9 @@ const hbs = require('hbs')
 
 const app = express()
 const server = http.createServer(app)
-const io = socketio(server)
+// const io = socketio(server)
+const { Server } = require("socket.io")
+const io = new Server(server)
 const port = process.env.PORT || 3000 // set port
 
 const cors = require('cors')
