@@ -1,16 +1,14 @@
 require('./db/mongoose_connect')
 const express = require('express')
-// const http = require('http')
-// const socketio = require('socket.io')
+const http = require('http')
+const socketio = require('socket.io')
 const multer = require('multer')
 const path = require('path')
 const hbs = require('hbs')
 
 const app = express()
-// const server = http.createServer(app)
-// const io = socketio(server)
-const httpServer = require("http").createServer();
-const io = require("socket.io")(httpServer);
+const server = http.createServer(app)
+const io = socketio(server)
 const port = process.env.PORT || 3000 // set port
 
 const cors = require('cors')
