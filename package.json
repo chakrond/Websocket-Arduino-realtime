@@ -3,6 +3,8 @@
   "version": "1.0.0",
   "main": "app.js",
   "engines": {
+    "node": "20.x",
+    "npm": "10.x"
   },
   "scripts": {
     "start": "node src/app.js",
