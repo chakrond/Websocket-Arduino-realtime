@@ -1,16 +1,18 @@
 require('./db/mongoose_connect')
 const express = require('express')
 const http = require('http')
-const socketio = require('socket.io')
+// const socketio = require('socket.io')
 const multer = require('multer')
 const path = require('path')
 const hbs = require('hbs')
 
 const app = express()
 const server = http.createServer(app)
-const io = socketio(server)
-// const { Server } = require("socket.io")
-// const io = new Server(server)
+// const io = socketio(server)
+const { Server } = require("socket.io")
+const io = new Server({
+  transports: ["polling", "websocket"]
+})
 const port = process.env.PORT || 3000 // set port
 
 const cors = require('cors')
@@ -494,7 +496,7 @@ io.on('connection', (socket) => {
 
 })
 
-
+io.attach(server)
 server.listen(port, () => {
 
   console.log(`Server is up on port ${port}`)
