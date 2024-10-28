@@ -5,11 +5,11 @@ const saveDataToCollection = async ({ data, username }) => {
 
     try {
 
-        const VData = await SocketData.findOne({ recDate: converTime(7), owner: username })
+        const VData = await SocketData.findOne({ recDate: converTime(0), owner: username })
 
         if (VData) {
             VData.dataArray = await VData.dataArray.concat({
-                recTime: new Date(Date.now() + (7 * 60 * 60 * 1000)), // use defalut in model record will create only once, no update
+                recTime: new Date(Date.now()), // use defalut in model record will create only once, no update
                 dsTemp_IN: data.dsTemp_IN,
                 DHT21_IN: data.DHT21_IN,
                 dsTemp_Tank: data.dsTemp_Tank
@@ -19,9 +19,9 @@ const saveDataToCollection = async ({ data, username }) => {
         }
 
         const NewData = new SocketData({
-            recDate: converTime(7),
+            recDate: converTime(0),
             dataArray: [{
-                recTime: new Date(Date.now() + (7 * 60 * 60 * 1000)),
+                recTime: new Date(Date.now()),
                 dsTemp_IN: data.dsTemp_IN,
                 DHT21_IN: data.DHT21_IN,
                 dsTemp_Tank: data.dsTemp_Tank

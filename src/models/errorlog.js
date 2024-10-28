@@ -9,7 +9,7 @@ const ErrorlogSchema = new mongoose.Schema({
     },
     logDate: {
         type: String,
-        default: converTime(7)
+        default: converTime(0)
     }, 
     logInfo: [{
         logTime: {

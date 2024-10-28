@@ -9,6 +9,7 @@ const SocketDataSchema = new mongoose.Schema({
         trim: true
     },
     dataArray: [{
+        
         // Option 1
         recTime: { // // use defalut in model record will create only once, no update
             type: Date,
@@ -38,7 +39,16 @@ const SocketDataSchema = new mongoose.Schema({
             type: Number,
             trim: true,
             set: n => n.toFixed(1)
-        }   
+        },
+        
+        // Option 3
+        KY_037: {
+            type: Number,
+            trim: true,
+            set: n => n.toFixed(1)
+        },
+
+
     }],
     owner: {
         type: String,

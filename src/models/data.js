@@ -7,7 +7,7 @@ const dataSchema = new mongoose.Schema({
     recDate: {
         type: Date,
         trim: true,
-        default: converTime(7)
+        default: converTime(0)
     },
     dataArray: [{
         // Option 1

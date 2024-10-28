@@ -484,7 +484,13 @@ io.on('connection', (socket) => {
 
     const { username } = getUser(socket.id)
     console.log('Board: ', username)
-    console.log('Sensor-KY-037: ', data.val)
+    console.log('Sensor-KY_037: ', data.KY_037)
+
+    // Save data to collection
+    saveDataToCollection({ data, username: username })
+    const sensorsData = data
+    delete sensorsData.id
+    addSensors({ username: username, sensors: sensorsData })
 
   })
 

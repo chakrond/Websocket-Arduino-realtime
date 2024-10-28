@@ -14,7 +14,7 @@ router.post('/data', auth, async (req, res) => {
 
     try {
 
-        const VData = await Data.findOne({ recDate: converTime(7), owner: req.userInfo._id })
+        const VData = await Data.findOne({ recDate: converTime(0), owner: req.userInfo._id })
 
         if (VData) {
             VData.dataArray = await VData.dataArray.concat({
