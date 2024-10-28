@@ -464,7 +464,6 @@ io.on('connection', (socket) => {
 
     const { username } = getUser(socket.id)
     const timeNow = new Date(Date.now())
-    console.log('Sensor-analogRead: ', data.val)
 
     io.to(socket.id).emit('get_timeUTC', {
 
@@ -478,6 +477,21 @@ io.on('connection', (socket) => {
   })
 
 
+  // ------------------------------------------------------------------------------------------------------------
+  // Listen to sensor KY-037
+  // ------------------------------------------------------------------------------------------------------------
+  socket.on('read_KY037', (data) => {
+
+    const { username } = getUser(socket.id)
+    console.log('Board: ', username)
+    console.log('Sensor-KY-037: ', data.val)
+
+  })
+
+
+  // ------------------------------------------------------------------------------------------------------------
+  // On disconnet
+  // ------------------------------------------------------------------------------------------------------------  
   socket.on('disconnect', () => {
 
     try {
