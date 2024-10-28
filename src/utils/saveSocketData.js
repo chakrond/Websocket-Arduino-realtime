@@ -39,6 +39,40 @@ const saveDataToCollection = async ({ data, username }) => {
 }
 
 
+const saveDataToCollection_KY037 = async ({ data, username }) => {
+
+    try {
+
+        const VData = await SocketData.findOne({ recDate: converTime(0), owner: username })
+
+        if (VData) {
+            VData.dataArray = await VData.dataArray.concat({
+                recTime: new Date(Date.now()), // use defalut in model record will create only once, no update
+                KY_037: data.KY_037,
+            })
+            await VData.save()
+            return console.log('Save data to colleciton successfully!')
+        }
+
+        const NewData = new SocketData({
+            recDate: converTime(0),
+            dataArray: [{
+                recTime: new Date(Date.now()),
+                KY_037: data.KY_037,
+            }],
+            owner: username
+        })
+
+        await NewData.save()
+        console.log('Create data object successfully!')
+
+    } catch (e) {
+        console.log(e)
+    }
+
+}
+
+
 const getData = async (query) => {
 
     try {
@@ -187,5 +221,6 @@ const getData = async (query) => {
 
 module.exports = {
     saveDataToCollection,
-    getData
+    getData,
+    saveDataToCollection_KY037
 }
