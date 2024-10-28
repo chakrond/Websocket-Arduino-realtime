@@ -21,7 +21,7 @@ const userRouter = require('./routers/user')
 const dataRouter = require('./routers/data')
 const { addUser, getUser, getUserByName } = require('./utils/users')
 const { addDevice, getDevice, getDeviceByName, addStat, addSensors } = require('./utils/devices')
-const { saveDataToCollection, getData } = require('./utils/saveSocketData')
+const { saveDataToCollection, saveDataToCollection_KY037, getData } = require('./utils/saveSocketData')
 
 
 var corsOptions = {
@@ -487,7 +487,7 @@ io.on('connection', (socket) => {
     console.log('Sensor-KY_037: ', data.KY_037)
 
     // Save data to collection
-    saveDataToCollection({ data, username: username })
+    saveDataToCollection_KY037({ data, username: username })
     const sensorsData = data
     delete sensorsData.id
     addSensors({ username: username, sensors: sensorsData })

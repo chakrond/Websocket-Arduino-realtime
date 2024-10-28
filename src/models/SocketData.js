@@ -44,8 +44,6 @@ const SocketDataSchema = new mongoose.Schema({
         // Option 3
         KY_037: {
             type: Array,
-            trim: true,
-            set: n => n.toFixed(1)
         },
 
 
